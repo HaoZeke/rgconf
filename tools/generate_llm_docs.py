@@ -1,6 +1,7 @@
 # Copyright 2023--present rgconf developers
 """Write llms.txt, llms-full.txt, and AGENTS.md from docs/orgmode."""
 
+import csv
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,6 +15,8 @@ PAGES = [
     "explanation/precedence.org",
     "explanation/upstream.org",
 ]
+PARAMETER_MAP = ROOT / "generated" / "parameter_map.tsv"
+PARAMETER_REFERENCE = ROOT / "docs" / "source" / "reference" / "source-parameter-map.rst"
 
 
 def body(path: Path) -> str:
@@ -25,6 +28,29 @@ def body(path: Path) -> str:
     return "\n".join(lines).strip() + "\n"
 
 
+def parameter_reference() -> str:
+    lines = [
+        "Imported source parameter map",
+        "=============================",
+        "",
+        "Generated from ``generated/parameter_map.tsv``. Each entry records the",
+        "source declaration, type, default, and source section. A blank default",
+        "means the source declaration has no default. Units remain those stated",
+        "by the named source API when the source map has no unit annotation.",
+        "",
+    ]
+    with PARAMETER_MAP.open(newline="") as stream:
+        for row in csv.DictReader(stream, delimiter="\t"):
+            default = row["default"] or "(no source default)"
+            section = f"; section {row['section']}" if row["section"] else ""
+            lines.append(
+                f"* ``{row['repo']}:{row['struct']}.{row['field']}`` — "
+                f"``{row['type']}``, default ``{default}``; "
+                f"``{row['relpath']}:{row['line']}``{section}"
+            )
+    return "\n".join(lines) + "\n"
+
+
 def main() -> None:
     parts = []
     index = ["# rgconf", "", "Generated from docs/orgmode. Do not edit by hand.", ""]
@@ -34,6 +60,10 @@ def main() -> None:
         title = text.splitlines()[0].lstrip("* ").strip()
         index.append(f"- docs/orgmode/{rel}")
         parts.append(f"# {rel}\n\n{text}")
+    source_parameters = parameter_reference()
+    PARAMETER_REFERENCE.write_text(source_parameters)
+    index.append("- docs/source/reference/source-parameter-map.rst")
+    parts.append(f"# reference/source-parameter-map.rst\n\n{source_parameters}")
     (ROOT / "docs" / "llms.txt").write_text("\n".join(index) + "\n")
     (ROOT / "docs" / "llms-full.txt").write_text("\n".join(parts))
     agents = """# Agents

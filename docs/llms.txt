@@ -9,3 +9,4 @@ Generated from docs/orgmode. Do not edit by hand.
 - docs/orgmode/reference/parameters.org
 - docs/orgmode/explanation/precedence.org
 - docs/orgmode/explanation/upstream.org
+- docs/source/reference/source-parameter-map.rst

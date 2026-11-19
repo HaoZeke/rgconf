@@ -11,5 +11,6 @@ Generated pages live beside this index. ``docs/export.el`` rewrites them from ``
    howto/extend-schema
    howto/deprecation
    reference/parameters
+   reference/source-parameter-map
    explanation/precedence
    explanation/upstream
