@@ -518,71 +518,71 @@ eon	include/eon/ParametersOptions.h	901	oh_tst_options_t	gle_a_file	std::string	
 eon	include/eon/ParametersOptions.h	906	oh_tst_options_t	symmetry_products	std::string	""	OH_TST
 eon	include/eon/ParametersOptions.h	912	oh_tst_options_t	pmf_scan	bool	false	OH_TST
 eon	include/eon/ParametersOptions.h	913	oh_tst_options_t	scan_planes	long	40	OH_TST
-rgmin	include/rgmin.h	67	rgmin_abi_stamp_t	abi_major	uint16_t		
-rgmin	include/rgmin.h	68	rgmin_abi_stamp_t	abi_minor	uint16_t		
-rgmin	include/rgmin.h	69	rgmin_abi_stamp_t	layout_revision	uint16_t		
-rgmin	include/rgmin.h	173	rgmin_control_t	maxiter	size_t		
-rgmin	include/rgmin.h	174	rgmin_control_t	gtol	double		
-rgmin	include/rgmin.h	175	rgmin_control_t	istep	double		
-rgmin	include/rgmin.h	176	rgmin_control_t	memory	size_t		
-rgmin	include/rgmin.h	179	rgmin_control_t	maxmove	double		
-rgmin	include/rgmin.h	181	rgmin_control_t	noise_eps	double		
-rgmin	include/rgmin.h	183	rgmin_control_t	noise_c	double		
-rgmin	include/rgmin.h	192	rgmin_report_t	value	double		
-rgmin	include/rgmin.h	193	rgmin_report_t	steps	size_t		
-rgmin	include/rgmin.h	194	rgmin_report_t	grad_norm	double		
-rgmin	include/rgmin.h	196	rgmin_report_t	stop	rgmin_stop_t		
-rgmin	include/rgmin.h	321	rgmin_exp_t	a	double		
-rgmin	include/rgmin.h	322	rgmin_exp_t	c_stab	double		
-rgmin	include/rgmin.h	323	rgmin_exp_t	mu	double		
-rgmin	include/rgmin.h	324	rgmin_exp_t	r_nn	double		
-rgmin	include/rgmin.h	325	rgmin_exp_t	r_cut	double		
-rgmin	include/rgmin.h	326	rgmin_exp_t	length_x	double		
-rgmin	include/rgmin.h	327	rgmin_exp_t	length_y	double		
-rgmin	include/rgmin.h	328	rgmin_exp_t	length_z	double		
-rgmin	include/rgmin.h	329	rgmin_exp_t	recalc_mu	int32_t		
-rgmin	include/rgmin.h	369	rgmin_bond_t	k	double		
-rgmin	include/rgmin.h	374	rgmin_angle_t	k_theta	double		
-rgmin	include/rgmin.h	399	rgmin_precon_t	struct_size	uint32_t		
-rgmin	include/rgmin.h	400	rgmin_precon_t	kind	uint32_t		
-rgmin	include/rgmin.h	404	rgmin_precon_t	natoms	size_t		
-rgmin	include/rgmin.h	407	rgmin_precon_t	nghost	size_t		
-rgmin	include/rgmin.h	411	rgmin_precon_t	npairs	size_t		
-rgmin	include/rgmin.h	414	rgmin_precon_t	nanchor	size_t		
-rgmin	include/rgmin.h	415	rgmin_precon_t	exp_a	double		
-rgmin	include/rgmin.h	417	rgmin_precon_t	nbonds	size_t		
-rgmin	include/rgmin.h	419	rgmin_precon_t	nangles	size_t		
-rgmin	include/rgmin.h	420	rgmin_precon_t	dihedrals	int32_t		
-rgmin	include/rgmin.h	421	rgmin_precon_t	geometry_kind	int32_t		
-rgmin	include/rgmin.h	1005	rgmin_scg_params_t	sigma0	double		
-rgmin	include/rgmin.h	1006	rgmin_scg_params_t	lambda	double		
-rgmin	include/rgmin.h	1007	rgmin_scg_params_t	lambda_limit	double		
-rgmin	include/rgmin.h	1008	rgmin_scg_params_t	tol_sol	double		
-rgmin	include/rgmin.h	1009	rgmin_scg_params_t	tol_func	double		
-rgmin	include/rgmin.h	1013	rgmin_scg_params_t	conjugacy	rgmin_conjugacy_t		
-rgmin	include/rgmin.h	1056	rgmin_scg_options_t	step_tolerance	int32_t		
-rgmin	include/rgmin.h	1095	rgmin_eigen_params_t	kind	int32_t		
-rgmin	include/rgmin.h	1096	rgmin_eigen_params_t	nev	uint32_t		
-rgmin	include/rgmin.h	1097	rgmin_eigen_params_t	krylov	uint32_t		
-rgmin	include/rgmin.h	1098	rgmin_eigen_params_t	max_iter	uint32_t		
-rgmin	include/rgmin.h	1099	rgmin_eigen_params_t	tol	double		
-rgmin	include/rgmin.h	1107	rgmin_lowest_mode_t	value	double		
-rgmin	include/rgmin.h	1108	rgmin_lowest_mode_t	actions	size_t		
-rgmin	include/rgmin.h	1155	rgmin_eigen_options_t	degree	uint32_t		
-rgmin	include/rgmin.h	1157	rgmin_eigen_options_t	extra	uint32_t		
-rgmin	include/rgmin.h	1166	rgmin_eigenpair_t	value	double		
-rgmin	include/rgmin.h	1167	rgmin_eigenpair_t	actions	size_t		
-rgmin	include/rgmin.h	1193	rgmin_eigenpair_ex_t	value	double		
-rgmin	include/rgmin.h	1194	rgmin_eigenpair_ex_t	actions	size_t		
-rgmin	include/rgmin.h	1195	rgmin_eigenpair_ex_t	residual	double		
-rgmin	include/rgmin.h	1196	rgmin_eigenpair_ex_t	converged	int32_t		
-rgmin	include/rgmin.h	185	rgmin_control_t	maxiter	comment	100	control
-rgmin	include/rgmin.h	185	rgmin_control_t	gtol	comment	1e-5	control
-rgmin	include/rgmin.h	185	rgmin_control_t	istep	comment	1	control
-rgmin	include/rgmin.h	185	rgmin_control_t	memory	comment	0	control
-rgmin	include/rgmin.h	186	rgmin_control_t	maxmove	comment	0	control
-rgmin	include/rgmin.h	187	rgmin_control_t	noise_eps	comment	0	control
-rgmin	include/rgmin.h	187	rgmin_control_t	noise_c	comment	3	control
+rgmin	include/rgmin.h	70	rgmin_abi_stamp_t	abi_major	uint16_t		
+rgmin	include/rgmin.h	71	rgmin_abi_stamp_t	abi_minor	uint16_t		
+rgmin	include/rgmin.h	72	rgmin_abi_stamp_t	layout_revision	uint16_t		
+rgmin	include/rgmin.h	194	rgmin_control_t	maxiter	size_t		
+rgmin	include/rgmin.h	195	rgmin_control_t	gtol	double		
+rgmin	include/rgmin.h	196	rgmin_control_t	istep	double		
+rgmin	include/rgmin.h	197	rgmin_control_t	memory	size_t		
+rgmin	include/rgmin.h	200	rgmin_control_t	maxmove	double		
+rgmin	include/rgmin.h	202	rgmin_control_t	noise_eps	double		
+rgmin	include/rgmin.h	204	rgmin_control_t	noise_c	double		
+rgmin	include/rgmin.h	218	rgmin_report_t	value	double		
+rgmin	include/rgmin.h	219	rgmin_report_t	steps	size_t		
+rgmin	include/rgmin.h	220	rgmin_report_t	grad_norm	double		
+rgmin	include/rgmin.h	222	rgmin_report_t	stop	rgmin_stop_t		
+rgmin	include/rgmin.h	363	rgmin_exp_t	a	double		
+rgmin	include/rgmin.h	364	rgmin_exp_t	c_stab	double		
+rgmin	include/rgmin.h	365	rgmin_exp_t	mu	double		
+rgmin	include/rgmin.h	366	rgmin_exp_t	r_nn	double		
+rgmin	include/rgmin.h	367	rgmin_exp_t	r_cut	double		
+rgmin	include/rgmin.h	368	rgmin_exp_t	length_x	double		
+rgmin	include/rgmin.h	369	rgmin_exp_t	length_y	double		
+rgmin	include/rgmin.h	370	rgmin_exp_t	length_z	double		
+rgmin	include/rgmin.h	371	rgmin_exp_t	recalc_mu	int32_t		
+rgmin	include/rgmin.h	411	rgmin_bond_t	k	double		
+rgmin	include/rgmin.h	416	rgmin_angle_t	k_theta	double		
+rgmin	include/rgmin.h	441	rgmin_precon_t	struct_size	uint32_t		
+rgmin	include/rgmin.h	442	rgmin_precon_t	kind	uint32_t		
+rgmin	include/rgmin.h	446	rgmin_precon_t	natoms	size_t		
+rgmin	include/rgmin.h	449	rgmin_precon_t	nghost	size_t		
+rgmin	include/rgmin.h	453	rgmin_precon_t	npairs	size_t		
+rgmin	include/rgmin.h	456	rgmin_precon_t	nanchor	size_t		
+rgmin	include/rgmin.h	457	rgmin_precon_t	exp_a	double		
+rgmin	include/rgmin.h	459	rgmin_precon_t	nbonds	size_t		
+rgmin	include/rgmin.h	461	rgmin_precon_t	nangles	size_t		
+rgmin	include/rgmin.h	462	rgmin_precon_t	dihedrals	int32_t		
+rgmin	include/rgmin.h	463	rgmin_precon_t	geometry_kind	int32_t		
+rgmin	include/rgmin.h	1120	rgmin_scg_params_t	sigma0	double		
+rgmin	include/rgmin.h	1121	rgmin_scg_params_t	lambda	double		
+rgmin	include/rgmin.h	1122	rgmin_scg_params_t	lambda_limit	double		
+rgmin	include/rgmin.h	1123	rgmin_scg_params_t	tol_sol	double		
+rgmin	include/rgmin.h	1124	rgmin_scg_params_t	tol_func	double		
+rgmin	include/rgmin.h	1128	rgmin_scg_params_t	conjugacy	rgmin_conjugacy_t		
+rgmin	include/rgmin.h	1171	rgmin_scg_options_t	step_tolerance	int32_t		
+rgmin	include/rgmin.h	1234	rgmin_eigen_params_t	kind	int32_t		
+rgmin	include/rgmin.h	1235	rgmin_eigen_params_t	nev	uint32_t		
+rgmin	include/rgmin.h	1236	rgmin_eigen_params_t	krylov	uint32_t		
+rgmin	include/rgmin.h	1237	rgmin_eigen_params_t	max_iter	uint32_t		
+rgmin	include/rgmin.h	1238	rgmin_eigen_params_t	tol	double		
+rgmin	include/rgmin.h	1246	rgmin_lowest_mode_t	value	double		
+rgmin	include/rgmin.h	1247	rgmin_lowest_mode_t	actions	size_t		
+rgmin	include/rgmin.h	1303	rgmin_eigen_options_t	degree	uint32_t		
+rgmin	include/rgmin.h	1305	rgmin_eigen_options_t	extra	uint32_t		
+rgmin	include/rgmin.h	1314	rgmin_eigenpair_t	value	double		
+rgmin	include/rgmin.h	1315	rgmin_eigenpair_t	actions	size_t		
+rgmin	include/rgmin.h	1341	rgmin_eigenpair_ex_t	value	double		
+rgmin	include/rgmin.h	1342	rgmin_eigenpair_ex_t	actions	size_t		
+rgmin	include/rgmin.h	1343	rgmin_eigenpair_ex_t	residual	double		
+rgmin	include/rgmin.h	1344	rgmin_eigenpair_ex_t	converged	int32_t		
+rgmin	include/rgmin.h	206	rgmin_control_t	maxiter	comment	100	control
+rgmin	include/rgmin.h	206	rgmin_control_t	gtol	comment	1e-5	control
+rgmin	include/rgmin.h	206	rgmin_control_t	istep	comment	1	control
+rgmin	include/rgmin.h	206	rgmin_control_t	memory	comment	0	control
+rgmin	include/rgmin.h	207	rgmin_control_t	maxmove	comment	0	control
+rgmin	include/rgmin.h	208	rgmin_control_t	noise_eps	comment	0	control
+rgmin	include/rgmin.h	208	rgmin_control_t	noise_c	comment	3	control
 rgsaddle	include/rgsaddle.h	110	rgsaddle_version_t	major	uint32_t		
 rgsaddle	include/rgsaddle.h	111	rgsaddle_version_t	minor	uint32_t		
 rgsaddle	include/rgsaddle.h	218	rgsaddle_hyperplane_budget_t	version	rgsaddle_version_t		
@@ -597,7 +597,7 @@ rgsaddle	include/rgsaddle.h	226	rgsaddle_hyperplane_budget_t	positions	int32_t
 rgsaddle	include/rgsaddle.h	231	rgsaddle_hyperplane_observation_t	constraint_force	double		
 rgsaddle	include/rgsaddle.h	234	rgsaddle_hyperplane_observation_t	thermodynamic_derivative	double		
 rgsaddle	include/rgsaddle.h	245	rgsaddle_hyperplane_ti_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	246	rgsaddle_hyperplane_ti_config_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	260	rgsaddle_hyperplane_ti_config_t	flags	uint64_t		
 rgsaddle	include/rgsaddle.h	247	rgsaddle_hyperplane_ti_config_t	thermal	double		
 rgsaddle	include/rgsaddle.h	248	rgsaddle_hyperplane_ti_config_t	nodes	int64_t		
 rgsaddle	include/rgsaddle.h	249	rgsaddle_hyperplane_ti_config_t	thermalize	int64_t		
@@ -618,7 +618,7 @@ rgsaddle	include/rgsaddle.h	322	rgsaddle_band_config_t	flags	uint64_t
 rgsaddle	include/rgsaddle.h	323	rgsaddle_band_config_t	tangent	int32_t		
 rgsaddle	include/rgsaddle.h	324	rgsaddle_band_config_t	spring	int32_t		
 rgsaddle	include/rgsaddle.h	325	rgsaddle_band_config_t	projection	int32_t		
-rgsaddle	include/rgsaddle.h	326	rgsaddle_band_config_t	method	int32_t		
+rgsaddle	include/rgsaddle.h	340	rgsaddle_band_config_t	method	int32_t		
 rgsaddle	include/rgsaddle.h	327	rgsaddle_band_config_t	spring_k	double		
 rgsaddle	include/rgsaddle.h	331	rgsaddle_band_config_t	ci_trigger_factor	double		
 rgsaddle	include/rgsaddle.h	332	rgsaddle_band_config_t	ci_trigger_force	double		
