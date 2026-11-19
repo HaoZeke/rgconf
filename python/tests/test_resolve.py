@@ -13,3 +13,9 @@ def test_resolve_ini_reads_optimizer_force():
     text = "[Optimizer]\nconverged_force = 0.03\n"
     body = resolve_ini("eonLegacyIni", text, "client.ini")
     assert "optimizer.convergence.forceToleranceEvPerAngstrom=0.03" in body
+
+
+def test_native_extension_is_loaded():
+    from rgconf import _core
+
+    assert _core.resolve_ini
