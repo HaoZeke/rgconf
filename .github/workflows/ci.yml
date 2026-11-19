@@ -15,8 +15,14 @@ jobs:
       - uses: dtolnay/rust-toolchain@1.85.0
         with:
           components: rustfmt, clippy
-      - name: capnp
-        run: sudo apt-get update && sudo apt-get install -y capnproto meson ninja-build python3-pytest
+      - name: system packages
+        run: sudo apt-get update && sudo apt-get install -y capnproto meson ninja-build python3-dev emacs-nox
+      - name: python tooling
+        run: |
+          python -m venv "$RUNNER_TEMP/venv"
+          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
+          echo "VIRTUAL_ENV=$RUNNER_TEMP/venv" >> "$GITHUB_ENV"
+          "$RUNNER_TEMP/venv/bin/python" -m pip install "maturin>=1.7,<2" pytest "sphinx>=8.0,<9"
       - name: schema
         run: capnp compile -o- -Ischema schema/*.capnp >/dev/null
       - name: test
@@ -30,9 +36,11 @@ jobs:
           cargo build -p rgconf-c-abi
           gcc -Iinclude tests/c/abi_smoke.c -Ltarget/debug -lrgconf_c_abi -Wl,-rpath,target/debug -o target/abi_smoke
           ./target/abi_smoke
+      - name: python extension
+        run: maturin develop --manifest-path python/Cargo.toml
       - name: python
         run: |
-          PYTHONPATH=python python3 -m pytest python/tests tools/test_parameter_map.py --junitxml=target/pytest.xml
+          python3 -m pytest python/tests tools/test_parameter_map.py --junitxml=target/pytest.xml
           python3 - <<'PY'
           import sys
           import xml.etree.ElementTree as ET
