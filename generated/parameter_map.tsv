@@ -562,7 +562,7 @@ rgmin	include/rgmin.h	1124	rgmin_scg_params_t	tol_func	double
 rgmin	include/rgmin.h	1128	rgmin_scg_params_t	conjugacy	rgmin_conjugacy_t					
 rgmin	include/rgmin.h	1171	rgmin_scg_options_t	step_tolerance	int32_t					
 rgmin	include/rgmin.h	1187	rgmin_rlbfgs_t	memory	size_t			optimizer.LbfgsConfig.memory	lbfgs_t.memory	History length in both. The rgmin record defaults to 4 pairs where rgconf defaults to 20.
-rgmin	include/rgmin.h	1188	rgmin_rlbfgs_t	cautious_slope	double			optimizer.LbfgsConfig.cautiousEpsilon	lbfgs_t.cautious_eps	Factor on the gradient norm in the cautious curvature test. The rgmin test fixes the exponent at one, while rgconf also exposes it as cautiousAlpha.
+rgmin	include/rgmin.h	1188	rgmin_rlbfgs_t	cautious_slope	double			optimizer.LbfgsConfig.cautiousEpsilon	lbfgs_t.cautious_eps	Factor on the gradient norm in the cautious curvature test. The defaults differ: rgmin uses 1e-4 while the schema and eOn use 1e-6. The rgmin test fixes the exponent at one, while rgconf also exposes it as cautiousAlpha.
 rgmin	include/rgmin.h	1189	rgmin_rlbfgs_t	armijo	double			unmapped	none	Sufficient-decrease constant of the Riemannian line search. rgconf has no line search constant for this method.
 rgmin	include/rgmin.h	1190	rgmin_rlbfgs_t	backtrack	double			unmapped	none	Factor applied to a rejected trial length. rgconf has no matching field.
 rgmin	include/rgmin.h	1191	rgmin_rlbfgs_t	linesearch_max	size_t			unmapped	none	Rejected trials allowed per iteration. The rgconf maxIterLineSearch field applies to the cg method only.
