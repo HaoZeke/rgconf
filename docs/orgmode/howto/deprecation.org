@@ -20,6 +20,9 @@ The removal order is:
 
 Fields that exist only as comments in a C++ header stay in the generated parameter map until the schema field that replaces them is in a release. The map records the header line. It is not a second schema.
 
-* Defaults that disagree
+* Defaults must agree
 
-The Lennard Jones =switchWidth= literal in the schema is 1.0. =LJConfig.switch_width= in rgpot is 0.0. The importer keeps the header value. Jobs that need the header behavior set the field. The schema literal is not rewritten in this crate, because changing it would be a default change for every profile.
+The Lennard Jones and Morse =switchWidth= literals are 0.0, matching
+=LJConfig.switch_width=, =LJClusterConfig.switch_width=,
+=MorseConfig.switch_width=, and the long-range dispersion switch in rgpot.
+The importer keeps the source value and its exact line.

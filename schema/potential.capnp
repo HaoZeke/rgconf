@@ -2565,7 +2565,7 @@ struct LennardJonesParams {
   u0 @0 :Float64 = 1.0;
   psi @1 :Float64 = 1.0;
   cutoff @2 :Float64 = 15.0;
-  switchWidth @3 :Float64 = 1.0;
+  switchWidth @3 :Float64 = 0.0;
 }
 
 struct MorseParams {
@@ -2573,7 +2573,7 @@ struct MorseParams {
   a @1 :Float64 = 1.6047;
   re @2 :Float64 = 2.897;
   cutoff @3 :Float64 = 9.5;
-  switchWidth @4 :Float64 = 1.0;
+  switchWidth @4 :Float64 = 0.0;
 }
 
 struct ZBLParams {
