@@ -36,6 +36,10 @@ jobs:
           cargo build -p rgconf-c-abi
           gcc -Iinclude tests/c/abi_smoke.c -Ltarget/debug -lrgconf_c_abi -Wl,-rpath,target/debug -o target/abi_smoke
           ./target/abi_smoke
+      - name: upstream sources
+        run: |
+          python3 tools/fetch_sources.py "$RUNNER_TEMP/sources"
+          echo "RGCONF_SOURCES=$RUNNER_TEMP/sources" >> "$GITHUB_ENV"
       - name: python extension
         run: maturin develop --manifest-path python/Cargo.toml
       - name: python
@@ -50,7 +54,8 @@ jobs:
           total = int(suite.get("tests"))
           skipped = int(suite.get("skipped"))
           print(f"{total} collected, {skipped} skipped, {total - skipped} ran")
-          sys.exit(0 if total - skipped > 0 else "no python tests ran")
+          if total == 0 or skipped:
+              sys.exit("python tests were missing or skipped")
           PY
       - name: docs
         run: |
