@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - uses: dtolnay/rust-toolchain@1.85.0
         with:
           components: rustfmt, clippy
@@ -28,7 +31,19 @@ jobs:
           gcc -Iinclude tests/c/abi_smoke.c -Ltarget/debug -lrgconf_c_abi -Wl,-rpath,target/debug -o target/abi_smoke
           ./target/abi_smoke
       - name: python
-        run: PYTHONPATH=python python3 -m pytest python/tests tools/test_parameter_map.py
+        run: |
+          PYTHONPATH=python python3 -m pytest python/tests tools/test_parameter_map.py --junitxml=target/pytest.xml
+          python3 - <<'PY'
+          import sys
+          import xml.etree.ElementTree as ET
+
+          root = ET.parse("target/pytest.xml").getroot()
+          suite = root if root.tag == "testsuite" else root[0]
+          total = int(suite.get("tests"))
+          skipped = int(suite.get("skipped"))
+          print(f"{total} collected, {skipped} skipped, {total - skipped} ran")
+          sys.exit(0 if total - skipped > 0 else "no python tests ran")
+          PY
       - name: docs
         run: |
           emacs --batch -l docs/export.el
