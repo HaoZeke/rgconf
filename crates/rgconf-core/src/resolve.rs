@@ -1,6 +1,7 @@
 // Copyright 2023--present rgconf developers
 
 use crate::catalog::{catalog, Mutability, ParamSpec};
+use crate::edit::ParamEdit;
 use crate::error::Error;
 use crate::input::{self, Assignment, ConfigLayer};
 use crate::units::gpridge_paper_force_ev_per_angstrom;
@@ -98,6 +99,7 @@ pub struct ResolvedField {
 pub struct Resolution {
     pub profile: Profile,
     pub fields: BTreeMap<String, ResolvedField>,
+    pub edits: Vec<ParamEdit>,
 }
 
 impl Resolution {
@@ -209,6 +211,7 @@ impl Resolver {
         Ok(Resolution {
             profile: self.profile,
             fields,
+            edits: Vec::new(),
         })
     }
 }
@@ -246,7 +249,7 @@ fn apply_user(
     let field = fields
         .get_mut(&hit.key)
         .ok_or_else(|| Error::message(format!("missing field {}", hit.key)))?;
-    if field.layer == layer && is_user(field.status) {
+    if field.layer == layer && is_user(field.status) && layer != ConfigLayer::LiveRuntimeEdit {
         if !field.value.agrees(&hit.value) {
             return Err(Error::message(format!(
                 "contradictory values for `{}`: `{}` from {} and `{}` from {}",

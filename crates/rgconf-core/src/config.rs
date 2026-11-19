@@ -15,6 +15,15 @@ pub struct UnitSystem {
     pub energy: String,
     pub time: String,
     pub force: String,
+    pub angle: String,
+    pub mass: String,
+    pub temperature: String,
+    pub charge: String,
+    pub pressure_stress: String,
+    pub stress_sign: String,
+    pub frequency: String,
+    pub dipole: String,
+    pub hessian: String,
 }
 
 impl Default for UnitSystem {
@@ -24,6 +33,15 @@ impl Default for UnitSystem {
             energy: "ev".to_string(),
             time: "femtosecond".to_string(),
             force: "evPerAngstrom".to_string(),
+            angle: "radian".to_string(),
+            mass: "amu".to_string(),
+            temperature: "kelvin".to_string(),
+            charge: "elementaryCharge".to_string(),
+            pressure_stress: "evPerAngstrom3".to_string(),
+            stress_sign: "cauchyPositiveTensile".to_string(),
+            frequency: "invCm".to_string(),
+            dipole: "debye".to_string(),
+            hessian: "evPerAngstrom2".to_string(),
         }
     }
 }
@@ -46,6 +64,51 @@ impl UnitSystem {
 
     pub fn with_force(mut self, force: impl Into<String>) -> Self {
         self.force = force.into();
+        self
+    }
+
+    pub fn with_angle(mut self, angle: impl Into<String>) -> Self {
+        self.angle = angle.into();
+        self
+    }
+
+    pub fn with_mass(mut self, mass: impl Into<String>) -> Self {
+        self.mass = mass.into();
+        self
+    }
+
+    pub fn with_temperature(mut self, temperature: impl Into<String>) -> Self {
+        self.temperature = temperature.into();
+        self
+    }
+
+    pub fn with_charge(mut self, charge: impl Into<String>) -> Self {
+        self.charge = charge.into();
+        self
+    }
+
+    pub fn with_pressure_stress(mut self, pressure_stress: impl Into<String>) -> Self {
+        self.pressure_stress = pressure_stress.into();
+        self
+    }
+
+    pub fn with_stress_sign(mut self, stress_sign: impl Into<String>) -> Self {
+        self.stress_sign = stress_sign.into();
+        self
+    }
+
+    pub fn with_frequency(mut self, frequency: impl Into<String>) -> Self {
+        self.frequency = frequency.into();
+        self
+    }
+
+    pub fn with_dipole(mut self, dipole: impl Into<String>) -> Self {
+        self.dipole = dipole.into();
+        self
+    }
+
+    pub fn with_hessian(mut self, hessian: impl Into<String>) -> Self {
+        self.hessian = hessian.into();
         self
     }
 }
@@ -425,7 +488,21 @@ impl RgConf {
                     )?,
                 },
             },
-            units: UnitSystem::default(),
+            units: UnitSystem {
+                length: text(resolution, "units.length")?,
+                energy: text(resolution, "units.energy")?,
+                time: text(resolution, "units.time")?,
+                force: "evPerAngstrom".to_string(),
+                angle: text(resolution, "units.angle")?,
+                mass: text(resolution, "units.mass")?,
+                temperature: text(resolution, "units.temperature")?,
+                charge: text(resolution, "units.charge")?,
+                pressure_stress: text(resolution, "units.pressureStress")?,
+                stress_sign: text(resolution, "units.stressSign")?,
+                frequency: text(resolution, "units.frequency")?,
+                dipole: text(resolution, "units.dipole")?,
+                hessian: text(resolution, "units.hessian")?,
+            },
         })
     }
 }

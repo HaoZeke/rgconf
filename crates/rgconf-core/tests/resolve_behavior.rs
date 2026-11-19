@@ -5,7 +5,7 @@ use rgconf::catalog::catalog;
 use rgconf::provenance::{BlobAppend, CanonicalLeaf, MissingCapnpCanonicalization, SharedAppend};
 use rgconf::redact::redact_env;
 use rgconf::sbom::parse_cyclonedx;
-use rgconf::units::{gpridge_paper_force_ev_per_angstrom, UNIT_ROUNDTRIP_ABS_TOLERANCE};
+use rgconf::units::{gpridge_paper_force_ev_per_angstrom, Dimension, UNIT_ROUNDTRIP_ABS_TOLERANCE};
 use rgconf::{
     apply_edit, convert, convert_stress, ConfigLayer, EditOrigin, Error, ParamValue, Profile,
     ProvenanceLog, Resolver, RgConf, StressSign, Unit, ValueStatus, UPSTREAM_PATCHES,
@@ -93,6 +93,10 @@ fn canonical_profile_fills_derived_and_profile_values() {
     let view = RgConf::from_resolution(&resolution).expect("view");
     assert_eq!(view.band.image_count, 5);
     assert_eq!(view.runtime.temperature_k, 300.0);
+    assert_eq!(view.units.angle, "radian");
+    assert_eq!(view.units.pressure_stress, "evPerAngstrom3");
+    assert_eq!(view.units.frequency, "invCm");
+    assert_eq!(view.units.dipole, "debye");
 }
 
 #[test]
@@ -419,6 +423,30 @@ fn restart_only_edits_need_a_checkpoint_origin() {
 }
 
 #[test]
+fn repeated_runtime_edits_are_ordered_in_the_edit_log() {
+    let mut resolution = resolved(Profile::RgconfCanonical);
+    apply_edit(
+        &mut resolution,
+        "runtime.temperatureK",
+        ParamValue::Float(250.0),
+        EditOrigin::LiveCall,
+    )
+    .unwrap();
+    apply_edit(
+        &mut resolution,
+        "runtime.temperatureK",
+        ParamValue::Float(275.0),
+        EditOrigin::LiveCall,
+    )
+    .unwrap();
+    assert_eq!(resolution.edits.len(), 2);
+    assert_eq!(resolution.edits[0].previous, "300");
+    assert_eq!(resolution.edits[0].next, "250");
+    assert_eq!(resolution.edits[1].previous, "250");
+    assert_eq!(resolution.edits[1].next, "275");
+}
+
+#[test]
 fn provenance_leaves_match_rfc9162_and_stubs_name_the_gap() {
     let resolution = resolved(Profile::RgconfCanonical);
     let mut log = ProvenanceLog::open().unwrap();
@@ -502,6 +530,12 @@ fn unit_round_trip_and_stress_sign() {
     let plain = convert(2.0, Unit::EvPerAngstrom3, Unit::Gpa).unwrap();
     assert!((flipped + plain).abs() < UNIT_ROUNDTRIP_ABS_TOLERANCE);
     assert!(convert(1.0, Unit::Debye, Unit::InvCm).is_err());
+    assert_eq!(Unit::InvCm.dimension(), Dimension::Frequency);
+    assert_eq!(Unit::Debye.dimension(), Dimension::Dipole);
+    assert_eq!(
+        rgconf::units::ATOMIC_TIME_UNIT_IN_FEMTOSECONDS,
+        0.024188843265857
+    );
 }
 
 proptest::proptest! {

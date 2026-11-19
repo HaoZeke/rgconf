@@ -101,13 +101,15 @@ pub fn apply_edit(
         }
     }
     let next = resolution.require(key)?.value.to_string();
-    Ok(ParamEdit {
+    let edit = ParamEdit {
         key: key.to_string(),
         previous,
         next,
         origin,
         actions,
-    })
+    };
+    resolution.edits.push(edit.clone());
+    Ok(edit)
 }
 
 fn actions_for(key: &str, mutability: Mutability) -> Vec<EditAction> {

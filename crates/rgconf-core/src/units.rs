@@ -16,7 +16,7 @@ pub const EV_PER_ANGSTROM3_IN_GPA: f64 = 160.2176634;
 /// One eOn time unit, in femtoseconds.
 pub const EON_TIME_UNIT_IN_FEMTOSECONDS: f64 = 10.1805055;
 /// CODATA 2018 atomic unit of time, in femtoseconds.
-pub const ATOMIC_TIME_UNIT_IN_FEMTOSECONDS: f64 = 0.02418884254;
+pub const ATOMIC_TIME_UNIT_IN_FEMTOSECONDS: f64 = 0.024188843265857;
 /// CODATA 2018 electron mass, in atomic mass units.
 pub const ELECTRON_MASS_IN_AMU: f64 = 0.000548579909065;
 /// Nanometres in one angstrom's reciprocal: 1 nm = 10 angstrom.
@@ -129,7 +129,7 @@ impl Unit {
 
     pub fn dimension(self) -> Dimension {
         match self {
-            Self::None | Self::InvCm | Self::Debye => Dimension::Dimensionless,
+            Self::None => Dimension::Dimensionless,
             Self::Angstrom | Self::Bohr | Self::Nanometer => Dimension::Length,
             Self::Ev | Self::Hartree | Self::Rydberg | Self::KjPerMol | Self::KcalPerMol => {
                 Dimension::Energy
@@ -146,6 +146,8 @@ impl Unit {
             Self::Amu | Self::ElectronMass => Dimension::Mass,
             Self::Kelvin => Dimension::Temperature,
             Self::ElementaryCharge => Dimension::Charge,
+            Self::InvCm => Dimension::Frequency,
+            Self::Debye => Dimension::Dipole,
             Self::Megabyte | Self::Gigabyte => Dimension::Memory,
         }
     }
