@@ -12,6 +12,7 @@ publish = false
 [[bin]]
 name = "rgconf"
 path = "src/main.rs"
+doc = false
 
 [dependencies]
 rgconf = { path = "../rgconf-core" }
