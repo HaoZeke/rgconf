@@ -37,16 +37,22 @@ def parameter_reference() -> str:
         "source declaration, type, default, and source section. A blank default",
         "means the source declaration has no default. Units remain those stated",
         "by the named source API when the source map has no unit annotation.",
+        "Entries that carry a mapping name the rgconf schema field (``unmapped``",
+        "when rgconf has none, ``abi`` for ABI bookkeeping) and the eOn option",
+        "(``none`` when eOn has no counterpart).",
         "",
     ]
     with PARAMETER_MAP.open(newline="") as stream:
         for row in csv.DictReader(stream, delimiter="\t"):
             default = row["default"] or "(no source default)"
             section = f"; section {row['section']}" if row["section"] else ""
+            mapping = ""
+            if row["rgconf"]:
+                mapping = f"; rgconf ``{row['rgconf']}``; eOn ``{row['eon']}``. {row['note']}"
             lines.append(
                 f"* ``{row['repo']}:{row['struct']}.{row['field']}`` — "
                 f"``{row['type']}``, default ``{default}``; "
-                f"``{row['relpath']}:{row['line']}``{section}"
+                f"``{row['relpath']}:{row['line']}``{section}{mapping}"
             )
     return "\n".join(lines) + "\n"
 
