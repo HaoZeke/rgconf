@@ -74,7 +74,7 @@ def parse_cxx(text: str, repo: str, rel: str) -> list[tuple]:
         if section_match:
             section = section_match.group(1)
         struct = stack[-1][0] if stack else ""
-        if struct and "(" not in line.split("{", 1)[0]:
+        if struct:
             match = FIELD_INIT.match(line)
             if match and match.group("name") not in SKIP_NAMES:
                 default = match.group("brace")

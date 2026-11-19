@@ -1,838 +1,785 @@
 repo	relpath	line	struct	field	type	default	section
-eon	include/eon/ParametersOptions.h	32	shared_flag	bit	std::shared_ptr<bool>	std::make_shared<bool>(false)	
-eon	include/eon/ParametersOptions.h	70	shared_flag	bit	return		
-eon	include/eon/ParametersOptions.h	76	constants_t	kB	double	8.6173324e-5	
-eon	include/eon/ParametersOptions.h	77	constants_t	timeUnit	double	10.1805055	
-eon	include/eon/ParametersOptions.h	82	main_options_t	job	JobType	JobType::Process_Search	Main
-eon	include/eon/ParametersOptions.h	83	main_options_t	randomSeed	long	-1	Main
-eon	include/eon/ParametersOptions.h	84	main_options_t	temperature	double	300.0	Main
-eon	include/eon/ParametersOptions.h	85	main_options_t	quiet	bool	false	Main
-eon	include/eon/ParametersOptions.h	86	main_options_t	writeLog	bool	true	Main
-eon	include/eon/ParametersOptions.h	87	main_options_t	checkpoint	bool	false	Main
-eon	include/eon/ParametersOptions.h	88	main_options_t	iniFilename	std::string	"config.ini"	Main
-eon	include/eon/ParametersOptions.h	89	main_options_t	conFilename	std::string	"pos.con"	Main
-eon	include/eon/ParametersOptions.h	90	main_options_t	finiteDifference	double	0.01	Main
-eon	include/eon/ParametersOptions.h	91	main_options_t	maxForceCalls	long	0	Main
-eon	include/eon/ParametersOptions.h	92	main_options_t	removeNetForce	bool	true	Main
-eon	include/eon/ParametersOptions.h	93	main_options_t	parallel	bool	true	Main
-eon	include/eon/ParametersOptions.h	97	main_options_t	writeConForces	shared_flag	false	Main
-eon	include/eon/ParametersOptions.h	100	main_options_t	inputFormat	std::string		Main
-eon	include/eon/ParametersOptions.h	103	main_options_t	cell	std::string		Main
-eon	include/eon/ParametersOptions.h	105	main_options_t	pbc	bool	true	Main
-eon	include/eon/ParametersOptions.h	108	main_options_t	defaultVacuum	double	10.0	Main
-eon	include/eon/ParametersOptions.h	113	potential_options_t	potential	PotType	PotType::LJ	Potential
-eon	include/eon/ParametersOptions.h	114	potential_options_t	MPIPollPeriod	double	0.25	Potential
-eon	include/eon/ParametersOptions.h	115	potential_options_t	LAMMPSLogging	bool	false	Potential
-eon	include/eon/ParametersOptions.h	116	potential_options_t	LAMMPSThreads	int	0	Potential
-eon	include/eon/ParametersOptions.h	117	potential_options_t	EMTRasmussen	bool	false	Potential
-eon	include/eon/ParametersOptions.h	118	potential_options_t	LogPotential	bool	false	Potential
-eon	include/eon/ParametersOptions.h	121	potential_options_t	thread_safe	bool	true	Potential
-eon	include/eon/ParametersOptions.h	122	potential_options_t	extPotPath	std::string	"./ext_pot"	Potential
-eon	include/eon/ParametersOptions.h	128	potential_options_t	pairSwitchWidth	double	0.0	Potential
-eon	include/eon/ParametersOptions.h	131	potential_options_t	pairCutoff	double	0.0	Potential
-eon	include/eon/ParametersOptions.h	132	potential_options_t	MPIPotentialRank	int	-1	Potential
-eon	include/eon/ParametersOptions.h	134	potential_options_t	MPIClientComm	std::uintptr_t	0	Potential
-eon	include/eon/ParametersOptions.h	139	ams_options_t	engine	std::string		AMS
-eon	include/eon/ParametersOptions.h	140	ams_options_t	forcefield	std::string		AMS
-eon	include/eon/ParametersOptions.h	141	ams_options_t	model	std::string		AMS
-eon	include/eon/ParametersOptions.h	142	ams_options_t	resources	std::string		AMS
-eon	include/eon/ParametersOptions.h	143	ams_options_t	xc	std::string		AMS
-eon	include/eon/ParametersOptions.h	144	ams_options_t	basis	std::string		AMS
-eon	include/eon/ParametersOptions.h	146	env_t	amshome	std::string		AMS
-eon	include/eon/ParametersOptions.h	147	env_t	scm_tmpdir	std::string		AMS
-eon	include/eon/ParametersOptions.h	148	env_t	scmlicense	std::string		AMS
-eon	include/eon/ParametersOptions.h	149	env_t	scm_pythondir	std::string		AMS
-eon	include/eon/ParametersOptions.h	150	env_t	amsbin	std::string		AMS
-eon	include/eon/ParametersOptions.h	151	env_t	amsresources	std::string		AMS
-eon	include/eon/ParametersOptions.h	157	xtb_options_t	paramset	std::string	"GFNFF"	XTBPot
-eon	include/eon/ParametersOptions.h	158	xtb_options_t	elec_temperature	double	0.0	XTBPot
-eon	include/eon/ParametersOptions.h	159	xtb_options_t	maxiter	size_t	250	XTBPot
-eon	include/eon/ParametersOptions.h	160	xtb_options_t	acc	double	1.0	XTBPot
-eon	include/eon/ParametersOptions.h	161	xtb_options_t	charge	double	0.0	XTBPot
-eon	include/eon/ParametersOptions.h	162	xtb_options_t	uhf	int	0	XTBPot
-eon	include/eon/ParametersOptions.h	167	zbl_options_t	cut_inner	double	2.0	ZBLPot
-eon	include/eon/ParametersOptions.h	168	zbl_options_t	cut_global	double	2.5	ZBLPot
-eon	include/eon/ParametersOptions.h	173	dftd_options_t	functional	std::string	"pbe"	D3Pot
-eon	include/eon/ParametersOptions.h	174	dftd_options_t	atm	bool	true	D3Pot
-eon	include/eon/ParametersOptions.h	175	dftd_options_t	d3_damping	std::string	"bj"	D3Pot
-eon	include/eon/ParametersOptions.h	176	dftd_options_t	d4_charge	double	0.0	D3Pot
-eon	include/eon/ParametersOptions.h	181	expr_options_t	expression	std::string		ExprPot
-eon	include/eon/ParametersOptions.h	182	expr_options_t	terms	std::string		ExprPot
-eon	include/eon/ParametersOptions.h	187	mopac_options_t	charge	int	0	MOPACPot
-eon	include/eon/ParametersOptions.h	188	mopac_options_t	spin	int	0	MOPACPot
-eon	include/eon/ParametersOptions.h	189	mopac_options_t	model	int	4	MOPACPot
-eon	include/eon/ParametersOptions.h	190	mopac_options_t	engine_path	std::string		MOPACPot
-eon	include/eon/ParametersOptions.h	195	socket_nwchem_options_t	host	std::string	"127.0.0.1"	SocketNWChemPot
-eon	include/eon/ParametersOptions.h	196	socket_nwchem_options_t	port	int	9999	SocketNWChemPot
-eon	include/eon/ParametersOptions.h	197	socket_nwchem_options_t	mem_in_gb	int	2	SocketNWChemPot
-eon	include/eon/ParametersOptions.h	198	socket_nwchem_options_t	nwchem_settings	std::string	"nwchem_settings.nwi"	SocketNWChemPot
-eon	include/eon/ParametersOptions.h	199	socket_nwchem_options_t	unix_socket_path	std::string	"eon_nwchem"	SocketNWChemPot
-eon	include/eon/ParametersOptions.h	200	socket_nwchem_options_t	unix_socket_mode	bool	false	SocketNWChemPot
-eon	include/eon/ParametersOptions.h	201	socket_nwchem_options_t	make_template_input	bool	true	SocketNWChemPot
-eon	include/eon/ParametersOptions.h	208	rgpot_options_t	backend	std::string	"nwchemc"	RgpotPot
-eon	include/eon/ParametersOptions.h	209	rgpot_options_t	basis	std::string	"sto-3g"	RgpotPot
-eon	include/eon/ParametersOptions.h	210	rgpot_options_t	theory	std::string	"scf"	RgpotPot
-eon	include/eon/ParametersOptions.h	211	rgpot_options_t	scf_type	std::string	"rhf"	RgpotPot
-eon	include/eon/ParametersOptions.h	212	rgpot_options_t	functional	std::string	"BLYP"	RgpotPot
-eon	include/eon/ParametersOptions.h	215	rgpot_options_t	cutoff_ry	double	70.0	cpmd
-eon	include/eon/ParametersOptions.h	216	rgpot_options_t	charge	int	0	cpmd
-eon	include/eon/ParametersOptions.h	217	rgpot_options_t	multiplicity	int	1	cpmd
-eon	include/eon/ParametersOptions.h	218	rgpot_options_t	engine_path	std::string		cpmd
-eon	include/eon/ParametersOptions.h	219	rgpot_options_t	engine_library	std::string		cpmd
-eon	include/eon/ParametersOptions.h	220	rgpot_options_t	engine_root	std::string		cpmd
-eon	include/eon/ParametersOptions.h	221	rgpot_options_t	title	std::string		cpmd
-eon	include/eon/ParametersOptions.h	222	rgpot_options_t	memory_mb	int	0	cpmd
-eon	include/eon/ParametersOptions.h	223	rgpot_options_t	scratch_dir	std::string		cpmd
-eon	include/eon/ParametersOptions.h	226	rgpot_options_t	input_block	std::string		cpmd
-eon	include/eon/ParametersOptions.h	227	rgpot_options_t	permanent_dir	std::string		cpmd
-eon	include/eon/ParametersOptions.h	231	rgpot_options_t	params_path	std::string		cpmd
-eon	include/eon/ParametersOptions.h	235	rgpot_options_t	ranks_per_image	int	0	cpmd
-eon	include/eon/ParametersOptions.h	237	rgpot_options_t	model_path	std::string		cpmd
-eon	include/eon/ParametersOptions.h	238	rgpot_options_t	device	std::string	"cpu"	cpmd
-eon	include/eon/ParametersOptions.h	239	rgpot_options_t	length_unit	std::string	"angstrom"	cpmd
-eon	include/eon/ParametersOptions.h	240	rgpot_options_t	extensions_directory	std::string		cpmd
-eon	include/eon/ParametersOptions.h	241	rgpot_options_t	check_consistency	bool	false	cpmd
-eon	include/eon/ParametersOptions.h	242	rgpot_options_t	uncertainty_threshold	double	-1.0	cpmd
-eon	include/eon/ParametersOptions.h	243	rgpot_options_t	torch_determinism_strict	bool	false	cpmd
-eon	include/eon/ParametersOptions.h	245	rgpot_options_t	xtb_paramset	std::string	"GFN2xTB"	cpmd
-eon	include/eon/ParametersOptions.h	246	rgpot_options_t	xtb_accuracy	double	1.0	cpmd
-eon	include/eon/ParametersOptions.h	247	rgpot_options_t	xtb_electronic_temperature	double	300.0	cpmd
-eon	include/eon/ParametersOptions.h	248	rgpot_options_t	xtb_max_iterations	int	250	cpmd
-eon	include/eon/ParametersOptions.h	249	rgpot_options_t	xtb_charge	double	0.0	cpmd
-eon	include/eon/ParametersOptions.h	250	rgpot_options_t	xtb_uhf	int	0	cpmd
-eon	include/eon/ParametersOptions.h	251	rgpot_options_t	task_name	std::string	"omol"	cpmd
-eon	include/eon/ParametersOptions.h	259	process_search_options_t	minimize_first	bool	true	Process Search
-eon	include/eon/ParametersOptions.h	260	process_search_options_t	minimization_offset	double	0.2	Process Search
-eon	include/eon/ParametersOptions.h	261	process_search_options_t	known_saddles	bool	true	Process Search
-eon	include/eon/ParametersOptions.h	266	saddle_search_options_t	max_jump_attempts	long	0	Saddle Search
-eon	include/eon/ParametersOptions.h	267	saddle_search_options_t	max_iterations	long	1000	Saddle Search
-eon	include/eon/ParametersOptions.h	268	saddle_search_options_t	method	std::string	"min_mode"	Saddle Search
-eon	include/eon/ParametersOptions.h	269	saddle_search_options_t	minmode_method	std::string	"dimer"	Saddle Search
-eon	include/eon/ParametersOptions.h	270	saddle_search_options_t	displace_type	std::string	"load"	Saddle Search
-eon	include/eon/ParametersOptions.h	271	saddle_search_options_t	displace_atom_list	std::vector<long>		Saddle Search
-eon	include/eon/ParametersOptions.h	275	saddle_search_options_t	max_energy	double	20.0	Saddle Search
-eon	include/eon/ParametersOptions.h	276	saddle_search_options_t	displace_magnitude	double	0.1	Saddle Search
-eon	include/eon/ParametersOptions.h	277	saddle_search_options_t	max_single_displace	double	10.0	Saddle Search
-eon	include/eon/ParametersOptions.h	278	saddle_search_options_t	displace_radius	double	4.0	Saddle Search
-eon	include/eon/ParametersOptions.h	279	saddle_search_options_t	converged_force	double	0.0	Saddle Search
-eon	include/eon/ParametersOptions.h	280	saddle_search_options_t	perp_force_ratio	double	0.0	Saddle Search
-eon	include/eon/ParametersOptions.h	281	saddle_search_options_t	nonnegative_displacement_abort	bool	false	Saddle Search
-eon	include/eon/ParametersOptions.h	282	saddle_search_options_t	nonlocal_count_abort	long	0	Saddle Search
-eon	include/eon/ParametersOptions.h	283	saddle_search_options_t	nonlocal_distance_abort	double	0.0	Saddle Search
-eon	include/eon/ParametersOptions.h	284	saddle_search_options_t	remove_rotation	bool	false	Saddle Search
-eon	include/eon/ParametersOptions.h	285	saddle_search_options_t	zero_mode_abort_curvature	double	0.0	Saddle Search
-eon	include/eon/ParametersOptions.h	289	irc_t	after	bool	false	Saddle Search
-eon	include/eon/ParametersOptions.h	290	irc_t	step_size	double	0.1	Saddle Search
-eon	include/eon/ParametersOptions.h	291	irc_t	converged_force	double	0.05	Saddle Search
-eon	include/eon/ParametersOptions.h	292	irc_t	max_steps	long	1000	Saddle Search
-eon	include/eon/ParametersOptions.h	295	dynamics_t	temperature	double	0.0	Saddle Search
-eon	include/eon/ParametersOptions.h	296	dynamics_t	state_check_interval_input	double	100.0	Saddle Search
-eon	include/eon/ParametersOptions.h	297	dynamics_t	state_check_interval	double	0.0	Saddle Search
-eon	include/eon/ParametersOptions.h	298	dynamics_t	record_interval_input	double	10.0	Saddle Search
-eon	include/eon/ParametersOptions.h	299	dynamics_t	record_interval	double	0.0	Saddle Search
-eon	include/eon/ParametersOptions.h	300	dynamics_t	linear_interpolation	bool	true	Saddle Search
-eon	include/eon/ParametersOptions.h	301	dynamics_t	max_init_curvature	double	0.0	Saddle Search
-eon	include/eon/ParametersOptions.h	304	confine_positive_t	enabled	bool	false	Saddle Search
-eon	include/eon/ParametersOptions.h	305	confine_positive_t	bowl_breakout	bool	false	Saddle Search
-eon	include/eon/ParametersOptions.h	306	confine_positive_t	bowl_active	long	20	Saddle Search
-eon	include/eon/ParametersOptions.h	307	confine_positive_t	min_force	double	0.5	Saddle Search
-eon	include/eon/ParametersOptions.h	308	confine_positive_t	scale_ratio	double	0.9	Saddle Search
-eon	include/eon/ParametersOptions.h	309	confine_positive_t	boost	double	10.0	Saddle Search
-eon	include/eon/ParametersOptions.h	310	confine_positive_t	min_active	long	30	Saddle Search
-eon	include/eon/ParametersOptions.h	317	prfo_refine_t	enabled	bool	false	Saddle Search
-eon	include/eon/ParametersOptions.h	318	prfo_refine_t	force	double	1.0e-4	Saddle Search
-eon	include/eon/ParametersOptions.h	319	prfo_refine_t	max_iterations	long	500	Saddle Search
-eon	include/eon/ParametersOptions.h	325	optimizer_options_t	method	OptType	OptType::CG	Optimizer
-eon	include/eon/ParametersOptions.h	329	optimizer_options_t	backend	std::string	"eon"	Optimizer
-eon	include/eon/ParametersOptions.h	330	optimizer_options_t	xtsci_method	std::string	"lbfgs"	Optimizer
-eon	include/eon/ParametersOptions.h	332	xtsci_t	method	std::string	"lbfgs"	Optimizer
-eon	include/eon/ParametersOptions.h	333	xtsci_t	qn_step	std::string	"lbfgs"	Optimizer
-eon	include/eon/ParametersOptions.h	334	xtsci_t	precon	std::string	"none"	Optimizer
-eon	include/eon/ParametersOptions.h	335	xtsci_t	accept	std::string	"none"	Optimizer
-eon	include/eon/ParametersOptions.h	336	xtsci_t	highs	bool	false	Optimizer
-eon	include/eon/ParametersOptions.h	337	xtsci_t	manifold	std::string	"euclidean"	Optimizer
-eon	include/eon/ParametersOptions.h	339	optimizer_options_t	convergence_metric	std::string	"norm"	Optimizer
-eon	include/eon/ParametersOptions.h	340	optimizer_options_t	convergence_metric_label	std::string		Optimizer
-eon	include/eon/ParametersOptions.h	341	optimizer_options_t	max_iterations	size_t	1000	Optimizer
-eon	include/eon/ParametersOptions.h	342	optimizer_options_t	max_move	double	0.2	Optimizer
-eon	include/eon/ParametersOptions.h	343	optimizer_options_t	converged_force	double	0.01	Optimizer
-eon	include/eon/ParametersOptions.h	344	optimizer_options_t	time_step_input	double	1.0	Optimizer
-eon	include/eon/ParametersOptions.h	345	optimizer_options_t	time_step	double	0.0	Optimizer
-eon	include/eon/ParametersOptions.h	346	optimizer_options_t	max_time_step_input	double	2.5	Optimizer
-eon	include/eon/ParametersOptions.h	347	optimizer_options_t	max_time_step	double	0.0	Optimizer
-eon	include/eon/ParametersOptions.h	349	refine_t	method	OptType	OptType::None	Optimizer
-eon	include/eon/ParametersOptions.h	350	refine_t	threshold	double	0.5	Optimizer
-eon	include/eon/ParametersOptions.h	353	lbfgs_t	memory	long	20	Optimizer
-eon	include/eon/ParametersOptions.h	354	lbfgs_t	inverse_curvature	double	0.01	Optimizer
-eon	include/eon/ParametersOptions.h	355	lbfgs_t	max_inverse_curvature	double	0.0	Optimizer
-eon	include/eon/ParametersOptions.h	356	lbfgs_t	auto_scale	bool	true	Optimizer
-eon	include/eon/ParametersOptions.h	357	lbfgs_t	angle_reset	bool	true	Optimizer
-eon	include/eon/ParametersOptions.h	358	lbfgs_t	distance_reset	bool	true	Optimizer
-eon	include/eon/ParametersOptions.h	361	lbfgs_t	curvature	std::string	"reset"	Optimizer
-eon	include/eon/ParametersOptions.h	364	lbfgs_t	project_rigid	bool	false	Optimizer
-eon	include/eon/ParametersOptions.h	365	lbfgs_t	secant	std::string	"standard"	Optimizer
-eon	include/eon/ParametersOptions.h	366	lbfgs_t	precon	std::string	"none"	Optimizer
-eon	include/eon/ParametersOptions.h	367	lbfgs_t	step	std::string	"lbfgs"	Optimizer
-eon	include/eon/ParametersOptions.h	368	lbfgs_t	h0	std::string	"sy_yy"	Optimizer
-eon	include/eon/ParametersOptions.h	369	lbfgs_t	accept	std::string	"none"	Optimizer
-eon	include/eon/ParametersOptions.h	370	lbfgs_t	extra_updates	long	0	Optimizer
-eon	include/eon/ParametersOptions.h	371	lbfgs_t	cautious_eps	double	1.0e-6	Optimizer
-eon	include/eon/ParametersOptions.h	372	lbfgs_t	cautious_alpha	double	0.01	Optimizer
-eon	include/eon/ParametersOptions.h	373	lbfgs_t	precon_A	double	3.0	Optimizer
-eon	include/eon/ParametersOptions.h	374	lbfgs_t	precon_mu	double	1.0	Optimizer
-eon	include/eon/ParametersOptions.h	375	lbfgs_t	precon_rcut	double	0.0	Optimizer
-eon	include/eon/ParametersOptions.h	378	cg_t	no_overshooting	bool	false	Optimizer
-eon	include/eon/ParametersOptions.h	379	cg_t	knock_out_max_move	bool	false	Optimizer
-eon	include/eon/ParametersOptions.h	380	cg_t	line_search	bool	false	Optimizer
-eon	include/eon/ParametersOptions.h	381	cg_t	line_converged	double	0.1	Optimizer
-eon	include/eon/ParametersOptions.h	382	cg_t	line_search_max_iter	long	10	Optimizer
-eon	include/eon/ParametersOptions.h	383	cg_t	max_iter_before_reset	long	0	Optimizer
-eon	include/eon/ParametersOptions.h	386	quickmin_t	steepest_descent	bool	false	Optimizer
-eon	include/eon/ParametersOptions.h	389	sd_t	alpha	double	0.1	Optimizer
-eon	include/eon/ParametersOptions.h	390	sd_t	two_point	bool	false	Optimizer
-eon	include/eon/ParametersOptions.h	396	dimer_options_t	rotation_angle	double	0.005	Dimer
-eon	include/eon/ParametersOptions.h	397	dimer_options_t	improved	bool	true	Dimer
-eon	include/eon/ParametersOptions.h	398	dimer_options_t	converged_angle	double	5.0	Dimer
-eon	include/eon/ParametersOptions.h	399	dimer_options_t	max_iterations	long	1000	Dimer
-eon	include/eon/ParametersOptions.h	400	dimer_options_t	opt_method	OptType	OptType::CG	Dimer
-eon	include/eon/ParametersOptions.h	401	dimer_options_t	rotations_max	long	10	Dimer
-eon	include/eon/ParametersOptions.h	402	dimer_options_t	rotations_min	long	1	Dimer
-eon	include/eon/ParametersOptions.h	403	dimer_options_t	torque_max	double	1.0	Dimer
-eon	include/eon/ParametersOptions.h	404	dimer_options_t	torque_min	double	0.1	Dimer
-eon	include/eon/ParametersOptions.h	405	dimer_options_t	remove_rotation	bool	false	Dimer
-eon	include/eon/ParametersOptions.h	408	dimer_options_t	rotation_backend	DimerRotationBackend	DimerRotationBackend::Classical	Dimer
-eon	include/eon/ParametersOptions.h	411	dimer_options_t	lor_residual_tol	double	0.1	Dimer
-eon	include/eon/ParametersOptions.h	416	gpr_dimer_options_t	rotation_angle	double	0.005	GPR Dimer
-eon	include/eon/ParametersOptions.h	417	gpr_dimer_options_t	converged_angle	double	0.08	GPR Dimer
-eon	include/eon/ParametersOptions.h	418	gpr_dimer_options_t	relax_conv_angle	double	0.001	GPR Dimer
-eon	include/eon/ParametersOptions.h	419	gpr_dimer_options_t	init_rotations_max	long	6	GPR Dimer
-eon	include/eon/ParametersOptions.h	420	gpr_dimer_options_t	relax_rotations_max	long	10	GPR Dimer
-eon	include/eon/ParametersOptions.h	421	gpr_dimer_options_t	divisor_t_dimer_gp	long	10	GPR Dimer
-eon	include/eon/ParametersOptions.h	422	gpr_dimer_options_t	max_outer_iterations	long	300	GPR Dimer
-eon	include/eon/ParametersOptions.h	423	gpr_dimer_options_t	max_inner_iterations	long	1000	GPR Dimer
-eon	include/eon/ParametersOptions.h	424	gpr_dimer_options_t	midpoint_max_disp	double	0.5	GPR Dimer
-eon	include/eon/ParametersOptions.h	425	gpr_dimer_options_t	rot_opt_method	std::string	"lbfgs"	GPR Dimer
-eon	include/eon/ParametersOptions.h	426	gpr_dimer_options_t	trans_opt_method	std::string	"lbfgs"	GPR Dimer
-eon	include/eon/ParametersOptions.h	427	gpr_dimer_options_t	active_radius	double	5.0	GPR Dimer
-eon	include/eon/ParametersOptions.h	428	gpr_dimer_options_t	dimer_sep	double	0.01	GPR Dimer
-eon	include/eon/ParametersOptions.h	429	gpr_dimer_options_t	conv_step	double	0.1	GPR Dimer
-eon	include/eon/ParametersOptions.h	430	gpr_dimer_options_t	max_step	double	0.1	GPR Dimer
-eon	include/eon/ParametersOptions.h	431	gpr_dimer_options_t	ratio_at_limit	double	0.66667	GPR Dimer
-eon	include/eon/ParametersOptions.h	432	gpr_dimer_options_t	init_rot_gp	bool	false	GPR Dimer
-eon	include/eon/ParametersOptions.h	433	gpr_dimer_options_t	init_trans_gp	bool	false	GPR Dimer
-eon	include/eon/ParametersOptions.h	434	gpr_dimer_options_t	many_iterations	bool	true	GPR Dimer
-eon	include/eon/ParametersOptions.h	436	gpr_params_t	hyper_opt_method	std::string	"scg"	GPR Dimer
-eon	include/eon/ParametersOptions.h	437	gpr_params_t	sigma2	double	1e-8	GPR Dimer
-eon	include/eon/ParametersOptions.h	438	gpr_params_t	jitter_sigma2	double	0.0	GPR Dimer
-eon	include/eon/ParametersOptions.h	439	gpr_params_t	noise_sigma2	double	1e-8	GPR Dimer
-eon	include/eon/ParametersOptions.h	440	gpr_params_t	prior_mu	double	0.0	GPR Dimer
-eon	include/eon/ParametersOptions.h	441	gpr_params_t	prior_sigma2	double	1.0	GPR Dimer
-eon	include/eon/ParametersOptions.h	442	gpr_params_t	prior_nu	long	20	GPR Dimer
-eon	include/eon/ParametersOptions.h	445	opt_params_t	check_derivatives	bool	false	GPR Dimer
-eon	include/eon/ParametersOptions.h	446	opt_params_t	max_iterations	int	400	GPR Dimer
-eon	include/eon/ParametersOptions.h	447	opt_params_t	tol_func	double	1e-4	GPR Dimer
-eon	include/eon/ParametersOptions.h	448	opt_params_t	tol_sol	double	1e-4	GPR Dimer
-eon	include/eon/ParametersOptions.h	449	opt_params_t	lambda_limit	long	static_cast<long>(1e17)	GPR Dimer
-eon	include/eon/ParametersOptions.h	450	opt_params_t	lambda_init	long	10	GPR Dimer
-eon	include/eon/ParametersOptions.h	453	prune_params_t	use_prune	bool	false	GPR Dimer
-eon	include/eon/ParametersOptions.h	454	prune_params_t	begin	int	8	GPR Dimer
-eon	include/eon/ParametersOptions.h	455	prune_params_t	n_vals	int	3	GPR Dimer
-eon	include/eon/ParametersOptions.h	456	prune_params_t	threshold	double	0.5	GPR Dimer
-eon	include/eon/ParametersOptions.h	459	debug_params_t	report_level	int	1	GPR Dimer
-eon	include/eon/ParametersOptions.h	460	debug_params_t	debug_level	int	2	GPR Dimer
-eon	include/eon/ParametersOptions.h	461	debug_params_t	out_dir	std::string	"output"	GPR Dimer
-eon	include/eon/ParametersOptions.h	462	debug_params_t	pos_file	std::string	"position"	GPR Dimer
-eon	include/eon/ParametersOptions.h	463	debug_params_t	energy_file	std::string	"energy"	GPR Dimer
-eon	include/eon/ParametersOptions.h	464	debug_params_t	grad_file	std::string	"gradient"	GPR Dimer
-eon	include/eon/ParametersOptions.h	465	debug_params_t	out_ext	std::string	"dat"	GPR Dimer
-eon	include/eon/ParametersOptions.h	466	debug_params_t	offset_mid_point	double	3.0	GPR Dimer
-eon	include/eon/ParametersOptions.h	467	debug_params_t	dy	double	0.1	GPR Dimer
-eon	include/eon/ParametersOptions.h	468	debug_params_t	dz	double	0.1	GPR Dimer
-eon	include/eon/ParametersOptions.h	474	gp_surrogate_options_t	enabled	bool	false	GP Surrogate
-eon	include/eon/ParametersOptions.h	475	gp_surrogate_options_t	sub_job	JobType	JobType::Unknown	GP Surrogate
-eon	include/eon/ParametersOptions.h	476	gp_surrogate_options_t	uncertainty	double	0.05	GP Surrogate
-eon	include/eon/ParametersOptions.h	477	gp_surrogate_options_t	linear_path_always	bool	false	GP Surrogate
-eon	include/eon/ParametersOptions.h	478	gp_surrogate_options_t	potential	PotType	PotType::CatLearn	GP Surrogate
-eon	include/eon/ParametersOptions.h	483	catlearn_options_t	path	std::string		CatLearn
-eon	include/eon/ParametersOptions.h	484	catlearn_options_t	model	std::string	"gp"	CatLearn
-eon	include/eon/ParametersOptions.h	485	catlearn_options_t	prior	std::string	"median"	CatLearn
-eon	include/eon/ParametersOptions.h	486	catlearn_options_t	use_deriv	bool	true	CatLearn
-eon	include/eon/ParametersOptions.h	487	catlearn_options_t	use_fingerprint	bool	false	CatLearn
-eon	include/eon/ParametersOptions.h	488	catlearn_options_t	parallel	bool	false	CatLearn
-eon	include/eon/ParametersOptions.h	493	ase_orca_options_t	path	std::string		ASE_ORCA
-eon	include/eon/ParametersOptions.h	494	ase_orca_options_t	nproc	std::string	"1"	ASE_ORCA
-eon	include/eon/ParametersOptions.h	495	ase_orca_options_t	simpleinput	std::string		ASE_ORCA
-eon	include/eon/ParametersOptions.h	496	ase_orca_options_t	charge	int	0	ASE_ORCA
-eon	include/eon/ParametersOptions.h	497	ase_orca_options_t	multiplicity	int	1	ASE_ORCA
-eon	include/eon/ParametersOptions.h	502	ase_nwchem_options_t	path	std::string		ASE_NWCHEM
-eon	include/eon/ParametersOptions.h	503	ase_nwchem_options_t	nproc	std::string	"1"	ASE_NWCHEM
-eon	include/eon/ParametersOptions.h	505	ase_nwchem_options_t	mpi_launcher	std::string	"mpirun"	ASE_NWCHEM
-eon	include/eon/ParametersOptions.h	506	ase_nwchem_options_t	multiplicity	std::string		ASE_NWCHEM
-eon	include/eon/ParametersOptions.h	507	ase_nwchem_options_t	scf_thresh	double	1e-5	ASE_NWCHEM
-eon	include/eon/ParametersOptions.h	508	ase_nwchem_options_t	scf_maxiter	long	200	ASE_NWCHEM
-eon	include/eon/ParametersOptions.h	509	ase_nwchem_options_t	basis	std::string	"3-21G"	ASE_NWCHEM
-eon	include/eon/ParametersOptions.h	510	ase_nwchem_options_t	memory	std::string	"2 gb"	ASE_NWCHEM
-eon	include/eon/ParametersOptions.h	515	metatomic_options_t	model_path	std::string		Metatomic
-eon	include/eon/ParametersOptions.h	516	metatomic_options_t	device	std::string	"cpu"	Metatomic
-eon	include/eon/ParametersOptions.h	517	metatomic_options_t	length_unit	std::string	"angstrom"	Metatomic
-eon	include/eon/ParametersOptions.h	518	metatomic_options_t	extensions_directory	std::string		Metatomic
-eon	include/eon/ParametersOptions.h	519	metatomic_options_t	check_consistency	bool	false	Metatomic
-eon	include/eon/ParametersOptions.h	520	metatomic_options_t	uncertainty_threshold	double	-1.0	Metatomic
-eon	include/eon/ParametersOptions.h	523	metatomic_options_t	energy_output	std::string		Metatomic
-eon	include/eon/ParametersOptions.h	524	metatomic_options_t	energy_uncertainty_output	std::string		Metatomic
-eon	include/eon/ParametersOptions.h	527	metatomic_options_t	force_output	std::string		Metatomic
-eon	include/eon/ParametersOptions.h	530	metatomic_options_t	non_conservative	bool	false	Metatomic
-eon	include/eon/ParametersOptions.h	533	metatomic_options_t	random_rotation	bool	false	Metatomic
-eon	include/eon/ParametersOptions.h	537	metatomic_options_t	n_symmetry_rotations	long	0	Metatomic
-eon	include/eon/ParametersOptions.h	541	metatomic_options_t	deterministic	bool	true	Metatomic
-eon	include/eon/ParametersOptions.h	544	metatomic_options_t	deterministic_strict	bool	false	Metatomic
-eon	include/eon/ParametersOptions.h	546	variants_t	base	std::string		Metatomic
-eon	include/eon/ParametersOptions.h	547	variants_t	energy	std::string		Metatomic
-eon	include/eon/ParametersOptions.h	548	variants_t	energy_uncertainty	std::string		Metatomic
-eon	include/eon/ParametersOptions.h	558	lanczos_options_t	tolerance	double	0.01	Lanczos
-eon	include/eon/ParametersOptions.h	559	lanczos_options_t	max_iterations	long	20	Lanczos
-eon	include/eon/ParametersOptions.h	560	lanczos_options_t	quit_early	bool	true	Lanczos
-eon	include/eon/ParametersOptions.h	561	lanczos_options_t	phva_atoms	std::string	"All"	Lanczos
-eon	include/eon/ParametersOptions.h	566	davidson_options_t	tolerance	double	0.01	Davidson
-eon	include/eon/ParametersOptions.h	567	davidson_options_t	max_iterations	long	20	Davidson
-eon	include/eon/ParametersOptions.h	570	davidson_options_t	diagonal_preconditioner	bool	false	Davidson
-eon	include/eon/ParametersOptions.h	572	davidson_options_t	phva_atoms	std::string	"All"	Davidson
-eon	include/eon/ParametersOptions.h	577	prefactor_options_t	default_value	double	0.0	Prefactor
-eon	include/eon/ParametersOptions.h	578	prefactor_options_t	max_value	double	1e+21	Prefactor
-eon	include/eon/ParametersOptions.h	579	prefactor_options_t	min_value	double	1e+9	Prefactor
-eon	include/eon/ParametersOptions.h	580	prefactor_options_t	within_radius	double	3.3	Prefactor
-eon	include/eon/ParametersOptions.h	581	prefactor_options_t	min_displacement	double	0.25	Prefactor
-eon	include/eon/ParametersOptions.h	582	prefactor_options_t	rate	std::string	"htst"	Prefactor
-eon	include/eon/ParametersOptions.h	583	prefactor_options_t	configuration	std::string	"reactant"	Prefactor
-eon	include/eon/ParametersOptions.h	584	prefactor_options_t	all_free_atoms	bool	false	Prefactor
-eon	include/eon/ParametersOptions.h	585	prefactor_options_t	filter_scheme	std::string	"fraction"	Prefactor
-eon	include/eon/ParametersOptions.h	586	prefactor_options_t	filter_fraction	double	0.90	Prefactor
-eon	include/eon/ParametersOptions.h	594	hessian_options_t	phva_atoms	std::string	"All"	Hessian
-eon	include/eon/ParametersOptions.h	595	hessian_options_t	zero_freq_value	double	1e-6	Hessian
-eon	include/eon/ParametersOptions.h	600	hessian_options_t	fd_scheme	std::string	"one_sided"	Hessian
-eon	include/eon/ParametersOptions.h	602	hessian_options_t	resume	bool	false	Hessian
-eon	include/eon/ParametersOptions.h	604	hessian_options_t	checkpoint_path	std::string	""	Hessian
-eon	include/eon/ParametersOptions.h	608	hessian_options_t	write_modes	bool	true	Hessian
-eon	include/eon/ParametersOptions.h	613	neb_options_t	image_count	long	5	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	614	neb_options_t	max_iterations	long	1000	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	615	neb_options_t	opt_method	OptType	OptType::LBFGS	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	616	neb_options_t	force_tolerance	double	0.01	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	618	mmf_peak_options_t	enabled	bool	true	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	619	mmf_peak_options_t	tolerance	double	0.05	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	622	neb_options_t	match_endpoints	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	624	neb_options_t	match_method	std::string	"ira"	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	627	spring_options_t	constant	double	5.0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	628	spring_options_t	use_elastic_band	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	629	spring_options_t	doubly_nudged	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	630	spring_options_t	use_switching	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	633	spring_options_t	geometric	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	636	energy_weighting_t	enabled	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	637	energy_weighting_t	trigger	double	10.0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	638	energy_weighting_t	k_min	double	0.97	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	639	energy_weighting_t	k_max	double	9.7	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	642	onsager_machlup_t	enabled	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	643	onsager_machlup_t	optimize_k	bool	true	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	644	onsager_machlup_t	k_scale	double	1.0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	645	onsager_machlup_t	k_min	double	0.1	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	646	onsager_machlup_t	k_max	double	100.0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	651	climbing_image_options_t	enabled	bool	true	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	652	climbing_image_options_t	converged_only	bool	true	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	656	climbing_image_options_t	band_slack	double	10.0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	657	climbing_image_options_t	use_old_tangent	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	658	climbing_image_options_t	trigger_force	double	std::numeric_limits<double>::infinity()	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	659	climbing_image_options_t	trigger_factor	double	0.0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	662	hybrid_dimer_t	use_mmf	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	663	hybrid_dimer_t	trigger_force	double	0.1	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	664	hybrid_dimer_t	max_steps	long	1000	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	665	hybrid_dimer_t	ci_stability_count	long	5	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	666	hybrid_dimer_t	angle_tol	double	0.7071	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	667	hybrid_dimer_t	trigger_factor	double	0.0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	670	hybrid_dimer_t	restore_unhelpful	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	679	zoom_options_t	enabled	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	680	zoom_options_t	alpha	double	0.5	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	681	zoom_options_t	offset	int	1	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	682	zoom_options_t	Mode	enum class	Auto, Manual	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	683	zoom_options_t	mode	Mode	Mode::Auto	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	684	zoom_options_t	activation_threshold	double	0.0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	685	zoom_options_t	Interpolation	enum class	Cubic, Linear	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	686	zoom_options_t	interpolation	Interpolation	Interpolation::Cubic	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	687	zoom_options_t	stability_count	int	5	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	688	zoom_options_t	max_iterations	int	0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	692	path_initialization_t	method	NEBInit	NEBInit::LINEAR	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	693	path_initialization_t	input_path	std::string		Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	694	path_initialization_t	max_iterations	int	5000	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	695	path_initialization_t	nsteps	int	250	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	696	path_initialization_t	max_move	double	0.1	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	697	path_initialization_t	force_tolerance	double	0.001	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	698	path_initialization_t	sidpp_alpha	double	0.33	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	699	path_initialization_t	sidpp_frontier_tol	double	0.01	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	700	path_initialization_t	sidpp_reparam	bool	true	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	701	path_initialization_t	sidpp_ideal_ksp	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	702	path_initialization_t	opt_method	OptType	OptType::LBFGS	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	703	path_initialization_t	oversampling	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	704	path_initialization_t	oversampling_factor	int	3	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	708	endpoint_options_t	minimize	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	709	endpoint_options_t	use_path_file	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	715	solid_state_options_t	enabled	bool	false	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	716	solid_state_options_t	weight	double	1.0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	719	solid_state_options_t	pressure	double	0.0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	727	band_options_t	precon	std::string	"none"	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	728	band_options_t	precon_mu	double	0.0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	729	band_options_t	stepper	std::string	"auto"	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	734	neb_options_t	quantum_temperature	double	0.0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	739	neb_options_t	tunnel_wall_points	long	0	Nudged Elastic Band
-eon	include/eon/ParametersOptions.h	744	dynamics_options_t	time_step_input	double	1.0	Molecular Dynamics
-eon	include/eon/ParametersOptions.h	745	dynamics_options_t	time_step	double	0.0	Molecular Dynamics
-eon	include/eon/ParametersOptions.h	746	dynamics_options_t	time_input	double	1000.0	Molecular Dynamics
-eon	include/eon/ParametersOptions.h	747	dynamics_options_t	time	double	0.0	Molecular Dynamics
-eon	include/eon/ParametersOptions.h	748	dynamics_options_t	steps	long	0	Molecular Dynamics
-eon	include/eon/ParametersOptions.h	753	parallel_replica_options_t	refine_transition	bool	true	Parallel Replica
-eon	include/eon/ParametersOptions.h	754	parallel_replica_options_t	auto_stop	bool	false	Parallel Replica
-eon	include/eon/ParametersOptions.h	755	parallel_replica_options_t	dephase_loop_stop	bool	false	Parallel Replica
-eon	include/eon/ParametersOptions.h	756	parallel_replica_options_t	dephase_time_input	double	1000.0	Parallel Replica
-eon	include/eon/ParametersOptions.h	757	parallel_replica_options_t	dephase_time	double	0.0	Parallel Replica
-eon	include/eon/ParametersOptions.h	758	parallel_replica_options_t	dephase_loop_max	long	5	Parallel Replica
-eon	include/eon/ParametersOptions.h	759	parallel_replica_options_t	state_check_interval_input	double	1000.0	Parallel Replica
-eon	include/eon/ParametersOptions.h	760	parallel_replica_options_t	state_check_interval	double	0.0	Parallel Replica
-eon	include/eon/ParametersOptions.h	761	parallel_replica_options_t	record_interval_input	double	50.0	Parallel Replica
-eon	include/eon/ParametersOptions.h	762	parallel_replica_options_t	record_interval	double	0.0	Parallel Replica
-eon	include/eon/ParametersOptions.h	763	parallel_replica_options_t	corr_time_input	double	1000.0	Parallel Replica
-eon	include/eon/ParametersOptions.h	764	parallel_replica_options_t	corr_time	double	0.0	Parallel Replica
-eon	include/eon/ParametersOptions.h	769	tad_options_t	low_temperature	double	300.0	Temperature Accelerated Dynamics
-eon	include/eon/ParametersOptions.h	770	tad_options_t	min_prefactor	double	0.001	Temperature Accelerated Dynamics
-eon	include/eon/ParametersOptions.h	771	tad_options_t	confidence	double	0.001	Temperature Accelerated Dynamics
-eon	include/eon/ParametersOptions.h	776	thermostat_options_t	kind	std::string	"none"	Thermostat
-eon	include/eon/ParametersOptions.h	777	thermostat_options_t	andersen_alpha	double	1.0	Thermostat
-eon	include/eon/ParametersOptions.h	778	thermostat_options_t	andersen_tcol_input	double	100.0	Thermostat
-eon	include/eon/ParametersOptions.h	779	thermostat_options_t	andersen_tcol	double	0.0	Thermostat
-eon	include/eon/ParametersOptions.h	780	thermostat_options_t	nose_mass	double	1.0	Thermostat
-eon	include/eon/ParametersOptions.h	781	thermostat_options_t	langevin_friction_input	double	0.01	Thermostat
-eon	include/eon/ParametersOptions.h	782	thermostat_options_t	langevin_friction	double	0.0	Thermostat
-eon	include/eon/ParametersOptions.h	783	thermostat_options_t	path_beads	long	8	Thermostat
-eon	include/eon/ParametersOptions.h	784	thermostat_options_t	path_springs	std::string	"trotter"	Thermostat
-eon	include/eon/ParametersOptions.h	785	thermostat_options_t	path_eco_omega_max	double	0.0	Thermostat
-eon	include/eon/ParametersOptions.h	786	thermostat_options_t	path_gle_file	std::string		Thermostat
-eon	include/eon/ParametersOptions.h	787	thermostat_options_t	path_pile_tau_input	double	100.0	Thermostat
-eon	include/eon/ParametersOptions.h	788	thermostat_options_t	path_pile_tau	double	0.0	Thermostat
-eon	include/eon/ParametersOptions.h	789	thermostat_options_t	path_pile_scale	double	1.0	Thermostat
-eon	include/eon/ParametersOptions.h	790	thermostat_options_t	path_seed	std::uint64_t	1	Thermostat
-eon	include/eon/ParametersOptions.h	795	replica_exchange_options_t	temperature_distribution	std::string	"exponential"	Replica Exchange
-eon	include/eon/ParametersOptions.h	796	replica_exchange_options_t	replicas	long	10	Replica Exchange
-eon	include/eon/ParametersOptions.h	797	replica_exchange_options_t	exchange_trials	long	10	Replica Exchange
-eon	include/eon/ParametersOptions.h	798	replica_exchange_options_t	sampling_time_input	double	1000.0	Replica Exchange
-eon	include/eon/ParametersOptions.h	799	replica_exchange_options_t	sampling_time	double	0.0	Replica Exchange
-eon	include/eon/ParametersOptions.h	800	replica_exchange_options_t	temperature_high	double	0.0	Replica Exchange
-eon	include/eon/ParametersOptions.h	801	replica_exchange_options_t	temperature_low	double	0.0	Replica Exchange
-eon	include/eon/ParametersOptions.h	802	replica_exchange_options_t	exchange_period_input	double	100.0	Replica Exchange
-eon	include/eon/ParametersOptions.h	803	replica_exchange_options_t	exchange_period	double	0.0	Replica Exchange
-eon	include/eon/ParametersOptions.h	808	hyperdynamics_options_t	bias_potential	std::string	"none"	Bond Boost / Hyperdynamics
-eon	include/eon/ParametersOptions.h	809	hyperdynamics_options_t	boost_atom_list	std::string	"All"	Bond Boost / Hyperdynamics
-eon	include/eon/ParametersOptions.h	810	hyperdynamics_options_t	rmd_time_input	double	100.0	Bond Boost / Hyperdynamics
-eon	include/eon/ParametersOptions.h	811	hyperdynamics_options_t	rmd_time	double	0.0	Bond Boost / Hyperdynamics
-eon	include/eon/ParametersOptions.h	812	hyperdynamics_options_t	dvmax	double	0.0	Bond Boost / Hyperdynamics
-eon	include/eon/ParametersOptions.h	813	hyperdynamics_options_t	qrr	double	0.2	Bond Boost / Hyperdynamics
-eon	include/eon/ParametersOptions.h	814	hyperdynamics_options_t	prr	double	0.95	Bond Boost / Hyperdynamics
-eon	include/eon/ParametersOptions.h	815	hyperdynamics_options_t	qcut	double	3.0	Bond Boost / Hyperdynamics
-eon	include/eon/ParametersOptions.h	820	basin_hopping_options_t	displacement	double	0.5	Basin Hopping
-eon	include/eon/ParametersOptions.h	821	basin_hopping_options_t	initial_random_structure_probability	double	0.0	Basin Hopping
-eon	include/eon/ParametersOptions.h	822	basin_hopping_options_t	push_apart_distance	double	0.4	Basin Hopping
-eon	include/eon/ParametersOptions.h	823	basin_hopping_options_t	steps	long	10000	Basin Hopping
-eon	include/eon/ParametersOptions.h	824	basin_hopping_options_t	quenching_steps	long	0	Basin Hopping
-eon	include/eon/ParametersOptions.h	825	basin_hopping_options_t	significant_structure	bool	true	Basin Hopping
-eon	include/eon/ParametersOptions.h	826	basin_hopping_options_t	single_atom_displace	bool	false	Basin Hopping
-eon	include/eon/ParametersOptions.h	827	basin_hopping_options_t	displacement_algorithm	std::string	"standard"	Basin Hopping
-eon	include/eon/ParametersOptions.h	828	basin_hopping_options_t	displacement_distribution	std::string	"uniform"	Basin Hopping
-eon	include/eon/ParametersOptions.h	829	basin_hopping_options_t	swap_probability	double	0.0	Basin Hopping
-eon	include/eon/ParametersOptions.h	830	basin_hopping_options_t	jump_max	long	10	Basin Hopping
-eon	include/eon/ParametersOptions.h	831	basin_hopping_options_t	jump_steps	long	0	Basin Hopping
-eon	include/eon/ParametersOptions.h	832	basin_hopping_options_t	adjust_displacement	bool	true	Basin Hopping
-eon	include/eon/ParametersOptions.h	833	basin_hopping_options_t	adjust_period	long	10	Basin Hopping
-eon	include/eon/ParametersOptions.h	834	basin_hopping_options_t	adjust_fraction	double	0.05	Basin Hopping
-eon	include/eon/ParametersOptions.h	835	basin_hopping_options_t	target_ratio	double	0.5	Basin Hopping
-eon	include/eon/ParametersOptions.h	836	basin_hopping_options_t	write_unique	bool	false	Basin Hopping
-eon	include/eon/ParametersOptions.h	837	basin_hopping_options_t	stop_energy	double	-std::numeric_limits<double>::max()	Basin Hopping
-eon	include/eon/ParametersOptions.h	842	global_optimization_options_t	move_method	std::string	"md"	Global Optimization
-eon	include/eon/ParametersOptions.h	843	global_optimization_options_t	decision_method	std::string	"npew"	Global Optimization
-eon	include/eon/ParametersOptions.h	844	global_optimization_options_t	steps	long	10000	Global Optimization
-eon	include/eon/ParametersOptions.h	845	global_optimization_options_t	beta	double	1.05	Global Optimization
-eon	include/eon/ParametersOptions.h	846	global_optimization_options_t	alpha	double	1.02	Global Optimization
-eon	include/eon/ParametersOptions.h	847	global_optimization_options_t	mdmin	long	3	Global Optimization
-eon	include/eon/ParametersOptions.h	848	global_optimization_options_t	target_energy	double	-1.0e50	Global Optimization
-eon	include/eon/ParametersOptions.h	853	monte_carlo_options_t	step_size	double	0.005	Monte Carlo
-eon	include/eon/ParametersOptions.h	854	monte_carlo_options_t	steps	int	1000	Monte Carlo
-eon	include/eon/ParametersOptions.h	859	bgsd_options_t	alpha	double	10.0	BGSD
-eon	include/eon/ParametersOptions.h	860	bgsd_options_t	beta	double	0.2	BGSD
-eon	include/eon/ParametersOptions.h	861	bgsd_options_t	gradient_finite_difference	double	0.000001	BGSD
-eon	include/eon/ParametersOptions.h	862	bgsd_options_t	h_force_convergence	double	0.01	BGSD
-eon	include/eon/ParametersOptions.h	863	bgsd_options_t	grad2energy_convergence	double	0.000001	BGSD
-eon	include/eon/ParametersOptions.h	864	bgsd_options_t	grad2force_convergence	double	0.0001	BGSD
-eon	include/eon/ParametersOptions.h	869	serve_options_t	host	std::string	"localhost"	Serve
-eon	include/eon/ParametersOptions.h	870	serve_options_t	port	uint16_t	12345	Serve
-eon	include/eon/ParametersOptions.h	871	serve_options_t	replicas	size_t	1	Serve
-eon	include/eon/ParametersOptions.h	872	serve_options_t	gateway_port	uint16_t	0	Serve
-eon	include/eon/ParametersOptions.h	873	serve_options_t	endpoints	std::string		Serve
-eon	include/eon/ParametersOptions.h	878	artn_options_t	push_step_size	double	0.3	ARTn
-eon	include/eon/ParametersOptions.h	879	artn_options_t	force_threshold	double	0.05	ARTn
-eon	include/eon/ParametersOptions.h	880	artn_options_t	max_iterations	int	500	ARTn
-eon	include/eon/ParametersOptions.h	881	artn_options_t	ninit	int	-1	ARTn
-eon	include/eon/ParametersOptions.h	886	artn_options_t	nperp_limitation	std::string	"default"	ARTn
-eon	include/eon/ParametersOptions.h	889	artn_options_t	nsmooth	int	-1	ARTn
-eon	include/eon/ParametersOptions.h	896	artn_options_t	filin	std::string	""	ARTn
-eon	include/eon/ParametersOptions.h	906	ira_options_t	distance_threshold	double	0.3	IRA
-eon	include/eon/ParametersOptions.h	907	ira_options_t	symmetry_threshold	double	0.1	IRA
-eon	include/eon/ParametersOptions.h	908	ira_options_t	use_pbc	bool	false	IRA
-eon	include/eon/ParametersOptions.h	913	debug_options_t	write_movies	bool	false	Debug
-eon	include/eon/ParametersOptions.h	914	debug_options_t	write_movies_interval	long	1	Debug
-eon	include/eon/ParametersOptions.h	915	debug_options_t	write_deprecated_outs	bool	false	Debug
-eon	include/eon/ParametersOptions.h	916	debug_options_t	estimate_neb_eigenvalues	bool	false	Debug
-eon	include/eon/ParametersOptions.h	917	debug_options_t	neb_mmf	std::string	"dimer"	Debug
-eon	include/eon/ParametersOptions.h	926	instanton_options_t	mode	std::string	"splitting"	Instanton
-eon	include/eon/ParametersOptions.h	927	instanton_options_t	reactant_filename	std::string	"reactant.con"	Instanton
-eon	include/eon/ParametersOptions.h	928	instanton_options_t	product_filename	std::string	"product.con"	Instanton
-eon	include/eon/ParametersOptions.h	931	instanton_options_t	initial_path	std::string	""	Instanton
-eon	include/eon/ParametersOptions.h	933	instanton_options_t	initial_ring	std::string	""	Instanton
-eon	include/eon/ParametersOptions.h	935	instanton_options_t	physical_bath_filename	std::string	""	Instanton
-eon	include/eon/ParametersOptions.h	936	instanton_options_t	beads	long	256	Instanton
-eon	include/eon/ParametersOptions.h	937	instanton_options_t	beta_hbar_omega	double	30.0	Instanton
-eon	include/eon/ParametersOptions.h	938	instanton_options_t	max_iterations	long	5000	Instanton
-eon	include/eon/ParametersOptions.h	939	instanton_options_t	force_tolerance	double	1e-3	Instanton
-eon	include/eon/ParametersOptions.h	941	instanton_options_t	hessian_stride	long	1	Instanton
-eon	include/eon/ParametersOptions.h	945	instanton_options_t	symmetrize	bool	true	Instanton
-eon	include/eon/ParametersOptions.h	947	instanton_options_t	saddle_filename	std::string	"saddle.con"	Instanton
-eon	include/eon/ParametersOptions.h	948	instanton_options_t	temperature	double	0.0	Instanton
-eon	include/eon/ParametersOptions.h	951	instanton_options_t	temperatures	std::vector<double>		Instanton
-eon	include/eon/ParametersOptions.h	954	instanton_options_t	half_ring	bool	true	Instanton
-eon	include/eon/ParametersOptions.h	955	instanton_options_t	energy_shift	double	0.0	Instanton
-eon	include/eon/ParametersOptions.h	958	instanton_options_t	discretization	std::vector<double>		Instanton
-eon	include/eon/ParametersOptions.h	961	instanton_options_t	friction	std::string	"none"	Instanton
-eon	include/eon/ParametersOptions.h	962	instanton_options_t	friction_eta	double	0.0	Instanton
-eon	include/eon/ParametersOptions.h	963	instanton_options_t	friction_eta_beads	std::vector<double>		Instanton
-eon	include/eon/ParametersOptions.h	967	instanton_options_t	initial_hessians	std::string	"saddle"	Instanton
-eon	include/eon/ParametersOptions.h	971	instanton_options_t	newton_limit	std::int64_t	std::numeric_limits<std::int64_t>::max()	Instanton
-eon	include/eon/ParametersOptions.h	973	instanton_options_t	lanczos_step	double	1e-4	Instanton
-eon	include/eon/ParametersOptions.h	974	instanton_options_t	reactant_hessian_filename	std::string		Instanton
-eon	include/eon/ParametersOptions.h	975	instanton_options_t	saddle_hessian_filename	std::string		Instanton
-eon	include/eon/ParametersOptions.h	977	instanton_options_t	physical_hessian_step	double	1e-4	Instanton
-eon	include/eon/ParametersOptions.h	980	instanton_options_t	collapse_fraction	double	1e-4	Instanton
-eon	include/eon/ParametersOptions.h	983	instanton_options_t	rotation_zero_fraction	double	0.1	Instanton
-eon	include/eon/ParametersOptions.h	986	instanton_options_t	bead_ladder	bool	false	Instanton
-eon	include/eon/ParametersOptions.h	988	instanton_options_t	hessian_final	std::string	"recomputed"	Instanton
-eon	include/eon/ParametersOptions.h	991	instanton_options_t	springs	std::string	"trotter"	Instanton
-eon	include/eon/ParametersOptions.h	995	instanton_options_t	pi_planes	long	0	Instanton
-eon	include/eon/ParametersOptions.h	996	instanton_options_t	pi_beads	long	16	Instanton
-eon	include/eon/ParametersOptions.h	997	instanton_options_t	pi_equilibration_steps	long	500	Instanton
-eon	include/eon/ParametersOptions.h	998	instanton_options_t	pi_sampling_steps	long	2000	Instanton
-eon	include/eon/ParametersOptions.h	999	instanton_options_t	pi_time_step	double	0.5	Instanton
-eon	include/eon/ParametersOptions.h	1002	instanton_options_t	pi_thermostat	std::string	"pile"	Instanton
-eon	include/eon/ParametersOptions.h	1003	instanton_options_t	pi_gle_file	std::string	""	Instanton
-eon	include/eon/ParametersOptions.h	1004	instanton_options_t	pi_pile_tau	double	100.0	Instanton
-eon	include/eon/ParametersOptions.h	1005	instanton_options_t	pi_pile_scale	double	1.0	Instanton
-eon	include/eon/ParametersOptions.h	1006	instanton_options_t	pi_seed	long	1	Instanton
-eon	include/eon/ParametersOptions.h	1009	instanton_options_t	pi_direction	std::string	"mode"	Instanton
-eon	include/eon/ParametersOptions.h	1012	instanton_options_t	pi_reactant_extent	double	0.5	Instanton
-eon	include/eon/ParametersOptions.h	1017	instanton_options_t	pi_recrossing_parents	long	0	Instanton
-eon	include/eon/ParametersOptions.h	1018	instanton_options_t	pi_recrossing_children	long	20	Instanton
-eon	include/eon/ParametersOptions.h	1019	instanton_options_t	pi_recrossing_time	double	100.0	Instanton
-eon	include/eon/ParametersOptions.h	1020	instanton_options_t	pi_recrossing_spacing	long	50	Instanton
-eon	include/eon/ParametersOptions.h	1028	oh_tst_options_t	reactant_filename	std::string	"pos.con"	OH_TST
-eon	include/eon/ParametersOptions.h	1029	oh_tst_options_t	product_filename	std::string	"product.con"	OH_TST
-eon	include/eon/ParametersOptions.h	1030	oh_tst_options_t	time_step	double	1.0	OH_TST
-eon	include/eon/ParametersOptions.h	1031	oh_tst_options_t	equil_steps	long	200	OH_TST
-eon	include/eon/ParametersOptions.h	1032	oh_tst_options_t	sample_steps	long	800	OH_TST
-eon	include/eon/ParametersOptions.h	1033	oh_tst_options_t	max_planes	long	200	OH_TST
-eon	include/eon/ParametersOptions.h	1034	oh_tst_options_t	plane_mass	double	50.0	OH_TST
-eon	include/eon/ParametersOptions.h	1035	oh_tst_options_t	alpha_rot	double	50.0	OH_TST
-eon	include/eon/ParametersOptions.h	1036	oh_tst_options_t	plane_time_step	double	0.1	OH_TST
-eon	include/eon/ParametersOptions.h	1037	oh_tst_options_t	ds_max	double	0.1	OH_TST
-eon	include/eon/ParametersOptions.h	1038	oh_tst_options_t	dtheta_max	double	0.05	OH_TST
-eon	include/eon/ParametersOptions.h	1039	oh_tst_options_t	force_tol	double	0.005	OH_TST
-eon	include/eon/ParametersOptions.h	1040	oh_tst_options_t	s_init	double	0.05	OH_TST
-eon	include/eon/ParametersOptions.h	1041	oh_tst_options_t	reactant_md_steps	long	20000	OH_TST
-eon	include/eon/ParametersOptions.h	1042	oh_tst_options_t	max_delta_a	double	10.0	OH_TST
-eon	include/eon/ParametersOptions.h	1048	oh_tst_options_t	thermostat	std::string	"andersen"	OH_TST
-eon	include/eon/ParametersOptions.h	1049	oh_tst_options_t	gle_a_file	std::string	""	OH_TST
-eon	include/eon/ParametersOptions.h	1054	oh_tst_options_t	symmetry_products	std::string	""	OH_TST
-eon	include/eon/ParametersOptions.h	1060	oh_tst_options_t	pmf_scan	bool	false	OH_TST
-eon	include/eon/ParametersOptions.h	1061	oh_tst_options_t	scan_planes	long	40	OH_TST
-rgmin	include/rgmin.h	70	rgmin_abi_stamp_t	abi_major	uint16_t		
-rgmin	include/rgmin.h	71	rgmin_abi_stamp_t	abi_minor	uint16_t		
-rgmin	include/rgmin.h	72	rgmin_abi_stamp_t	layout_revision	uint16_t		
-rgmin	include/rgmin.h	192	rgmin_control_t	maxiter	size_t		
-rgmin	include/rgmin.h	193	rgmin_control_t	gtol	double		
-rgmin	include/rgmin.h	194	rgmin_control_t	istep	double		
-rgmin	include/rgmin.h	195	rgmin_control_t	memory	size_t		
-rgmin	include/rgmin.h	198	rgmin_control_t	maxmove	double		
-rgmin	include/rgmin.h	200	rgmin_control_t	noise_eps	double		
-rgmin	include/rgmin.h	202	rgmin_control_t	noise_c	double		
-rgmin	include/rgmin.h	216	rgmin_report_t	value	double		
-rgmin	include/rgmin.h	217	rgmin_report_t	steps	size_t		
-rgmin	include/rgmin.h	218	rgmin_report_t	grad_norm	double		
-rgmin	include/rgmin.h	220	rgmin_report_t	stop	rgmin_stop_t		
-rgmin	include/rgmin.h	361	rgmin_exp_t	a	double		
-rgmin	include/rgmin.h	362	rgmin_exp_t	c_stab	double		
-rgmin	include/rgmin.h	363	rgmin_exp_t	mu	double		
-rgmin	include/rgmin.h	364	rgmin_exp_t	r_nn	double		
-rgmin	include/rgmin.h	365	rgmin_exp_t	r_cut	double		
-rgmin	include/rgmin.h	366	rgmin_exp_t	length_x	double		
-rgmin	include/rgmin.h	367	rgmin_exp_t	length_y	double		
-rgmin	include/rgmin.h	368	rgmin_exp_t	length_z	double		
-rgmin	include/rgmin.h	369	rgmin_exp_t	recalc_mu	int32_t		
-rgmin	include/rgmin.h	409	rgmin_bond_t	k	double		
-rgmin	include/rgmin.h	414	rgmin_angle_t	k_theta	double		
-rgmin	include/rgmin.h	439	rgmin_precon_t	struct_size	uint32_t		
-rgmin	include/rgmin.h	440	rgmin_precon_t	kind	uint32_t		
-rgmin	include/rgmin.h	444	rgmin_precon_t	natoms	size_t		
-rgmin	include/rgmin.h	447	rgmin_precon_t	nghost	size_t		
-rgmin	include/rgmin.h	451	rgmin_precon_t	npairs	size_t		
-rgmin	include/rgmin.h	454	rgmin_precon_t	nanchor	size_t		
-rgmin	include/rgmin.h	455	rgmin_precon_t	exp_a	double		
-rgmin	include/rgmin.h	457	rgmin_precon_t	nbonds	size_t		
-rgmin	include/rgmin.h	459	rgmin_precon_t	nangles	size_t		
-rgmin	include/rgmin.h	460	rgmin_precon_t	dihedrals	int32_t		
-rgmin	include/rgmin.h	461	rgmin_precon_t	geometry_kind	int32_t		
-rgmin	include/rgmin.h	1118	rgmin_scg_params_t	sigma0	double		
-rgmin	include/rgmin.h	1119	rgmin_scg_params_t	lambda	double		
-rgmin	include/rgmin.h	1120	rgmin_scg_params_t	lambda_limit	double		
-rgmin	include/rgmin.h	1121	rgmin_scg_params_t	tol_sol	double		
-rgmin	include/rgmin.h	1122	rgmin_scg_params_t	tol_func	double		
-rgmin	include/rgmin.h	1126	rgmin_scg_params_t	conjugacy	rgmin_conjugacy_t		
-rgmin	include/rgmin.h	1169	rgmin_scg_options_t	step_tolerance	int32_t		
-rgmin	include/rgmin.h	1208	rgmin_eigen_params_t	kind	int32_t		
-rgmin	include/rgmin.h	1209	rgmin_eigen_params_t	nev	uint32_t		
-rgmin	include/rgmin.h	1210	rgmin_eigen_params_t	krylov	uint32_t		
-rgmin	include/rgmin.h	1211	rgmin_eigen_params_t	max_iter	uint32_t		
-rgmin	include/rgmin.h	1212	rgmin_eigen_params_t	tol	double		
-rgmin	include/rgmin.h	1220	rgmin_lowest_mode_t	value	double		
-rgmin	include/rgmin.h	1221	rgmin_lowest_mode_t	actions	size_t		
-rgmin	include/rgmin.h	1277	rgmin_eigen_options_t	degree	uint32_t		
-rgmin	include/rgmin.h	1279	rgmin_eigen_options_t	extra	uint32_t		
-rgmin	include/rgmin.h	1288	rgmin_eigenpair_t	value	double		
-rgmin	include/rgmin.h	1289	rgmin_eigenpair_t	actions	size_t		
-rgmin	include/rgmin.h	1315	rgmin_eigenpair_ex_t	value	double		
-rgmin	include/rgmin.h	1316	rgmin_eigenpair_ex_t	actions	size_t		
-rgmin	include/rgmin.h	1317	rgmin_eigenpair_ex_t	residual	double		
-rgmin	include/rgmin.h	1318	rgmin_eigenpair_ex_t	converged	int32_t		
-rgmin	include/rgmin.h	204	rgmin_control_t	maxiter	comment	100	control
-rgmin	include/rgmin.h	204	rgmin_control_t	gtol	comment	1e-5	control
-rgmin	include/rgmin.h	204	rgmin_control_t	istep	comment	1	control
-rgmin	include/rgmin.h	204	rgmin_control_t	memory	comment	0	control
-rgmin	include/rgmin.h	205	rgmin_control_t	maxmove	comment	0	control
-rgmin	include/rgmin.h	206	rgmin_control_t	noise_eps	comment	0	control
-rgmin	include/rgmin.h	206	rgmin_control_t	noise_c	comment	3	control
-rgsaddle	include/rgsaddle.h	124	rgsaddle_version_t	major	uint32_t		
-rgsaddle	include/rgsaddle.h	125	rgsaddle_version_t	minor	uint32_t		
-rgsaddle	include/rgsaddle.h	232	rgsaddle_hyperplane_budget_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	233	rgsaddle_hyperplane_budget_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	234	rgsaddle_hyperplane_budget_t	thermal	double		
-rgsaddle	include/rgsaddle.h	235	rgsaddle_hyperplane_budget_t	seed	uint64_t		
-rgsaddle	include/rgsaddle.h	236	rgsaddle_hyperplane_budget_t	thermalize	int64_t		
-rgsaddle	include/rgsaddle.h	237	rgsaddle_hyperplane_budget_t	stride	int64_t		
-rgsaddle	include/rgsaddle.h	238	rgsaddle_hyperplane_budget_t	samples	int64_t		
-rgsaddle	include/rgsaddle.h	239	rgsaddle_hyperplane_budget_t	lambda	double		
-rgsaddle	include/rgsaddle.h	240	rgsaddle_hyperplane_budget_t	positions	int32_t		
-rgsaddle	include/rgsaddle.h	245	rgsaddle_hyperplane_observation_t	constraint_force	double		
-rgsaddle	include/rgsaddle.h	248	rgsaddle_hyperplane_observation_t	thermodynamic_derivative	double		
-rgsaddle	include/rgsaddle.h	259	rgsaddle_hyperplane_ti_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	260	rgsaddle_hyperplane_ti_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	261	rgsaddle_hyperplane_ti_config_t	thermal	double		
-rgsaddle	include/rgsaddle.h	262	rgsaddle_hyperplane_ti_config_t	nodes	int64_t		
-rgsaddle	include/rgsaddle.h	263	rgsaddle_hyperplane_ti_config_t	thermalize	int64_t		
-rgsaddle	include/rgsaddle.h	264	rgsaddle_hyperplane_ti_config_t	stride	int64_t		
-rgsaddle	include/rgsaddle.h	265	rgsaddle_hyperplane_ti_config_t	samples	int64_t		
-rgsaddle	include/rgsaddle.h	266	rgsaddle_hyperplane_ti_config_t	blocks	int64_t		
-rgsaddle	include/rgsaddle.h	267	rgsaddle_hyperplane_ti_config_t	seed	uint64_t		
-rgsaddle	include/rgsaddle.h	271	rgsaddle_hyperplane_ti_result_t	free_energy	double		
-rgsaddle	include/rgsaddle.h	272	rgsaddle_hyperplane_ti_result_t	error	double		
-rgsaddle	include/rgsaddle.h	273	rgsaddle_hyperplane_ti_result_t	evaluations	int64_t		
-rgsaddle	include/rgsaddle.h	320	rgsaddle_surface_request_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	321	rgsaddle_surface_request_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	322	rgsaddle_surface_request_t	n_images	int64_t		
-rgsaddle	include/rgsaddle.h	323	rgsaddle_surface_request_t	n_atoms	int64_t		
-rgsaddle	include/rgsaddle.h	327	rgsaddle_surface_request_t	image	int64_t		
-rgsaddle	include/rgsaddle.h	335	rgsaddle_band_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	336	rgsaddle_band_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	337	rgsaddle_band_config_t	tangent	int32_t		
-rgsaddle	include/rgsaddle.h	338	rgsaddle_band_config_t	spring	int32_t		
-rgsaddle	include/rgsaddle.h	339	rgsaddle_band_config_t	projection	int32_t		
-rgsaddle	include/rgsaddle.h	340	rgsaddle_band_config_t	method	int32_t		
-rgsaddle	include/rgsaddle.h	341	rgsaddle_band_config_t	spring_k	double		
-rgsaddle	include/rgsaddle.h	345	rgsaddle_band_config_t	ci_trigger_factor	double		
-rgsaddle	include/rgsaddle.h	346	rgsaddle_band_config_t	ci_trigger_force	double		
-rgsaddle	include/rgsaddle.h	349	rgsaddle_band_config_t	force_tol	double		
-rgsaddle	include/rgsaddle.h	350	rgsaddle_band_config_t	max_move	double		
-rgsaddle	include/rgsaddle.h	351	rgsaddle_band_config_t	memory	int64_t		
-rgsaddle	include/rgsaddle.h	356	rgsaddle_report_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	357	rgsaddle_report_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	358	rgsaddle_report_t	status	int32_t		
-rgsaddle	include/rgsaddle.h	364	rgsaddle_report_t	evaluations	int32_t		
-rgsaddle	include/rgsaddle.h	365	rgsaddle_report_t	max_force	double		
-rgsaddle	include/rgsaddle.h	367	rgsaddle_report_t	ci_index	int64_t		
-rgsaddle	include/rgsaddle.h	368	rgsaddle_report_t	iteration	int64_t		
-rgsaddle	include/rgsaddle.h	373	rgsaddle_report_t	curvature	double		
-rgsaddle	include/rgsaddle.h	374	rgsaddle_report_t	rotations	int64_t		
-rgsaddle	include/rgsaddle.h	416	rgsaddle_solid_surface_request_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	417	rgsaddle_solid_surface_request_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	418	rgsaddle_solid_surface_request_t	n_images	int64_t		
-rgsaddle	include/rgsaddle.h	419	rgsaddle_solid_surface_request_t	n_atoms	int64_t		
-rgsaddle	include/rgsaddle.h	425	rgsaddle_solid_surface_request_t	image	int64_t		
-rgsaddle	include/rgsaddle.h	571	rgsaddle_minmode_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	572	rgsaddle_minmode_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	573	rgsaddle_minmode_config_t	kind	int32_t		
-rgsaddle	include/rgsaddle.h	574	rgsaddle_minmode_config_t	method	int32_t		
-rgsaddle	include/rgsaddle.h	575	rgsaddle_minmode_config_t	dr	double		
-rgsaddle	include/rgsaddle.h	576	rgsaddle_minmode_config_t	rotation_tol	double		
-rgsaddle	include/rgsaddle.h	577	rgsaddle_minmode_config_t	max_rotations	int64_t		
-rgsaddle	include/rgsaddle.h	578	rgsaddle_minmode_config_t	krylov_dim	int64_t		
-rgsaddle	include/rgsaddle.h	579	rgsaddle_minmode_config_t	force_tol	double		
-rgsaddle	include/rgsaddle.h	580	rgsaddle_minmode_config_t	max_move	double		
-rgsaddle	include/rgsaddle.h	588	rgsaddle_minmode_config_t	rotation_angle_tol	double		
-rgsaddle	include/rgsaddle.h	590	rgsaddle_minmode_config_t	difference	int32_t		
-rgsaddle	include/rgsaddle.h	591	rgsaddle_minmode_config_t	reserved	int32_t		
-rgsaddle	include/rgsaddle.h	600	rgsaddle_artn_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	601	rgsaddle_artn_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	602	rgsaddle_artn_config_t	lanczos_start	int64_t		
-rgsaddle	include/rgsaddle.h	603	rgsaddle_artn_config_t	eigenvalue_threshold	double		
-rgsaddle	include/rgsaddle.h	604	rgsaddle_artn_config_t	basin_push	double		
-rgsaddle	include/rgsaddle.h	605	rgsaddle_artn_config_t	basin_relaxations	int64_t		
-rgsaddle	include/rgsaddle.h	606	rgsaddle_artn_config_t	activation_relaxations	int64_t		
-rgsaddle	include/rgsaddle.h	607	rgsaddle_artn_config_t	relaxation_step	double		
-rgsaddle	include/rgsaddle.h	608	rgsaddle_artn_config_t	lanczos_actions	int64_t		
-rgsaddle	include/rgsaddle.h	609	rgsaddle_artn_config_t	curvature_floor	double		
-rgsaddle	include/rgsaddle.h	780	rgsaddle_index1_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	781	rgsaddle_index1_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	782	rgsaddle_index1_config_t	update	int32_t		
-rgsaddle	include/rgsaddle.h	783	rgsaddle_index1_config_t	mode	int32_t		
-rgsaddle	include/rgsaddle.h	785	rgsaddle_index1_config_t	trust_radius	double		
-rgsaddle	include/rgsaddle.h	786	rgsaddle_index1_config_t	force_tol	double		
-rgsaddle	include/rgsaddle.h	788	rgsaddle_index1_config_t	fd_dr	double		
-rgsaddle	include/rgsaddle.h	829	rgsaddle_kappa_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	830	rgsaddle_kappa_config_t	beta	double		
-rgsaddle	include/rgsaddle.h	831	rgsaddle_kappa_config_t	tolerance	double		
-rgsaddle	include/rgsaddle.h	832	rgsaddle_kappa_config_t	max_iterations	int64_t		
-rgsaddle	include/rgsaddle.h	833	rgsaddle_kappa_config_t	krylov_dimension	int64_t		
-rgsaddle	include/rgsaddle.h	834	rgsaddle_kappa_config_t	eigen_kind	int32_t		
-rgsaddle	include/rgsaddle.h	838	rgsaddle_kappa_report_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	839	rgsaddle_kappa_report_t	kappa	double		
-rgsaddle	include/rgsaddle.h	840	rgsaddle_kappa_report_t	tangent_curvature	double		
-rgsaddle	include/rgsaddle.h	841	rgsaddle_kappa_report_t	gamma_parallel	double		
-rgsaddle	include/rgsaddle.h	842	rgsaddle_kappa_report_t	gamma_perpendicular	double		
-rgsaddle	include/rgsaddle.h	843	rgsaddle_kappa_report_t	residual	double		
-rgsaddle	include/rgsaddle.h	844	rgsaddle_kappa_report_t	hessian_actions	int64_t		
-rgsaddle	include/rgsaddle.h	845	rgsaddle_kappa_report_t	tangent_dimension	int64_t		
-rgsaddle	include/rgsaddle.h	885	rgsaddle_irc_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	886	rgsaddle_irc_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	887	rgsaddle_irc_config_t	dx	double		
-rgsaddle	include/rgsaddle.h	888	rgsaddle_irc_config_t	force_tol	double		
-rgsaddle	include/rgsaddle.h	889	rgsaddle_irc_config_t	force_gate	rgsaddle_force_gate_t		
-rgsaddle	include/rgsaddle.h	890	rgsaddle_irc_config_t	max_move	double		
-rgsaddle	include/rgsaddle.h	891	rgsaddle_irc_config_t	max_inner	int64_t		
-rgsaddle	include/rgsaddle.h	892	rgsaddle_irc_config_t	kind	int32_t		
-rgsaddle	include/rgsaddle.h	893	rgsaddle_irc_config_t	direction	int32_t		
-rgsaddle	include/rgsaddle.h	924	rgsaddle_sella_min_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	925	rgsaddle_sella_min_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	926	rgsaddle_sella_min_config_t	delta	double		
-rgsaddle	include/rgsaddle.h	927	rgsaddle_sella_min_config_t	force_tol	double		
-rgsaddle	include/rgsaddle.h	928	rgsaddle_sella_min_config_t	force_gate	rgsaddle_force_gate_t		
-rgsaddle	include/rgsaddle.h	982	rgsaddle_sella_saddle_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	983	rgsaddle_sella_saddle_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	984	rgsaddle_sella_saddle_config_t	delta	double		
-rgsaddle	include/rgsaddle.h	985	rgsaddle_sella_saddle_config_t	force_tol	double		
-rgsaddle	include/rgsaddle.h	986	rgsaddle_sella_saddle_config_t	force_gate	rgsaddle_force_gate_t		
-rgsaddle	include/rgsaddle.h	987	rgsaddle_sella_saddle_config_t	order	int64_t		
-rgsaddle	include/rgsaddle.h	1055	rgsaddle_constraints_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	1056	rgsaddle_constraints_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	1176	rgsaddle_samd_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	1177	rgsaddle_samd_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	1178	rgsaddle_samd_config_t	dt	double		
-rgsaddle	include/rgsaddle.h	1179	rgsaddle_samd_config_t	tau	double		
-rgsaddle	include/rgsaddle.h	1180	rgsaddle_samd_config_t	t0	double		
-rgsaddle	include/rgsaddle.h	1181	rgsaddle_samd_config_t	tf	double		
-rgsaddle	include/rgsaddle.h	1182	rgsaddle_samd_config_t	ngen	int64_t		
-rgsaddle	include/rgsaddle.h	1183	rgsaddle_samd_config_t	exponential	int32_t		
-rgsaddle	include/rgsaddle.h	1248	rgsaddle_ocineb_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	1249	rgsaddle_ocineb_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	1250	rgsaddle_ocineb_config_t	trigger_factor	double		
-rgsaddle	include/rgsaddle.h	1251	rgsaddle_ocineb_config_t	trigger_force	double		
-rgsaddle	include/rgsaddle.h	1252	rgsaddle_ocineb_config_t	angle_tol	double		
-rgsaddle	include/rgsaddle.h	1253	rgsaddle_ocineb_config_t	stability_count	int64_t		
-rgsaddle	include/rgsaddle.h	1254	rgsaddle_ocineb_config_t	max_mmf_steps	int64_t		
-rgsaddle	include/rgsaddle.h	1255	rgsaddle_ocineb_config_t	restore_unhelpful	int32_t		
-rgsaddle	include/rgsaddle.h	1256	rgsaddle_ocineb_config_t	reserved	int32_t		
-rgsaddle	include/rgsaddle.h	1261	rgsaddle_ocineb_report_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	1262	rgsaddle_ocineb_report_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	1263	rgsaddle_ocineb_report_t	status	int32_t		
-rgsaddle	include/rgsaddle.h	1264	rgsaddle_ocineb_report_t	phase	int32_t		
-rgsaddle	include/rgsaddle.h	1265	rgsaddle_ocineb_report_t	fell_back	int32_t		
-rgsaddle	include/rgsaddle.h	1266	rgsaddle_ocineb_report_t	evaluations	int32_t		
-rgsaddle	include/rgsaddle.h	1267	rgsaddle_ocineb_report_t	max_force	double		
-rgsaddle	include/rgsaddle.h	1268	rgsaddle_ocineb_report_t	curvature	double		
-rgsaddle	include/rgsaddle.h	1269	rgsaddle_ocineb_report_t	alignment	double		
-rgsaddle	include/rgsaddle.h	1270	rgsaddle_ocineb_report_t	threshold	double		
-rgsaddle	include/rgsaddle.h	1271	rgsaddle_ocineb_report_t	ci_index	int64_t		
-rgsaddle	include/rgsaddle.h	1272	rgsaddle_ocineb_report_t	iteration	int64_t		
-rgsaddle	include/rgsaddle.h	1273	rgsaddle_ocineb_report_t	rotations	int64_t		
-rgsaddle	include/rgsaddle.h	1508	rgsaddle_stencil_report_t	struct_size	uint64_t		
-rgsaddle	include/rgsaddle.h	1509	rgsaddle_stencil_report_t	status	int32_t		
-rgsaddle	include/rgsaddle.h	1510	rgsaddle_stencil_report_t	reserved	int32_t		
-rgsaddle	include/rgsaddle.h	1511	rgsaddle_stencil_report_t	max_force	double		
-rgsaddle	include/rgsaddle.h	1512	rgsaddle_stencil_report_t	curvature	double		
-rgsaddle	include/rgsaddle.h	1513	rgsaddle_stencil_report_t	iteration	uint64_t		
-rgsaddle	include/rgsaddle.h	1514	rgsaddle_stencil_report_t	evaluations	uint64_t		
-rgsaddle	include/rgsaddle.h	1552	rgsaddle_connect_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	1553	rgsaddle_connect_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	1554	rgsaddle_connect_config_t	force_tol	double		
-rgsaddle	include/rgsaddle.h	1555	rgsaddle_connect_config_t	max_calls	int64_t		
-rgsaddle	include/rgsaddle.h	1556	rgsaddle_connect_config_t	quench_nodes	int32_t		
-rgsaddle	include/rgsaddle.h	1561	rgsaddle_connect_report_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	1562	rgsaddle_connect_report_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	1563	rgsaddle_connect_report_t	energy	double		
-rgsaddle	include/rgsaddle.h	1564	rgsaddle_connect_report_t	force_norm	double		
-rgsaddle	include/rgsaddle.h	1565	rgsaddle_connect_report_t	kind	int32_t		
-rgsaddle	include/rgsaddle.h	1566	rgsaddle_connect_report_t	hessian_index	int32_t		
-rgsaddle	include/rgsaddle.h	1567	rgsaddle_connect_report_t	evaluations	int32_t		
-rgsaddle	include/rgsaddle.h	1586	rgsaddle_indexk_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	1587	rgsaddle_indexk_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	1588	rgsaddle_indexk_config_t	index	int32_t		
-rgsaddle	include/rgsaddle.h	1589	rgsaddle_indexk_config_t	method	int32_t		
-rgsaddle	include/rgsaddle.h	1590	rgsaddle_indexk_config_t	dr	double		
-rgsaddle	include/rgsaddle.h	1591	rgsaddle_indexk_config_t	rotation_tol	double		
-rgsaddle	include/rgsaddle.h	1592	rgsaddle_indexk_config_t	max_rotations	int64_t		
-rgsaddle	include/rgsaddle.h	1593	rgsaddle_indexk_config_t	force_tol	double		
-rgsaddle	include/rgsaddle.h	1594	rgsaddle_indexk_config_t	max_move	double		
-rgsaddle	include/rgsaddle.h	1595	rgsaddle_indexk_config_t	residual_tol	double		
-rgsaddle	include/rgsaddle.h	1596	rgsaddle_indexk_config_t	max_block_iterations	int32_t		
-rgsaddle	include/rgsaddle.h	1680	rgsaddle_saddle_check_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	1681	rgsaddle_saddle_check_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	1682	rgsaddle_saddle_check_t	block	int32_t		
-rgsaddle	include/rgsaddle.h	1683	rgsaddle_saddle_check_t	lowest	int32_t		
-rgsaddle	include/rgsaddle.h	1684	rgsaddle_saddle_check_t	max_actions	int32_t		
-rgsaddle	include/rgsaddle.h	1685	rgsaddle_saddle_check_t	difference	int32_t		
-rgsaddle	include/rgsaddle.h	1686	rgsaddle_saddle_check_t	dr	double		
-rgsaddle	include/rgsaddle.h	1687	rgsaddle_saddle_check_t	residual_tol	double		
-rgsaddle	include/rgsaddle.h	1688	rgsaddle_saddle_check_t	negative_tol	double		
-rgsaddle	include/rgsaddle.h	1689	rgsaddle_saddle_check_t	seed	uint64_t		
-rgsaddle	include/rgsaddle.h	1690	rgsaddle_saddle_check_t	escape_attempts	int32_t		
-rgsaddle	include/rgsaddle.h	1691	rgsaddle_saddle_check_t	reserved	int32_t		
-rgsaddle	include/rgsaddle.h	1692	rgsaddle_saddle_check_t	escape_push	double		
-rgsaddle	include/rgsaddle.h	1697	rgsaddle_saddle_index_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	1698	rgsaddle_saddle_index_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	1701	rgsaddle_saddle_index_t	certified	int32_t		
-rgsaddle	include/rgsaddle.h	1703	rgsaddle_saddle_index_t	index	int32_t		
-rgsaddle	include/rgsaddle.h	1706	rgsaddle_saddle_index_t	converged	int32_t		
-rgsaddle	include/rgsaddle.h	1709	rgsaddle_saddle_index_t	n_curvatures	int32_t		
-rgsaddle	include/rgsaddle.h	1711	rgsaddle_saddle_index_t	evaluations	int64_t		
-rgsaddle	include/rgsaddle.h	1714	rgsaddle_saddle_index_t	total_evaluations	int64_t		
-rgsaddle	include/rgsaddle.h	1716	rgsaddle_saddle_index_t	escapes	int64_t		
-rgsaddle	include/rgsaddle.h	1802	rgsaddle_growing_string_config_t	version	rgsaddle_version_t		
-rgsaddle	include/rgsaddle.h	1803	rgsaddle_growing_string_config_t	flags	uint64_t		
-rgsaddle	include/rgsaddle.h	1804	rgsaddle_growing_string_config_t	band	rgsaddle_band_config_t		
-rgsaddle	include/rgsaddle.h	1805	rgsaddle_growing_string_config_t	n_images	int64_t		
-rgsaddle	include/rgsaddle.h	1806	rgsaddle_growing_string_config_t	frontier_tol	double		
-rgsaddle	include/rgsaddle.h	1807	rgsaddle_growing_string_config_t	min_steps_per_node	int64_t		
-rgsaddle	include/rgsaddle.h	1808	rgsaddle_growing_string_config_t	max_steps_per_node	int64_t		
-rgsaddle	include/rgsaddle.h	1809	rgsaddle_growing_string_config_t	join_tol	double		
-rgsaddle	include/rgsaddle.h	1810	rgsaddle_growing_string_config_t	reparametrization	int32_t		
-rgsaddle	include/rgsaddle.h	1811	rgsaddle_growing_string_config_t	force_gate	int32_t		
+eon	include/eon/ParametersOptions.h	25	constants_t	kB	double	8.6173324e-5	
+eon	include/eon/ParametersOptions.h	26	constants_t	timeUnit	double	10.1805055	
+eon	include/eon/ParametersOptions.h	31	main_options_t	job	JobType	JobType::Process_Search	Main
+eon	include/eon/ParametersOptions.h	32	main_options_t	randomSeed	long	-1	Main
+eon	include/eon/ParametersOptions.h	33	main_options_t	temperature	double	300.0	Main
+eon	include/eon/ParametersOptions.h	34	main_options_t	quiet	bool	false	Main
+eon	include/eon/ParametersOptions.h	35	main_options_t	writeLog	bool	true	Main
+eon	include/eon/ParametersOptions.h	36	main_options_t	checkpoint	bool	false	Main
+eon	include/eon/ParametersOptions.h	37	main_options_t	iniFilename	std::string	"config.ini"	Main
+eon	include/eon/ParametersOptions.h	38	main_options_t	conFilename	std::string	"pos.con"	Main
+eon	include/eon/ParametersOptions.h	39	main_options_t	finiteDifference	double	0.01	Main
+eon	include/eon/ParametersOptions.h	40	main_options_t	maxForceCalls	long	0	Main
+eon	include/eon/ParametersOptions.h	41	main_options_t	removeNetForce	bool	true	Main
+eon	include/eon/ParametersOptions.h	42	main_options_t	parallel	bool	true	Main
+eon	include/eon/ParametersOptions.h	46	main_options_t	writeConForces	bool	false	Main
+eon	include/eon/ParametersOptions.h	51	potential_options_t	potential	PotType	PotType::LJ	Potential
+eon	include/eon/ParametersOptions.h	52	potential_options_t	MPIPollPeriod	double	0.25	Potential
+eon	include/eon/ParametersOptions.h	53	potential_options_t	LAMMPSLogging	bool	false	Potential
+eon	include/eon/ParametersOptions.h	54	potential_options_t	LAMMPSThreads	int	0	Potential
+eon	include/eon/ParametersOptions.h	55	potential_options_t	EMTRasmussen	bool	false	Potential
+eon	include/eon/ParametersOptions.h	56	potential_options_t	LogPotential	bool	false	Potential
+eon	include/eon/ParametersOptions.h	59	potential_options_t	thread_safe	bool	true	Potential
+eon	include/eon/ParametersOptions.h	60	potential_options_t	extPotPath	std::string	"./ext_pot"	Potential
+eon	include/eon/ParametersOptions.h	63	potential_options_t	MPIPotentialRank	int	-1	Potential
+eon	include/eon/ParametersOptions.h	65	potential_options_t	MPIClientComm	std::uintptr_t	0	Potential
+eon	include/eon/ParametersOptions.h	70	ams_options_t	engine	std::string		AMS
+eon	include/eon/ParametersOptions.h	71	ams_options_t	forcefield	std::string		AMS
+eon	include/eon/ParametersOptions.h	72	ams_options_t	model	std::string		AMS
+eon	include/eon/ParametersOptions.h	73	ams_options_t	resources	std::string		AMS
+eon	include/eon/ParametersOptions.h	74	ams_options_t	xc	std::string		AMS
+eon	include/eon/ParametersOptions.h	75	ams_options_t	basis	std::string		AMS
+eon	include/eon/ParametersOptions.h	77	env_t	amshome	std::string		AMS
+eon	include/eon/ParametersOptions.h	78	env_t	scm_tmpdir	std::string		AMS
+eon	include/eon/ParametersOptions.h	79	env_t	scmlicense	std::string		AMS
+eon	include/eon/ParametersOptions.h	80	env_t	scm_pythondir	std::string		AMS
+eon	include/eon/ParametersOptions.h	81	env_t	amsbin	std::string		AMS
+eon	include/eon/ParametersOptions.h	82	env_t	amsresources	std::string		AMS
+eon	include/eon/ParametersOptions.h	88	xtb_options_t	paramset	std::string	"GFNFF"	XTBPot
+eon	include/eon/ParametersOptions.h	89	xtb_options_t	elec_temperature	double	0.0	XTBPot
+eon	include/eon/ParametersOptions.h	90	xtb_options_t	maxiter	size_t	250	XTBPot
+eon	include/eon/ParametersOptions.h	91	xtb_options_t	acc	double	1.0	XTBPot
+eon	include/eon/ParametersOptions.h	92	xtb_options_t	charge	double	0.0	XTBPot
+eon	include/eon/ParametersOptions.h	93	xtb_options_t	uhf	int	0	XTBPot
+eon	include/eon/ParametersOptions.h	98	zbl_options_t	cut_inner	double	2.0	ZBLPot
+eon	include/eon/ParametersOptions.h	99	zbl_options_t	cut_global	double	2.5	ZBLPot
+eon	include/eon/ParametersOptions.h	104	dftd_options_t	functional	std::string	"pbe"	D3Pot
+eon	include/eon/ParametersOptions.h	105	dftd_options_t	atm	bool	true	D3Pot
+eon	include/eon/ParametersOptions.h	106	dftd_options_t	d3_damping	std::string	"bj"	D3Pot
+eon	include/eon/ParametersOptions.h	107	dftd_options_t	d4_charge	double	0.0	D3Pot
+eon	include/eon/ParametersOptions.h	112	expr_options_t	expression	std::string		ExprPot
+eon	include/eon/ParametersOptions.h	113	expr_options_t	terms	std::string		ExprPot
+eon	include/eon/ParametersOptions.h	118	mopac_options_t	charge	int	0	MOPACPot
+eon	include/eon/ParametersOptions.h	119	mopac_options_t	spin	int	0	MOPACPot
+eon	include/eon/ParametersOptions.h	120	mopac_options_t	model	int	4	MOPACPot
+eon	include/eon/ParametersOptions.h	121	mopac_options_t	engine_path	std::string		MOPACPot
+eon	include/eon/ParametersOptions.h	126	socket_nwchem_options_t	host	std::string	"127.0.0.1"	SocketNWChemPot
+eon	include/eon/ParametersOptions.h	127	socket_nwchem_options_t	port	int	9999	SocketNWChemPot
+eon	include/eon/ParametersOptions.h	128	socket_nwchem_options_t	mem_in_gb	int	2	SocketNWChemPot
+eon	include/eon/ParametersOptions.h	129	socket_nwchem_options_t	nwchem_settings	std::string	"nwchem_settings.nwi"	SocketNWChemPot
+eon	include/eon/ParametersOptions.h	130	socket_nwchem_options_t	unix_socket_path	std::string	"eon_nwchem"	SocketNWChemPot
+eon	include/eon/ParametersOptions.h	131	socket_nwchem_options_t	unix_socket_mode	bool	false	SocketNWChemPot
+eon	include/eon/ParametersOptions.h	132	socket_nwchem_options_t	make_template_input	bool	true	SocketNWChemPot
+eon	include/eon/ParametersOptions.h	139	rgpot_options_t	backend	std::string	"nwchemc"	RgpotPot
+eon	include/eon/ParametersOptions.h	140	rgpot_options_t	basis	std::string	"sto-3g"	RgpotPot
+eon	include/eon/ParametersOptions.h	141	rgpot_options_t	theory	std::string	"scf"	RgpotPot
+eon	include/eon/ParametersOptions.h	142	rgpot_options_t	scf_type	std::string	"rhf"	RgpotPot
+eon	include/eon/ParametersOptions.h	143	rgpot_options_t	functional	std::string	"BLYP"	RgpotPot
+eon	include/eon/ParametersOptions.h	146	rgpot_options_t	cutoff_ry	double	70.0	cpmd
+eon	include/eon/ParametersOptions.h	147	rgpot_options_t	charge	int	0	cpmd
+eon	include/eon/ParametersOptions.h	148	rgpot_options_t	multiplicity	int	1	cpmd
+eon	include/eon/ParametersOptions.h	149	rgpot_options_t	engine_path	std::string		cpmd
+eon	include/eon/ParametersOptions.h	150	rgpot_options_t	engine_library	std::string		cpmd
+eon	include/eon/ParametersOptions.h	151	rgpot_options_t	engine_root	std::string		cpmd
+eon	include/eon/ParametersOptions.h	152	rgpot_options_t	title	std::string		cpmd
+eon	include/eon/ParametersOptions.h	153	rgpot_options_t	memory_mb	int	0	cpmd
+eon	include/eon/ParametersOptions.h	154	rgpot_options_t	scratch_dir	std::string		cpmd
+eon	include/eon/ParametersOptions.h	157	rgpot_options_t	input_block	std::string		cpmd
+eon	include/eon/ParametersOptions.h	158	rgpot_options_t	permanent_dir	std::string		cpmd
+eon	include/eon/ParametersOptions.h	162	rgpot_options_t	params_path	std::string		cpmd
+eon	include/eon/ParametersOptions.h	166	rgpot_options_t	ranks_per_image	int	0	cpmd
+eon	include/eon/ParametersOptions.h	168	rgpot_options_t	model_path	std::string		cpmd
+eon	include/eon/ParametersOptions.h	169	rgpot_options_t	device	std::string	"cpu"	cpmd
+eon	include/eon/ParametersOptions.h	170	rgpot_options_t	length_unit	std::string	"angstrom"	cpmd
+eon	include/eon/ParametersOptions.h	171	rgpot_options_t	extensions_directory	std::string		cpmd
+eon	include/eon/ParametersOptions.h	172	rgpot_options_t	check_consistency	bool	false	cpmd
+eon	include/eon/ParametersOptions.h	173	rgpot_options_t	uncertainty_threshold	double	-1.0	cpmd
+eon	include/eon/ParametersOptions.h	174	rgpot_options_t	torch_determinism_strict	bool	false	cpmd
+eon	include/eon/ParametersOptions.h	176	rgpot_options_t	xtb_paramset	std::string	"GFN2xTB"	cpmd
+eon	include/eon/ParametersOptions.h	177	rgpot_options_t	xtb_accuracy	double	1.0	cpmd
+eon	include/eon/ParametersOptions.h	178	rgpot_options_t	xtb_electronic_temperature	double	300.0	cpmd
+eon	include/eon/ParametersOptions.h	179	rgpot_options_t	xtb_max_iterations	int	250	cpmd
+eon	include/eon/ParametersOptions.h	180	rgpot_options_t	xtb_charge	double	0.0	cpmd
+eon	include/eon/ParametersOptions.h	181	rgpot_options_t	xtb_uhf	int	0	cpmd
+eon	include/eon/ParametersOptions.h	182	rgpot_options_t	task_name	std::string	"omol"	cpmd
+eon	include/eon/ParametersOptions.h	190	process_search_options_t	minimize_first	bool	true	Process Search
+eon	include/eon/ParametersOptions.h	191	process_search_options_t	minimization_offset	double	0.2	Process Search
+eon	include/eon/ParametersOptions.h	196	saddle_search_options_t	max_jump_attempts	long	0	Saddle Search
+eon	include/eon/ParametersOptions.h	197	saddle_search_options_t	max_iterations	long	1000	Saddle Search
+eon	include/eon/ParametersOptions.h	198	saddle_search_options_t	method	std::string	"min_mode"	Saddle Search
+eon	include/eon/ParametersOptions.h	199	saddle_search_options_t	minmode_method	std::string	"dimer"	Saddle Search
+eon	include/eon/ParametersOptions.h	200	saddle_search_options_t	displace_type	std::string	"load"	Saddle Search
+eon	include/eon/ParametersOptions.h	201	saddle_search_options_t	displace_atom_list	std::vector<long>		Saddle Search
+eon	include/eon/ParametersOptions.h	202	saddle_search_options_t	max_energy	double	20.0	Saddle Search
+eon	include/eon/ParametersOptions.h	203	saddle_search_options_t	displace_magnitude	double	0.1	Saddle Search
+eon	include/eon/ParametersOptions.h	204	saddle_search_options_t	max_single_displace	double	10.0	Saddle Search
+eon	include/eon/ParametersOptions.h	205	saddle_search_options_t	displace_radius	double	4.0	Saddle Search
+eon	include/eon/ParametersOptions.h	206	saddle_search_options_t	converged_force	double	0.0	Saddle Search
+eon	include/eon/ParametersOptions.h	207	saddle_search_options_t	perp_force_ratio	double	0.0	Saddle Search
+eon	include/eon/ParametersOptions.h	208	saddle_search_options_t	nonnegative_displacement_abort	bool	false	Saddle Search
+eon	include/eon/ParametersOptions.h	209	saddle_search_options_t	nonlocal_count_abort	long	0	Saddle Search
+eon	include/eon/ParametersOptions.h	210	saddle_search_options_t	nonlocal_distance_abort	double	0.0	Saddle Search
+eon	include/eon/ParametersOptions.h	211	saddle_search_options_t	remove_rotation	bool	false	Saddle Search
+eon	include/eon/ParametersOptions.h	212	saddle_search_options_t	zero_mode_abort_curvature	double	0.0	Saddle Search
+eon	include/eon/ParametersOptions.h	214	dynamics_t	temperature	double	0.0	Saddle Search
+eon	include/eon/ParametersOptions.h	215	dynamics_t	state_check_interval_input	double	100.0	Saddle Search
+eon	include/eon/ParametersOptions.h	216	dynamics_t	state_check_interval	double	0.0	Saddle Search
+eon	include/eon/ParametersOptions.h	217	dynamics_t	record_interval_input	double	10.0	Saddle Search
+eon	include/eon/ParametersOptions.h	218	dynamics_t	record_interval	double	0.0	Saddle Search
+eon	include/eon/ParametersOptions.h	219	dynamics_t	linear_interpolation	bool	true	Saddle Search
+eon	include/eon/ParametersOptions.h	220	dynamics_t	max_init_curvature	double	0.0	Saddle Search
+eon	include/eon/ParametersOptions.h	223	confine_positive_t	enabled	bool	false	Saddle Search
+eon	include/eon/ParametersOptions.h	224	confine_positive_t	bowl_breakout	bool	false	Saddle Search
+eon	include/eon/ParametersOptions.h	225	confine_positive_t	bowl_active	long	20	Saddle Search
+eon	include/eon/ParametersOptions.h	226	confine_positive_t	min_force	double	0.5	Saddle Search
+eon	include/eon/ParametersOptions.h	227	confine_positive_t	scale_ratio	double	0.9	Saddle Search
+eon	include/eon/ParametersOptions.h	228	confine_positive_t	boost	double	10.0	Saddle Search
+eon	include/eon/ParametersOptions.h	229	confine_positive_t	min_active	long	30	Saddle Search
+eon	include/eon/ParametersOptions.h	235	optimizer_options_t	method	OptType	OptType::CG	Optimizer
+eon	include/eon/ParametersOptions.h	236	optimizer_options_t	xtsci_method	std::string	"lbfgs"	Optimizer
+eon	include/eon/ParametersOptions.h	238	xtsci_t	method	std::string	"lbfgs"	Optimizer
+eon	include/eon/ParametersOptions.h	239	xtsci_t	qn_step	std::string	"lbfgs"	Optimizer
+eon	include/eon/ParametersOptions.h	240	xtsci_t	precon	std::string	"none"	Optimizer
+eon	include/eon/ParametersOptions.h	241	xtsci_t	accept	std::string	"energy"	Optimizer
+eon	include/eon/ParametersOptions.h	242	xtsci_t	highs	bool	false	Optimizer
+eon	include/eon/ParametersOptions.h	243	xtsci_t	manifold	std::string	"euclidean"	Optimizer
+eon	include/eon/ParametersOptions.h	245	optimizer_options_t	convergence_metric	std::string	"norm"	Optimizer
+eon	include/eon/ParametersOptions.h	246	optimizer_options_t	convergence_metric_label	std::string		Optimizer
+eon	include/eon/ParametersOptions.h	247	optimizer_options_t	max_iterations	size_t	1000	Optimizer
+eon	include/eon/ParametersOptions.h	248	optimizer_options_t	max_move	double	0.2	Optimizer
+eon	include/eon/ParametersOptions.h	249	optimizer_options_t	converged_force	double	0.01	Optimizer
+eon	include/eon/ParametersOptions.h	250	optimizer_options_t	time_step_input	double	1.0	Optimizer
+eon	include/eon/ParametersOptions.h	251	optimizer_options_t	time_step	double	0.0	Optimizer
+eon	include/eon/ParametersOptions.h	252	optimizer_options_t	max_time_step_input	double	2.5	Optimizer
+eon	include/eon/ParametersOptions.h	253	optimizer_options_t	max_time_step	double	0.0	Optimizer
+eon	include/eon/ParametersOptions.h	255	refine_t	method	OptType	OptType::None	Optimizer
+eon	include/eon/ParametersOptions.h	256	refine_t	threshold	double	0.5	Optimizer
+eon	include/eon/ParametersOptions.h	259	lbfgs_t	memory	long	20	Optimizer
+eon	include/eon/ParametersOptions.h	260	lbfgs_t	inverse_curvature	double	0.01	Optimizer
+eon	include/eon/ParametersOptions.h	261	lbfgs_t	max_inverse_curvature	double	0.0	Optimizer
+eon	include/eon/ParametersOptions.h	262	lbfgs_t	auto_scale	bool	true	Optimizer
+eon	include/eon/ParametersOptions.h	263	lbfgs_t	angle_reset	bool	true	Optimizer
+eon	include/eon/ParametersOptions.h	264	lbfgs_t	distance_reset	bool	true	Optimizer
+eon	include/eon/ParametersOptions.h	267	lbfgs_t	curvature	std::string	"reset"	Optimizer
+eon	include/eon/ParametersOptions.h	270	lbfgs_t	project_rigid	bool	false	Optimizer
+eon	include/eon/ParametersOptions.h	271	lbfgs_t	secant	std::string	"standard"	Optimizer
+eon	include/eon/ParametersOptions.h	272	lbfgs_t	precon	std::string	"none"	Optimizer
+eon	include/eon/ParametersOptions.h	273	lbfgs_t	step	std::string	"lbfgs"	Optimizer
+eon	include/eon/ParametersOptions.h	274	lbfgs_t	h0	std::string	"sy_yy"	Optimizer
+eon	include/eon/ParametersOptions.h	275	lbfgs_t	accept	std::string	"energy"	Optimizer
+eon	include/eon/ParametersOptions.h	276	lbfgs_t	extra_updates	long	0	Optimizer
+eon	include/eon/ParametersOptions.h	277	lbfgs_t	cautious_eps	double	1.0e-6	Optimizer
+eon	include/eon/ParametersOptions.h	278	lbfgs_t	cautious_alpha	double	0.01	Optimizer
+eon	include/eon/ParametersOptions.h	279	lbfgs_t	precon_A	double	3.0	Optimizer
+eon	include/eon/ParametersOptions.h	280	lbfgs_t	precon_mu	double	1.0	Optimizer
+eon	include/eon/ParametersOptions.h	281	lbfgs_t	precon_rcut	double	0.0	Optimizer
+eon	include/eon/ParametersOptions.h	284	cg_t	no_overshooting	bool	false	Optimizer
+eon	include/eon/ParametersOptions.h	285	cg_t	knock_out_max_move	bool	false	Optimizer
+eon	include/eon/ParametersOptions.h	286	cg_t	line_search	bool	false	Optimizer
+eon	include/eon/ParametersOptions.h	287	cg_t	line_converged	double	0.1	Optimizer
+eon	include/eon/ParametersOptions.h	288	cg_t	line_search_max_iter	long	10	Optimizer
+eon	include/eon/ParametersOptions.h	289	cg_t	max_iter_before_reset	long	0	Optimizer
+eon	include/eon/ParametersOptions.h	292	quickmin_t	steepest_descent	bool	false	Optimizer
+eon	include/eon/ParametersOptions.h	295	sd_t	alpha	double	0.1	Optimizer
+eon	include/eon/ParametersOptions.h	296	sd_t	two_point	bool	false	Optimizer
+eon	include/eon/ParametersOptions.h	302	dimer_options_t	rotation_angle	double	0.005	Dimer
+eon	include/eon/ParametersOptions.h	303	dimer_options_t	improved	bool	true	Dimer
+eon	include/eon/ParametersOptions.h	304	dimer_options_t	converged_angle	double	5.0	Dimer
+eon	include/eon/ParametersOptions.h	305	dimer_options_t	max_iterations	long	1000	Dimer
+eon	include/eon/ParametersOptions.h	306	dimer_options_t	opt_method	OptType	OptType::CG	Dimer
+eon	include/eon/ParametersOptions.h	307	dimer_options_t	rotations_max	long	10	Dimer
+eon	include/eon/ParametersOptions.h	308	dimer_options_t	rotations_min	long	1	Dimer
+eon	include/eon/ParametersOptions.h	309	dimer_options_t	torque_max	double	1.0	Dimer
+eon	include/eon/ParametersOptions.h	310	dimer_options_t	torque_min	double	0.1	Dimer
+eon	include/eon/ParametersOptions.h	311	dimer_options_t	remove_rotation	bool	false	Dimer
+eon	include/eon/ParametersOptions.h	314	dimer_options_t	rotation_backend	DimerRotationBackend	DimerRotationBackend::Classical	Dimer
+eon	include/eon/ParametersOptions.h	317	dimer_options_t	lor_residual_tol	double	0.1	Dimer
+eon	include/eon/ParametersOptions.h	322	gpr_dimer_options_t	rotation_angle	double	0.005	GPR Dimer
+eon	include/eon/ParametersOptions.h	323	gpr_dimer_options_t	converged_angle	double	0.08	GPR Dimer
+eon	include/eon/ParametersOptions.h	324	gpr_dimer_options_t	relax_conv_angle	double	0.001	GPR Dimer
+eon	include/eon/ParametersOptions.h	325	gpr_dimer_options_t	init_rotations_max	long	6	GPR Dimer
+eon	include/eon/ParametersOptions.h	326	gpr_dimer_options_t	relax_rotations_max	long	10	GPR Dimer
+eon	include/eon/ParametersOptions.h	327	gpr_dimer_options_t	divisor_t_dimer_gp	long	10	GPR Dimer
+eon	include/eon/ParametersOptions.h	328	gpr_dimer_options_t	max_outer_iterations	long	300	GPR Dimer
+eon	include/eon/ParametersOptions.h	329	gpr_dimer_options_t	max_inner_iterations	long	1000	GPR Dimer
+eon	include/eon/ParametersOptions.h	330	gpr_dimer_options_t	midpoint_max_disp	double	0.5	GPR Dimer
+eon	include/eon/ParametersOptions.h	331	gpr_dimer_options_t	rot_opt_method	std::string	"lbfgs"	GPR Dimer
+eon	include/eon/ParametersOptions.h	332	gpr_dimer_options_t	trans_opt_method	std::string	"lbfgs"	GPR Dimer
+eon	include/eon/ParametersOptions.h	333	gpr_dimer_options_t	active_radius	double	5.0	GPR Dimer
+eon	include/eon/ParametersOptions.h	334	gpr_dimer_options_t	dimer_sep	double	0.01	GPR Dimer
+eon	include/eon/ParametersOptions.h	335	gpr_dimer_options_t	conv_step	double	0.1	GPR Dimer
+eon	include/eon/ParametersOptions.h	336	gpr_dimer_options_t	max_step	double	0.1	GPR Dimer
+eon	include/eon/ParametersOptions.h	337	gpr_dimer_options_t	ratio_at_limit	double	0.66667	GPR Dimer
+eon	include/eon/ParametersOptions.h	338	gpr_dimer_options_t	init_rot_gp	bool	false	GPR Dimer
+eon	include/eon/ParametersOptions.h	339	gpr_dimer_options_t	init_trans_gp	bool	false	GPR Dimer
+eon	include/eon/ParametersOptions.h	340	gpr_dimer_options_t	many_iterations	bool	true	GPR Dimer
+eon	include/eon/ParametersOptions.h	342	gpr_params_t	hyper_opt_method	std::string	"scg"	GPR Dimer
+eon	include/eon/ParametersOptions.h	343	gpr_params_t	sigma2	double	1e-8	GPR Dimer
+eon	include/eon/ParametersOptions.h	344	gpr_params_t	jitter_sigma2	double	0.0	GPR Dimer
+eon	include/eon/ParametersOptions.h	345	gpr_params_t	noise_sigma2	double	1e-8	GPR Dimer
+eon	include/eon/ParametersOptions.h	346	gpr_params_t	prior_mu	double	0.0	GPR Dimer
+eon	include/eon/ParametersOptions.h	347	gpr_params_t	prior_sigma2	double	1.0	GPR Dimer
+eon	include/eon/ParametersOptions.h	348	gpr_params_t	prior_nu	long	20	GPR Dimer
+eon	include/eon/ParametersOptions.h	351	opt_params_t	check_derivatives	bool	false	GPR Dimer
+eon	include/eon/ParametersOptions.h	352	opt_params_t	max_iterations	int	400	GPR Dimer
+eon	include/eon/ParametersOptions.h	353	opt_params_t	tol_func	double	1e-4	GPR Dimer
+eon	include/eon/ParametersOptions.h	354	opt_params_t	tol_sol	double	1e-4	GPR Dimer
+eon	include/eon/ParametersOptions.h	355	opt_params_t	lambda_limit	long	static_cast<long>(1e17)	GPR Dimer
+eon	include/eon/ParametersOptions.h	356	opt_params_t	lambda_init	long	10	GPR Dimer
+eon	include/eon/ParametersOptions.h	359	prune_params_t	use_prune	bool	false	GPR Dimer
+eon	include/eon/ParametersOptions.h	360	prune_params_t	begin	int	8	GPR Dimer
+eon	include/eon/ParametersOptions.h	361	prune_params_t	n_vals	int	3	GPR Dimer
+eon	include/eon/ParametersOptions.h	362	prune_params_t	threshold	double	0.5	GPR Dimer
+eon	include/eon/ParametersOptions.h	365	debug_params_t	report_level	int	1	GPR Dimer
+eon	include/eon/ParametersOptions.h	366	debug_params_t	debug_level	int	2	GPR Dimer
+eon	include/eon/ParametersOptions.h	367	debug_params_t	out_dir	std::string	"output"	GPR Dimer
+eon	include/eon/ParametersOptions.h	368	debug_params_t	pos_file	std::string	"position"	GPR Dimer
+eon	include/eon/ParametersOptions.h	369	debug_params_t	energy_file	std::string	"energy"	GPR Dimer
+eon	include/eon/ParametersOptions.h	370	debug_params_t	grad_file	std::string	"gradient"	GPR Dimer
+eon	include/eon/ParametersOptions.h	371	debug_params_t	out_ext	std::string	"dat"	GPR Dimer
+eon	include/eon/ParametersOptions.h	372	debug_params_t	offset_mid_point	double	3.0	GPR Dimer
+eon	include/eon/ParametersOptions.h	373	debug_params_t	dy	double	0.1	GPR Dimer
+eon	include/eon/ParametersOptions.h	374	debug_params_t	dz	double	0.1	GPR Dimer
+eon	include/eon/ParametersOptions.h	380	gp_surrogate_options_t	enabled	bool	false	GP Surrogate
+eon	include/eon/ParametersOptions.h	381	gp_surrogate_options_t	sub_job	JobType	JobType::Unknown	GP Surrogate
+eon	include/eon/ParametersOptions.h	382	gp_surrogate_options_t	uncertainty	double	0.05	GP Surrogate
+eon	include/eon/ParametersOptions.h	383	gp_surrogate_options_t	linear_path_always	bool	false	GP Surrogate
+eon	include/eon/ParametersOptions.h	384	gp_surrogate_options_t	potential	PotType	PotType::CatLearn	GP Surrogate
+eon	include/eon/ParametersOptions.h	389	catlearn_options_t	path	std::string		CatLearn
+eon	include/eon/ParametersOptions.h	390	catlearn_options_t	model	std::string	"gp"	CatLearn
+eon	include/eon/ParametersOptions.h	391	catlearn_options_t	prior	std::string	"median"	CatLearn
+eon	include/eon/ParametersOptions.h	392	catlearn_options_t	use_deriv	bool	true	CatLearn
+eon	include/eon/ParametersOptions.h	393	catlearn_options_t	use_fingerprint	bool	false	CatLearn
+eon	include/eon/ParametersOptions.h	394	catlearn_options_t	parallel	bool	false	CatLearn
+eon	include/eon/ParametersOptions.h	399	ase_orca_options_t	path	std::string		ASE_ORCA
+eon	include/eon/ParametersOptions.h	400	ase_orca_options_t	nproc	std::string	"1"	ASE_ORCA
+eon	include/eon/ParametersOptions.h	401	ase_orca_options_t	simpleinput	std::string		ASE_ORCA
+eon	include/eon/ParametersOptions.h	402	ase_orca_options_t	charge	int	0	ASE_ORCA
+eon	include/eon/ParametersOptions.h	403	ase_orca_options_t	multiplicity	int	1	ASE_ORCA
+eon	include/eon/ParametersOptions.h	408	ase_nwchem_options_t	path	std::string		ASE_NWCHEM
+eon	include/eon/ParametersOptions.h	409	ase_nwchem_options_t	nproc	std::string	"1"	ASE_NWCHEM
+eon	include/eon/ParametersOptions.h	411	ase_nwchem_options_t	mpi_launcher	std::string	"mpirun"	ASE_NWCHEM
+eon	include/eon/ParametersOptions.h	412	ase_nwchem_options_t	multiplicity	std::string		ASE_NWCHEM
+eon	include/eon/ParametersOptions.h	413	ase_nwchem_options_t	scf_thresh	double	1e-5	ASE_NWCHEM
+eon	include/eon/ParametersOptions.h	414	ase_nwchem_options_t	scf_maxiter	long	200	ASE_NWCHEM
+eon	include/eon/ParametersOptions.h	415	ase_nwchem_options_t	basis	std::string	"3-21G"	ASE_NWCHEM
+eon	include/eon/ParametersOptions.h	416	ase_nwchem_options_t	memory	std::string	"2 gb"	ASE_NWCHEM
+eon	include/eon/ParametersOptions.h	421	metatomic_options_t	model_path	std::string		Metatomic
+eon	include/eon/ParametersOptions.h	422	metatomic_options_t	device	std::string	"cpu"	Metatomic
+eon	include/eon/ParametersOptions.h	423	metatomic_options_t	length_unit	std::string	"angstrom"	Metatomic
+eon	include/eon/ParametersOptions.h	424	metatomic_options_t	extensions_directory	std::string		Metatomic
+eon	include/eon/ParametersOptions.h	425	metatomic_options_t	check_consistency	bool	false	Metatomic
+eon	include/eon/ParametersOptions.h	426	metatomic_options_t	uncertainty_threshold	double	-1.0	Metatomic
+eon	include/eon/ParametersOptions.h	429	metatomic_options_t	energy_output	std::string		Metatomic
+eon	include/eon/ParametersOptions.h	430	metatomic_options_t	energy_uncertainty_output	std::string		Metatomic
+eon	include/eon/ParametersOptions.h	433	metatomic_options_t	force_output	std::string		Metatomic
+eon	include/eon/ParametersOptions.h	436	metatomic_options_t	non_conservative	bool	false	Metatomic
+eon	include/eon/ParametersOptions.h	439	metatomic_options_t	random_rotation	bool	false	Metatomic
+eon	include/eon/ParametersOptions.h	443	metatomic_options_t	n_symmetry_rotations	long	0	Metatomic
+eon	include/eon/ParametersOptions.h	447	metatomic_options_t	deterministic	bool	true	Metatomic
+eon	include/eon/ParametersOptions.h	450	metatomic_options_t	deterministic_strict	bool	false	Metatomic
+eon	include/eon/ParametersOptions.h	452	variants_t	base	std::string		Metatomic
+eon	include/eon/ParametersOptions.h	453	variants_t	energy	std::string		Metatomic
+eon	include/eon/ParametersOptions.h	454	variants_t	energy_uncertainty	std::string		Metatomic
+eon	include/eon/ParametersOptions.h	455	variants_t	force	std::string		Metatomic
+eon	include/eon/ParametersOptions.h	464	lanczos_options_t	tolerance	double	0.01	Lanczos
+eon	include/eon/ParametersOptions.h	465	lanczos_options_t	max_iterations	long	20	Lanczos
+eon	include/eon/ParametersOptions.h	466	lanczos_options_t	quit_early	bool	true	Lanczos
+eon	include/eon/ParametersOptions.h	467	lanczos_options_t	phva_atoms	std::string	"All"	Lanczos
+eon	include/eon/ParametersOptions.h	472	davidson_options_t	tolerance	double	0.01	Davidson
+eon	include/eon/ParametersOptions.h	473	davidson_options_t	max_iterations	long	20	Davidson
+eon	include/eon/ParametersOptions.h	476	davidson_options_t	diagonal_preconditioner	bool	false	Davidson
+eon	include/eon/ParametersOptions.h	478	davidson_options_t	phva_atoms	std::string	"All"	Davidson
+eon	include/eon/ParametersOptions.h	483	prefactor_options_t	default_value	double	0.0	Prefactor
+eon	include/eon/ParametersOptions.h	484	prefactor_options_t	max_value	double	1e+21	Prefactor
+eon	include/eon/ParametersOptions.h	485	prefactor_options_t	min_value	double	1e+9	Prefactor
+eon	include/eon/ParametersOptions.h	486	prefactor_options_t	within_radius	double	3.3	Prefactor
+eon	include/eon/ParametersOptions.h	487	prefactor_options_t	min_displacement	double	0.25	Prefactor
+eon	include/eon/ParametersOptions.h	488	prefactor_options_t	rate	std::string	"htst"	Prefactor
+eon	include/eon/ParametersOptions.h	489	prefactor_options_t	configuration	std::string	"reactant"	Prefactor
+eon	include/eon/ParametersOptions.h	490	prefactor_options_t	all_free_atoms	bool	false	Prefactor
+eon	include/eon/ParametersOptions.h	491	prefactor_options_t	filter_scheme	std::string	"fraction"	Prefactor
+eon	include/eon/ParametersOptions.h	492	prefactor_options_t	filter_fraction	double	0.90	Prefactor
+eon	include/eon/ParametersOptions.h	500	hessian_options_t	phva_atoms	std::string	"All"	Hessian
+eon	include/eon/ParametersOptions.h	501	hessian_options_t	zero_freq_value	double	1e-6	Hessian
+eon	include/eon/ParametersOptions.h	506	hessian_options_t	fd_scheme	std::string	"one_sided"	Hessian
+eon	include/eon/ParametersOptions.h	508	hessian_options_t	resume	bool	false	Hessian
+eon	include/eon/ParametersOptions.h	510	hessian_options_t	checkpoint_path	std::string	""	Hessian
+eon	include/eon/ParametersOptions.h	514	hessian_options_t	write_modes	bool	true	Hessian
+eon	include/eon/ParametersOptions.h	519	neb_options_t	image_count	long	5	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	520	neb_options_t	max_iterations	long	1000	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	521	neb_options_t	opt_method	OptType	OptType::LBFGS	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	522	neb_options_t	force_tolerance	double	0.01	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	524	mmf_peak_options_t	enabled	bool	true	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	525	mmf_peak_options_t	tolerance	double	0.05	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	528	neb_options_t	match_endpoints	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	530	neb_options_t	match_method	std::string	"ira"	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	533	spring_options_t	constant	double	5.0	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	534	spring_options_t	use_elastic_band	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	535	spring_options_t	doubly_nudged	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	536	spring_options_t	use_switching	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	539	energy_weighting_t	enabled	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	540	energy_weighting_t	trigger	double	10.0	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	541	energy_weighting_t	k_min	double	0.97	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	542	energy_weighting_t	k_max	double	9.7	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	545	onsager_machlup_t	enabled	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	546	onsager_machlup_t	optimize_k	bool	true	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	547	onsager_machlup_t	k_scale	double	1.0	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	548	onsager_machlup_t	k_min	double	0.1	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	549	onsager_machlup_t	k_max	double	100.0	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	554	climbing_image_options_t	enabled	bool	true	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	555	climbing_image_options_t	converged_only	bool	true	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	559	climbing_image_options_t	band_slack	double	10.0	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	560	climbing_image_options_t	use_old_tangent	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	561	climbing_image_options_t	trigger_force	double	std::numeric_limits<double>::infinity()	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	562	climbing_image_options_t	trigger_factor	double	0.0	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	565	hybrid_dimer_t	use_mmf	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	566	hybrid_dimer_t	trigger_force	double	0.1	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	567	hybrid_dimer_t	max_steps	long	1000	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	568	hybrid_dimer_t	ci_stability_count	long	5	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	569	hybrid_dimer_t	angle_tol	double	0.7071	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	570	hybrid_dimer_t	trigger_factor	double	0.0	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	573	hybrid_dimer_t	restore_unhelpful	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	582	zoom_options_t	enabled	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	583	zoom_options_t	alpha	double	0.5	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	584	zoom_options_t	offset	int	1	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	585	zoom_options_t	Mode	enum class	Auto, Manual	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	586	zoom_options_t	mode	Mode	Mode::Auto	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	587	zoom_options_t	activation_threshold	double	0.0	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	588	zoom_options_t	Interpolation	enum class	Cubic, Linear	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	589	zoom_options_t	interpolation	Interpolation	Interpolation::Cubic	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	590	zoom_options_t	stability_count	int	5	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	591	zoom_options_t	max_iterations	int	0	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	595	path_initialization_t	method	NEBInit	NEBInit::LINEAR	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	596	path_initialization_t	input_path	std::string		Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	597	path_initialization_t	max_iterations	int	5000	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	598	path_initialization_t	nsteps	int	250	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	599	path_initialization_t	max_move	double	0.1	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	600	path_initialization_t	force_tolerance	double	0.001	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	601	path_initialization_t	sidpp_alpha	double	0.33	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	602	path_initialization_t	sidpp_frontier_tol	double	0.01	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	603	path_initialization_t	sidpp_reparam	bool	true	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	604	path_initialization_t	sidpp_ideal_ksp	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	605	path_initialization_t	opt_method	OptType	OptType::LBFGS	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	606	path_initialization_t	oversampling	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	607	path_initialization_t	oversampling_factor	int	3	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	611	endpoint_options_t	minimize	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	612	endpoint_options_t	use_path_file	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	618	solid_state_options_t	enabled	bool	false	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	619	solid_state_options_t	weight	double	1.0	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	622	solid_state_options_t	pressure	double	0.0	Nudged Elastic Band
+eon	include/eon/ParametersOptions.h	628	dynamics_options_t	time_step_input	double	1.0	Molecular Dynamics
+eon	include/eon/ParametersOptions.h	629	dynamics_options_t	time_step	double	0.0	Molecular Dynamics
+eon	include/eon/ParametersOptions.h	630	dynamics_options_t	time_input	double	1000.0	Molecular Dynamics
+eon	include/eon/ParametersOptions.h	631	dynamics_options_t	time	double	0.0	Molecular Dynamics
+eon	include/eon/ParametersOptions.h	632	dynamics_options_t	steps	long	0	Molecular Dynamics
+eon	include/eon/ParametersOptions.h	637	parallel_replica_options_t	refine_transition	bool	true	Parallel Replica
+eon	include/eon/ParametersOptions.h	638	parallel_replica_options_t	auto_stop	bool	false	Parallel Replica
+eon	include/eon/ParametersOptions.h	639	parallel_replica_options_t	dephase_loop_stop	bool	false	Parallel Replica
+eon	include/eon/ParametersOptions.h	640	parallel_replica_options_t	dephase_time_input	double	1000.0	Parallel Replica
+eon	include/eon/ParametersOptions.h	641	parallel_replica_options_t	dephase_time	double	0.0	Parallel Replica
+eon	include/eon/ParametersOptions.h	642	parallel_replica_options_t	dephase_loop_max	long	5	Parallel Replica
+eon	include/eon/ParametersOptions.h	643	parallel_replica_options_t	state_check_interval_input	double	1000.0	Parallel Replica
+eon	include/eon/ParametersOptions.h	644	parallel_replica_options_t	state_check_interval	double	0.0	Parallel Replica
+eon	include/eon/ParametersOptions.h	645	parallel_replica_options_t	record_interval_input	double	50.0	Parallel Replica
+eon	include/eon/ParametersOptions.h	646	parallel_replica_options_t	record_interval	double	0.0	Parallel Replica
+eon	include/eon/ParametersOptions.h	647	parallel_replica_options_t	corr_time_input	double	1000.0	Parallel Replica
+eon	include/eon/ParametersOptions.h	648	parallel_replica_options_t	corr_time	double	0.0	Parallel Replica
+eon	include/eon/ParametersOptions.h	653	tad_options_t	low_temperature	double	300.0	Temperature Accelerated Dynamics
+eon	include/eon/ParametersOptions.h	654	tad_options_t	min_prefactor	double	0.001	Temperature Accelerated Dynamics
+eon	include/eon/ParametersOptions.h	655	tad_options_t	confidence	double	0.001	Temperature Accelerated Dynamics
+eon	include/eon/ParametersOptions.h	660	thermostat_options_t	kind	std::string	"none"	Thermostat
+eon	include/eon/ParametersOptions.h	661	thermostat_options_t	andersen_alpha	double	1.0	Thermostat
+eon	include/eon/ParametersOptions.h	662	thermostat_options_t	andersen_tcol_input	double	100.0	Thermostat
+eon	include/eon/ParametersOptions.h	663	thermostat_options_t	andersen_tcol	double	0.0	Thermostat
+eon	include/eon/ParametersOptions.h	664	thermostat_options_t	nose_mass	double	1.0	Thermostat
+eon	include/eon/ParametersOptions.h	665	thermostat_options_t	langevin_friction_input	double	0.01	Thermostat
+eon	include/eon/ParametersOptions.h	666	thermostat_options_t	langevin_friction	double	0.0	Thermostat
+eon	include/eon/ParametersOptions.h	667	thermostat_options_t	path_beads	long	8	Thermostat
+eon	include/eon/ParametersOptions.h	668	thermostat_options_t	path_springs	std::string	"trotter"	Thermostat
+eon	include/eon/ParametersOptions.h	669	thermostat_options_t	path_eco_omega_max	double	0.0	Thermostat
+eon	include/eon/ParametersOptions.h	670	thermostat_options_t	path_gle_file	std::string		Thermostat
+eon	include/eon/ParametersOptions.h	671	thermostat_options_t	path_pile_tau_input	double	100.0	Thermostat
+eon	include/eon/ParametersOptions.h	672	thermostat_options_t	path_pile_tau	double	0.0	Thermostat
+eon	include/eon/ParametersOptions.h	673	thermostat_options_t	path_pile_scale	double	1.0	Thermostat
+eon	include/eon/ParametersOptions.h	674	thermostat_options_t	path_seed	std::uint64_t	1	Thermostat
+eon	include/eon/ParametersOptions.h	679	replica_exchange_options_t	temperature_distribution	std::string	"exponential"	Replica Exchange
+eon	include/eon/ParametersOptions.h	680	replica_exchange_options_t	replicas	long	10	Replica Exchange
+eon	include/eon/ParametersOptions.h	681	replica_exchange_options_t	exchange_trials	long	10	Replica Exchange
+eon	include/eon/ParametersOptions.h	682	replica_exchange_options_t	sampling_time_input	double	1000.0	Replica Exchange
+eon	include/eon/ParametersOptions.h	683	replica_exchange_options_t	sampling_time	double	0.0	Replica Exchange
+eon	include/eon/ParametersOptions.h	684	replica_exchange_options_t	temperature_high	double	0.0	Replica Exchange
+eon	include/eon/ParametersOptions.h	685	replica_exchange_options_t	temperature_low	double	0.0	Replica Exchange
+eon	include/eon/ParametersOptions.h	686	replica_exchange_options_t	exchange_period_input	double	100.0	Replica Exchange
+eon	include/eon/ParametersOptions.h	687	replica_exchange_options_t	exchange_period	double	0.0	Replica Exchange
+eon	include/eon/ParametersOptions.h	692	hyperdynamics_options_t	bias_potential	std::string	"none"	Bond Boost / Hyperdynamics
+eon	include/eon/ParametersOptions.h	693	hyperdynamics_options_t	boost_atom_list	std::string	"All"	Bond Boost / Hyperdynamics
+eon	include/eon/ParametersOptions.h	694	hyperdynamics_options_t	rmd_time_input	double	100.0	Bond Boost / Hyperdynamics
+eon	include/eon/ParametersOptions.h	695	hyperdynamics_options_t	rmd_time	double	0.0	Bond Boost / Hyperdynamics
+eon	include/eon/ParametersOptions.h	696	hyperdynamics_options_t	dvmax	double	0.0	Bond Boost / Hyperdynamics
+eon	include/eon/ParametersOptions.h	697	hyperdynamics_options_t	qrr	double	0.2	Bond Boost / Hyperdynamics
+eon	include/eon/ParametersOptions.h	698	hyperdynamics_options_t	prr	double	0.95	Bond Boost / Hyperdynamics
+eon	include/eon/ParametersOptions.h	699	hyperdynamics_options_t	qcut	double	3.0	Bond Boost / Hyperdynamics
+eon	include/eon/ParametersOptions.h	704	basin_hopping_options_t	displacement	double	0.5	Basin Hopping
+eon	include/eon/ParametersOptions.h	705	basin_hopping_options_t	initial_random_structure_probability	double	0.0	Basin Hopping
+eon	include/eon/ParametersOptions.h	706	basin_hopping_options_t	push_apart_distance	double	0.4	Basin Hopping
+eon	include/eon/ParametersOptions.h	707	basin_hopping_options_t	steps	long	10000	Basin Hopping
+eon	include/eon/ParametersOptions.h	708	basin_hopping_options_t	quenching_steps	long	0	Basin Hopping
+eon	include/eon/ParametersOptions.h	709	basin_hopping_options_t	significant_structure	bool	true	Basin Hopping
+eon	include/eon/ParametersOptions.h	710	basin_hopping_options_t	single_atom_displace	bool	false	Basin Hopping
+eon	include/eon/ParametersOptions.h	711	basin_hopping_options_t	displacement_algorithm	std::string	"standard"	Basin Hopping
+eon	include/eon/ParametersOptions.h	712	basin_hopping_options_t	displacement_distribution	std::string	"uniform"	Basin Hopping
+eon	include/eon/ParametersOptions.h	713	basin_hopping_options_t	swap_probability	double	0.0	Basin Hopping
+eon	include/eon/ParametersOptions.h	714	basin_hopping_options_t	jump_max	long	10	Basin Hopping
+eon	include/eon/ParametersOptions.h	715	basin_hopping_options_t	jump_steps	long	0	Basin Hopping
+eon	include/eon/ParametersOptions.h	716	basin_hopping_options_t	adjust_displacement	bool	true	Basin Hopping
+eon	include/eon/ParametersOptions.h	717	basin_hopping_options_t	adjust_period	long	10	Basin Hopping
+eon	include/eon/ParametersOptions.h	718	basin_hopping_options_t	adjust_fraction	double	0.05	Basin Hopping
+eon	include/eon/ParametersOptions.h	719	basin_hopping_options_t	target_ratio	double	0.5	Basin Hopping
+eon	include/eon/ParametersOptions.h	720	basin_hopping_options_t	write_unique	bool	false	Basin Hopping
+eon	include/eon/ParametersOptions.h	721	basin_hopping_options_t	stop_energy	double	-std::numeric_limits<double>::max()	Basin Hopping
+eon	include/eon/ParametersOptions.h	726	global_optimization_options_t	move_method	std::string	"md"	Global Optimization
+eon	include/eon/ParametersOptions.h	727	global_optimization_options_t	decision_method	std::string	"npew"	Global Optimization
+eon	include/eon/ParametersOptions.h	728	global_optimization_options_t	steps	long	10000	Global Optimization
+eon	include/eon/ParametersOptions.h	729	global_optimization_options_t	beta	double	1.05	Global Optimization
+eon	include/eon/ParametersOptions.h	730	global_optimization_options_t	alpha	double	1.02	Global Optimization
+eon	include/eon/ParametersOptions.h	731	global_optimization_options_t	mdmin	long	3	Global Optimization
+eon	include/eon/ParametersOptions.h	732	global_optimization_options_t	target_energy	double	-1.0e50	Global Optimization
+eon	include/eon/ParametersOptions.h	737	monte_carlo_options_t	step_size	double	0.005	Monte Carlo
+eon	include/eon/ParametersOptions.h	738	monte_carlo_options_t	steps	int	1000	Monte Carlo
+eon	include/eon/ParametersOptions.h	743	bgsd_options_t	alpha	double	10.0	BGSD
+eon	include/eon/ParametersOptions.h	744	bgsd_options_t	beta	double	0.2	BGSD
+eon	include/eon/ParametersOptions.h	745	bgsd_options_t	gradient_finite_difference	double	0.000001	BGSD
+eon	include/eon/ParametersOptions.h	746	bgsd_options_t	h_force_convergence	double	0.01	BGSD
+eon	include/eon/ParametersOptions.h	747	bgsd_options_t	grad2energy_convergence	double	0.000001	BGSD
+eon	include/eon/ParametersOptions.h	748	bgsd_options_t	grad2force_convergence	double	0.0001	BGSD
+eon	include/eon/ParametersOptions.h	753	serve_options_t	host	std::string	"localhost"	Serve
+eon	include/eon/ParametersOptions.h	754	serve_options_t	port	uint16_t	12345	Serve
+eon	include/eon/ParametersOptions.h	755	serve_options_t	replicas	size_t	1	Serve
+eon	include/eon/ParametersOptions.h	756	serve_options_t	gateway_port	uint16_t	0	Serve
+eon	include/eon/ParametersOptions.h	757	serve_options_t	endpoints	std::string		Serve
+eon	include/eon/ParametersOptions.h	762	artn_options_t	push_step_size	double	0.3	ARTn
+eon	include/eon/ParametersOptions.h	763	artn_options_t	force_threshold	double	0.05	ARTn
+eon	include/eon/ParametersOptions.h	764	artn_options_t	max_iterations	int	500	ARTn
+eon	include/eon/ParametersOptions.h	765	artn_options_t	ninit	int	-1	ARTn
+eon	include/eon/ParametersOptions.h	770	artn_options_t	nperp_limitation	std::string	"default"	ARTn
+eon	include/eon/ParametersOptions.h	773	artn_options_t	nsmooth	int	-1	ARTn
+eon	include/eon/ParametersOptions.h	780	artn_options_t	filin	std::string	""	ARTn
+eon	include/eon/ParametersOptions.h	790	ira_options_t	distance_threshold	double	0.3	IRA
+eon	include/eon/ParametersOptions.h	791	ira_options_t	symmetry_threshold	double	0.1	IRA
+eon	include/eon/ParametersOptions.h	792	ira_options_t	use_pbc	bool	false	IRA
+eon	include/eon/ParametersOptions.h	797	debug_options_t	write_movies	bool	false	Debug
+eon	include/eon/ParametersOptions.h	798	debug_options_t	write_movies_interval	long	1	Debug
+eon	include/eon/ParametersOptions.h	799	debug_options_t	write_deprecated_outs	bool	false	Debug
+eon	include/eon/ParametersOptions.h	800	debug_options_t	estimate_neb_eigenvalues	bool	false	Debug
+eon	include/eon/ParametersOptions.h	801	debug_options_t	neb_mmf	std::string	"dimer"	Debug
+eon	include/eon/ParametersOptions.h	810	instanton_options_t	mode	std::string	"splitting"	Instanton
+eon	include/eon/ParametersOptions.h	811	instanton_options_t	reactant_filename	std::string	"reactant.con"	Instanton
+eon	include/eon/ParametersOptions.h	812	instanton_options_t	product_filename	std::string	"product.con"	Instanton
+eon	include/eon/ParametersOptions.h	815	instanton_options_t	initial_path	std::string	""	Instanton
+eon	include/eon/ParametersOptions.h	816	instanton_options_t	beads	long	256	Instanton
+eon	include/eon/ParametersOptions.h	817	instanton_options_t	beta_hbar_omega	double	30.0	Instanton
+eon	include/eon/ParametersOptions.h	818	instanton_options_t	max_iterations	long	5000	Instanton
+eon	include/eon/ParametersOptions.h	819	instanton_options_t	force_tolerance	double	1e-3	Instanton
+eon	include/eon/ParametersOptions.h	821	instanton_options_t	hessian_stride	long	1	Instanton
+eon	include/eon/ParametersOptions.h	823	instanton_options_t	saddle_filename	std::string	"saddle.con"	Instanton
+eon	include/eon/ParametersOptions.h	824	instanton_options_t	temperature	double	0.0	Instanton
+eon	include/eon/ParametersOptions.h	827	instanton_options_t	temperatures	std::vector<double>		Instanton
+eon	include/eon/ParametersOptions.h	830	instanton_options_t	half_ring	bool	true	Instanton
+eon	include/eon/ParametersOptions.h	831	instanton_options_t	energy_shift	double	0.0	Instanton
+eon	include/eon/ParametersOptions.h	835	instanton_options_t	initial_hessians	std::string	"saddle"	Instanton
+eon	include/eon/ParametersOptions.h	838	instanton_options_t	bead_ladder	bool	false	Instanton
+eon	include/eon/ParametersOptions.h	840	instanton_options_t	hessian_final	std::string	"recomputed"	Instanton
+eon	include/eon/ParametersOptions.h	843	instanton_options_t	springs	std::string	"trotter"	Instanton
+eon	include/eon/ParametersOptions.h	847	instanton_options_t	pi_planes	long	0	Instanton
+eon	include/eon/ParametersOptions.h	848	instanton_options_t	pi_beads	long	16	Instanton
+eon	include/eon/ParametersOptions.h	849	instanton_options_t	pi_equilibration_steps	long	500	Instanton
+eon	include/eon/ParametersOptions.h	850	instanton_options_t	pi_sampling_steps	long	2000	Instanton
+eon	include/eon/ParametersOptions.h	851	instanton_options_t	pi_time_step	double	0.5	Instanton
+eon	include/eon/ParametersOptions.h	854	instanton_options_t	pi_thermostat	std::string	"pile"	Instanton
+eon	include/eon/ParametersOptions.h	855	instanton_options_t	pi_gle_file	std::string	""	Instanton
+eon	include/eon/ParametersOptions.h	856	instanton_options_t	pi_pile_tau	double	100.0	Instanton
+eon	include/eon/ParametersOptions.h	857	instanton_options_t	pi_pile_scale	double	1.0	Instanton
+eon	include/eon/ParametersOptions.h	858	instanton_options_t	pi_seed	long	1	Instanton
+eon	include/eon/ParametersOptions.h	861	instanton_options_t	pi_direction	std::string	"mode"	Instanton
+eon	include/eon/ParametersOptions.h	864	instanton_options_t	pi_reactant_extent	double	0.5	Instanton
+eon	include/eon/ParametersOptions.h	869	instanton_options_t	pi_recrossing_parents	long	0	Instanton
+eon	include/eon/ParametersOptions.h	870	instanton_options_t	pi_recrossing_children	long	20	Instanton
+eon	include/eon/ParametersOptions.h	871	instanton_options_t	pi_recrossing_time	double	100.0	Instanton
+eon	include/eon/ParametersOptions.h	872	instanton_options_t	pi_recrossing_spacing	long	50	Instanton
+eon	include/eon/ParametersOptions.h	880	oh_tst_options_t	reactant_filename	std::string	"pos.con"	OH_TST
+eon	include/eon/ParametersOptions.h	881	oh_tst_options_t	product_filename	std::string	"product.con"	OH_TST
+eon	include/eon/ParametersOptions.h	882	oh_tst_options_t	time_step	double	1.0	OH_TST
+eon	include/eon/ParametersOptions.h	883	oh_tst_options_t	equil_steps	long	200	OH_TST
+eon	include/eon/ParametersOptions.h	884	oh_tst_options_t	sample_steps	long	800	OH_TST
+eon	include/eon/ParametersOptions.h	885	oh_tst_options_t	max_planes	long	200	OH_TST
+eon	include/eon/ParametersOptions.h	886	oh_tst_options_t	plane_mass	double	50.0	OH_TST
+eon	include/eon/ParametersOptions.h	887	oh_tst_options_t	alpha_rot	double	50.0	OH_TST
+eon	include/eon/ParametersOptions.h	888	oh_tst_options_t	plane_time_step	double	0.1	OH_TST
+eon	include/eon/ParametersOptions.h	889	oh_tst_options_t	ds_max	double	0.1	OH_TST
+eon	include/eon/ParametersOptions.h	890	oh_tst_options_t	dtheta_max	double	0.05	OH_TST
+eon	include/eon/ParametersOptions.h	891	oh_tst_options_t	force_tol	double	0.005	OH_TST
+eon	include/eon/ParametersOptions.h	892	oh_tst_options_t	s_init	double	0.05	OH_TST
+eon	include/eon/ParametersOptions.h	893	oh_tst_options_t	reactant_md_steps	long	20000	OH_TST
+eon	include/eon/ParametersOptions.h	894	oh_tst_options_t	max_delta_a	double	10.0	OH_TST
+eon	include/eon/ParametersOptions.h	900	oh_tst_options_t	thermostat	std::string	"andersen"	OH_TST
+eon	include/eon/ParametersOptions.h	901	oh_tst_options_t	gle_a_file	std::string	""	OH_TST
+eon	include/eon/ParametersOptions.h	906	oh_tst_options_t	symmetry_products	std::string	""	OH_TST
+eon	include/eon/ParametersOptions.h	912	oh_tst_options_t	pmf_scan	bool	false	OH_TST
+eon	include/eon/ParametersOptions.h	913	oh_tst_options_t	scan_planes	long	40	OH_TST
+rgmin	include/rgmin.h	67	rgmin_abi_stamp_t	abi_major	uint16_t		
+rgmin	include/rgmin.h	68	rgmin_abi_stamp_t	abi_minor	uint16_t		
+rgmin	include/rgmin.h	69	rgmin_abi_stamp_t	layout_revision	uint16_t		
+rgmin	include/rgmin.h	173	rgmin_control_t	maxiter	size_t		
+rgmin	include/rgmin.h	174	rgmin_control_t	gtol	double		
+rgmin	include/rgmin.h	175	rgmin_control_t	istep	double		
+rgmin	include/rgmin.h	176	rgmin_control_t	memory	size_t		
+rgmin	include/rgmin.h	179	rgmin_control_t	maxmove	double		
+rgmin	include/rgmin.h	181	rgmin_control_t	noise_eps	double		
+rgmin	include/rgmin.h	183	rgmin_control_t	noise_c	double		
+rgmin	include/rgmin.h	192	rgmin_report_t	value	double		
+rgmin	include/rgmin.h	193	rgmin_report_t	steps	size_t		
+rgmin	include/rgmin.h	194	rgmin_report_t	grad_norm	double		
+rgmin	include/rgmin.h	196	rgmin_report_t	stop	rgmin_stop_t		
+rgmin	include/rgmin.h	321	rgmin_exp_t	a	double		
+rgmin	include/rgmin.h	322	rgmin_exp_t	c_stab	double		
+rgmin	include/rgmin.h	323	rgmin_exp_t	mu	double		
+rgmin	include/rgmin.h	324	rgmin_exp_t	r_nn	double		
+rgmin	include/rgmin.h	325	rgmin_exp_t	r_cut	double		
+rgmin	include/rgmin.h	326	rgmin_exp_t	length_x	double		
+rgmin	include/rgmin.h	327	rgmin_exp_t	length_y	double		
+rgmin	include/rgmin.h	328	rgmin_exp_t	length_z	double		
+rgmin	include/rgmin.h	329	rgmin_exp_t	recalc_mu	int32_t		
+rgmin	include/rgmin.h	369	rgmin_bond_t	k	double		
+rgmin	include/rgmin.h	374	rgmin_angle_t	k_theta	double		
+rgmin	include/rgmin.h	399	rgmin_precon_t	struct_size	uint32_t		
+rgmin	include/rgmin.h	400	rgmin_precon_t	kind	uint32_t		
+rgmin	include/rgmin.h	404	rgmin_precon_t	natoms	size_t		
+rgmin	include/rgmin.h	407	rgmin_precon_t	nghost	size_t		
+rgmin	include/rgmin.h	411	rgmin_precon_t	npairs	size_t		
+rgmin	include/rgmin.h	414	rgmin_precon_t	nanchor	size_t		
+rgmin	include/rgmin.h	415	rgmin_precon_t	exp_a	double		
+rgmin	include/rgmin.h	417	rgmin_precon_t	nbonds	size_t		
+rgmin	include/rgmin.h	419	rgmin_precon_t	nangles	size_t		
+rgmin	include/rgmin.h	420	rgmin_precon_t	dihedrals	int32_t		
+rgmin	include/rgmin.h	421	rgmin_precon_t	geometry_kind	int32_t		
+rgmin	include/rgmin.h	1005	rgmin_scg_params_t	sigma0	double		
+rgmin	include/rgmin.h	1006	rgmin_scg_params_t	lambda	double		
+rgmin	include/rgmin.h	1007	rgmin_scg_params_t	lambda_limit	double		
+rgmin	include/rgmin.h	1008	rgmin_scg_params_t	tol_sol	double		
+rgmin	include/rgmin.h	1009	rgmin_scg_params_t	tol_func	double		
+rgmin	include/rgmin.h	1013	rgmin_scg_params_t	conjugacy	rgmin_conjugacy_t		
+rgmin	include/rgmin.h	1056	rgmin_scg_options_t	step_tolerance	int32_t		
+rgmin	include/rgmin.h	1095	rgmin_eigen_params_t	kind	int32_t		
+rgmin	include/rgmin.h	1096	rgmin_eigen_params_t	nev	uint32_t		
+rgmin	include/rgmin.h	1097	rgmin_eigen_params_t	krylov	uint32_t		
+rgmin	include/rgmin.h	1098	rgmin_eigen_params_t	max_iter	uint32_t		
+rgmin	include/rgmin.h	1099	rgmin_eigen_params_t	tol	double		
+rgmin	include/rgmin.h	1107	rgmin_lowest_mode_t	value	double		
+rgmin	include/rgmin.h	1108	rgmin_lowest_mode_t	actions	size_t		
+rgmin	include/rgmin.h	1155	rgmin_eigen_options_t	degree	uint32_t		
+rgmin	include/rgmin.h	1157	rgmin_eigen_options_t	extra	uint32_t		
+rgmin	include/rgmin.h	1166	rgmin_eigenpair_t	value	double		
+rgmin	include/rgmin.h	1167	rgmin_eigenpair_t	actions	size_t		
+rgmin	include/rgmin.h	1193	rgmin_eigenpair_ex_t	value	double		
+rgmin	include/rgmin.h	1194	rgmin_eigenpair_ex_t	actions	size_t		
+rgmin	include/rgmin.h	1195	rgmin_eigenpair_ex_t	residual	double		
+rgmin	include/rgmin.h	1196	rgmin_eigenpair_ex_t	converged	int32_t		
+rgmin	include/rgmin.h	185	rgmin_control_t	maxiter	comment	100	control
+rgmin	include/rgmin.h	185	rgmin_control_t	gtol	comment	1e-5	control
+rgmin	include/rgmin.h	185	rgmin_control_t	istep	comment	1	control
+rgmin	include/rgmin.h	185	rgmin_control_t	memory	comment	0	control
+rgmin	include/rgmin.h	186	rgmin_control_t	maxmove	comment	0	control
+rgmin	include/rgmin.h	187	rgmin_control_t	noise_eps	comment	0	control
+rgmin	include/rgmin.h	187	rgmin_control_t	noise_c	comment	3	control
+rgsaddle	include/rgsaddle.h	110	rgsaddle_version_t	major	uint32_t		
+rgsaddle	include/rgsaddle.h	111	rgsaddle_version_t	minor	uint32_t		
+rgsaddle	include/rgsaddle.h	218	rgsaddle_hyperplane_budget_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	219	rgsaddle_hyperplane_budget_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	220	rgsaddle_hyperplane_budget_t	thermal	double		
+rgsaddle	include/rgsaddle.h	221	rgsaddle_hyperplane_budget_t	seed	uint64_t		
+rgsaddle	include/rgsaddle.h	222	rgsaddle_hyperplane_budget_t	thermalize	int64_t		
+rgsaddle	include/rgsaddle.h	223	rgsaddle_hyperplane_budget_t	stride	int64_t		
+rgsaddle	include/rgsaddle.h	224	rgsaddle_hyperplane_budget_t	samples	int64_t		
+rgsaddle	include/rgsaddle.h	225	rgsaddle_hyperplane_budget_t	lambda	double		
+rgsaddle	include/rgsaddle.h	226	rgsaddle_hyperplane_budget_t	positions	int32_t		
+rgsaddle	include/rgsaddle.h	231	rgsaddle_hyperplane_observation_t	constraint_force	double		
+rgsaddle	include/rgsaddle.h	234	rgsaddle_hyperplane_observation_t	thermodynamic_derivative	double		
+rgsaddle	include/rgsaddle.h	245	rgsaddle_hyperplane_ti_config_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	246	rgsaddle_hyperplane_ti_config_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	247	rgsaddle_hyperplane_ti_config_t	thermal	double		
+rgsaddle	include/rgsaddle.h	248	rgsaddle_hyperplane_ti_config_t	nodes	int64_t		
+rgsaddle	include/rgsaddle.h	249	rgsaddle_hyperplane_ti_config_t	thermalize	int64_t		
+rgsaddle	include/rgsaddle.h	250	rgsaddle_hyperplane_ti_config_t	stride	int64_t		
+rgsaddle	include/rgsaddle.h	251	rgsaddle_hyperplane_ti_config_t	samples	int64_t		
+rgsaddle	include/rgsaddle.h	252	rgsaddle_hyperplane_ti_config_t	blocks	int64_t		
+rgsaddle	include/rgsaddle.h	253	rgsaddle_hyperplane_ti_config_t	seed	uint64_t		
+rgsaddle	include/rgsaddle.h	257	rgsaddle_hyperplane_ti_result_t	free_energy	double		
+rgsaddle	include/rgsaddle.h	258	rgsaddle_hyperplane_ti_result_t	error	double		
+rgsaddle	include/rgsaddle.h	259	rgsaddle_hyperplane_ti_result_t	evaluations	int64_t		
+rgsaddle	include/rgsaddle.h	306	rgsaddle_surface_request_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	307	rgsaddle_surface_request_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	308	rgsaddle_surface_request_t	n_images	int64_t		
+rgsaddle	include/rgsaddle.h	309	rgsaddle_surface_request_t	n_atoms	int64_t		
+rgsaddle	include/rgsaddle.h	313	rgsaddle_surface_request_t	image	int64_t		
+rgsaddle	include/rgsaddle.h	321	rgsaddle_band_config_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	322	rgsaddle_band_config_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	323	rgsaddle_band_config_t	tangent	int32_t		
+rgsaddle	include/rgsaddle.h	324	rgsaddle_band_config_t	spring	int32_t		
+rgsaddle	include/rgsaddle.h	325	rgsaddle_band_config_t	projection	int32_t		
+rgsaddle	include/rgsaddle.h	326	rgsaddle_band_config_t	method	int32_t		
+rgsaddle	include/rgsaddle.h	327	rgsaddle_band_config_t	spring_k	double		
+rgsaddle	include/rgsaddle.h	331	rgsaddle_band_config_t	ci_trigger_factor	double		
+rgsaddle	include/rgsaddle.h	332	rgsaddle_band_config_t	ci_trigger_force	double		
+rgsaddle	include/rgsaddle.h	335	rgsaddle_band_config_t	force_tol	double		
+rgsaddle	include/rgsaddle.h	336	rgsaddle_band_config_t	max_move	double		
+rgsaddle	include/rgsaddle.h	337	rgsaddle_band_config_t	memory	int64_t		
+rgsaddle	include/rgsaddle.h	342	rgsaddle_report_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	343	rgsaddle_report_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	344	rgsaddle_report_t	status	int32_t		
+rgsaddle	include/rgsaddle.h	350	rgsaddle_report_t	evaluations	int32_t		
+rgsaddle	include/rgsaddle.h	351	rgsaddle_report_t	max_force	double		
+rgsaddle	include/rgsaddle.h	353	rgsaddle_report_t	ci_index	int64_t		
+rgsaddle	include/rgsaddle.h	354	rgsaddle_report_t	iteration	int64_t		
+rgsaddle	include/rgsaddle.h	359	rgsaddle_report_t	curvature	double		
+rgsaddle	include/rgsaddle.h	360	rgsaddle_report_t	rotations	int64_t		
+rgsaddle	include/rgsaddle.h	402	rgsaddle_solid_surface_request_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	403	rgsaddle_solid_surface_request_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	404	rgsaddle_solid_surface_request_t	n_images	int64_t		
+rgsaddle	include/rgsaddle.h	405	rgsaddle_solid_surface_request_t	n_atoms	int64_t		
+rgsaddle	include/rgsaddle.h	411	rgsaddle_solid_surface_request_t	image	int64_t		
+rgsaddle	include/rgsaddle.h	557	rgsaddle_minmode_config_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	558	rgsaddle_minmode_config_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	559	rgsaddle_minmode_config_t	kind	int32_t		
+rgsaddle	include/rgsaddle.h	560	rgsaddle_minmode_config_t	method	int32_t		
+rgsaddle	include/rgsaddle.h	561	rgsaddle_minmode_config_t	dr	double		
+rgsaddle	include/rgsaddle.h	562	rgsaddle_minmode_config_t	rotation_tol	double		
+rgsaddle	include/rgsaddle.h	563	rgsaddle_minmode_config_t	max_rotations	int64_t		
+rgsaddle	include/rgsaddle.h	564	rgsaddle_minmode_config_t	krylov_dim	int64_t		
+rgsaddle	include/rgsaddle.h	565	rgsaddle_minmode_config_t	force_tol	double		
+rgsaddle	include/rgsaddle.h	566	rgsaddle_minmode_config_t	max_move	double		
+rgsaddle	include/rgsaddle.h	574	rgsaddle_minmode_config_t	rotation_angle_tol	double		
+rgsaddle	include/rgsaddle.h	576	rgsaddle_minmode_config_t	difference	int32_t		
+rgsaddle	include/rgsaddle.h	577	rgsaddle_minmode_config_t	reserved	int32_t		
+rgsaddle	include/rgsaddle.h	748	rgsaddle_index1_config_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	749	rgsaddle_index1_config_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	750	rgsaddle_index1_config_t	update	int32_t		
+rgsaddle	include/rgsaddle.h	751	rgsaddle_index1_config_t	mode	int32_t		
+rgsaddle	include/rgsaddle.h	753	rgsaddle_index1_config_t	trust_radius	double		
+rgsaddle	include/rgsaddle.h	754	rgsaddle_index1_config_t	force_tol	double		
+rgsaddle	include/rgsaddle.h	756	rgsaddle_index1_config_t	fd_dr	double		
+rgsaddle	include/rgsaddle.h	797	rgsaddle_kappa_config_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	798	rgsaddle_kappa_config_t	beta	double		
+rgsaddle	include/rgsaddle.h	799	rgsaddle_kappa_config_t	tolerance	double		
+rgsaddle	include/rgsaddle.h	800	rgsaddle_kappa_config_t	max_iterations	int64_t		
+rgsaddle	include/rgsaddle.h	801	rgsaddle_kappa_config_t	krylov_dimension	int64_t		
+rgsaddle	include/rgsaddle.h	802	rgsaddle_kappa_config_t	eigen_kind	int32_t		
+rgsaddle	include/rgsaddle.h	806	rgsaddle_kappa_report_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	807	rgsaddle_kappa_report_t	kappa	double		
+rgsaddle	include/rgsaddle.h	808	rgsaddle_kappa_report_t	tangent_curvature	double		
+rgsaddle	include/rgsaddle.h	809	rgsaddle_kappa_report_t	gamma_parallel	double		
+rgsaddle	include/rgsaddle.h	810	rgsaddle_kappa_report_t	gamma_perpendicular	double		
+rgsaddle	include/rgsaddle.h	811	rgsaddle_kappa_report_t	residual	double		
+rgsaddle	include/rgsaddle.h	812	rgsaddle_kappa_report_t	hessian_actions	int64_t		
+rgsaddle	include/rgsaddle.h	813	rgsaddle_kappa_report_t	tangent_dimension	int64_t		
+rgsaddle	include/rgsaddle.h	853	rgsaddle_irc_config_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	854	rgsaddle_irc_config_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	855	rgsaddle_irc_config_t	dx	double		
+rgsaddle	include/rgsaddle.h	856	rgsaddle_irc_config_t	force_tol	double		
+rgsaddle	include/rgsaddle.h	857	rgsaddle_irc_config_t	force_gate	rgsaddle_force_gate_t		
+rgsaddle	include/rgsaddle.h	858	rgsaddle_irc_config_t	max_move	double		
+rgsaddle	include/rgsaddle.h	859	rgsaddle_irc_config_t	max_inner	int64_t		
+rgsaddle	include/rgsaddle.h	860	rgsaddle_irc_config_t	kind	int32_t		
+rgsaddle	include/rgsaddle.h	861	rgsaddle_irc_config_t	direction	int32_t		
+rgsaddle	include/rgsaddle.h	892	rgsaddle_sella_min_config_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	893	rgsaddle_sella_min_config_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	894	rgsaddle_sella_min_config_t	delta	double		
+rgsaddle	include/rgsaddle.h	895	rgsaddle_sella_min_config_t	force_tol	double		
+rgsaddle	include/rgsaddle.h	896	rgsaddle_sella_min_config_t	force_gate	rgsaddle_force_gate_t		
+rgsaddle	include/rgsaddle.h	950	rgsaddle_sella_saddle_config_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	951	rgsaddle_sella_saddle_config_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	952	rgsaddle_sella_saddle_config_t	delta	double		
+rgsaddle	include/rgsaddle.h	953	rgsaddle_sella_saddle_config_t	force_tol	double		
+rgsaddle	include/rgsaddle.h	954	rgsaddle_sella_saddle_config_t	force_gate	rgsaddle_force_gate_t		
+rgsaddle	include/rgsaddle.h	955	rgsaddle_sella_saddle_config_t	order	int64_t		
+rgsaddle	include/rgsaddle.h	1023	rgsaddle_constraints_config_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	1024	rgsaddle_constraints_config_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	1144	rgsaddle_samd_config_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	1145	rgsaddle_samd_config_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	1146	rgsaddle_samd_config_t	dt	double		
+rgsaddle	include/rgsaddle.h	1147	rgsaddle_samd_config_t	tau	double		
+rgsaddle	include/rgsaddle.h	1148	rgsaddle_samd_config_t	t0	double		
+rgsaddle	include/rgsaddle.h	1149	rgsaddle_samd_config_t	tf	double		
+rgsaddle	include/rgsaddle.h	1150	rgsaddle_samd_config_t	ngen	int64_t		
+rgsaddle	include/rgsaddle.h	1151	rgsaddle_samd_config_t	exponential	int32_t		
+rgsaddle	include/rgsaddle.h	1216	rgsaddle_ocineb_config_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	1217	rgsaddle_ocineb_config_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	1218	rgsaddle_ocineb_config_t	trigger_factor	double		
+rgsaddle	include/rgsaddle.h	1219	rgsaddle_ocineb_config_t	trigger_force	double		
+rgsaddle	include/rgsaddle.h	1220	rgsaddle_ocineb_config_t	angle_tol	double		
+rgsaddle	include/rgsaddle.h	1221	rgsaddle_ocineb_config_t	stability_count	int64_t		
+rgsaddle	include/rgsaddle.h	1222	rgsaddle_ocineb_config_t	max_mmf_steps	int64_t		
+rgsaddle	include/rgsaddle.h	1223	rgsaddle_ocineb_config_t	restore_unhelpful	int32_t		
+rgsaddle	include/rgsaddle.h	1224	rgsaddle_ocineb_config_t	reserved	int32_t		
+rgsaddle	include/rgsaddle.h	1229	rgsaddle_ocineb_report_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	1230	rgsaddle_ocineb_report_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	1231	rgsaddle_ocineb_report_t	status	int32_t		
+rgsaddle	include/rgsaddle.h	1232	rgsaddle_ocineb_report_t	phase	int32_t		
+rgsaddle	include/rgsaddle.h	1233	rgsaddle_ocineb_report_t	fell_back	int32_t		
+rgsaddle	include/rgsaddle.h	1234	rgsaddle_ocineb_report_t	evaluations	int32_t		
+rgsaddle	include/rgsaddle.h	1235	rgsaddle_ocineb_report_t	max_force	double		
+rgsaddle	include/rgsaddle.h	1236	rgsaddle_ocineb_report_t	curvature	double		
+rgsaddle	include/rgsaddle.h	1237	rgsaddle_ocineb_report_t	alignment	double		
+rgsaddle	include/rgsaddle.h	1238	rgsaddle_ocineb_report_t	threshold	double		
+rgsaddle	include/rgsaddle.h	1239	rgsaddle_ocineb_report_t	ci_index	int64_t		
+rgsaddle	include/rgsaddle.h	1240	rgsaddle_ocineb_report_t	iteration	int64_t		
+rgsaddle	include/rgsaddle.h	1241	rgsaddle_ocineb_report_t	rotations	int64_t		
+rgsaddle	include/rgsaddle.h	1444	rgsaddle_stencil_report_t	struct_size	uint64_t		
+rgsaddle	include/rgsaddle.h	1445	rgsaddle_stencil_report_t	status	int32_t		
+rgsaddle	include/rgsaddle.h	1446	rgsaddle_stencil_report_t	reserved	int32_t		
+rgsaddle	include/rgsaddle.h	1447	rgsaddle_stencil_report_t	max_force	double		
+rgsaddle	include/rgsaddle.h	1448	rgsaddle_stencil_report_t	curvature	double		
+rgsaddle	include/rgsaddle.h	1449	rgsaddle_stencil_report_t	iteration	uint64_t		
+rgsaddle	include/rgsaddle.h	1450	rgsaddle_stencil_report_t	evaluations	uint64_t		
+rgsaddle	include/rgsaddle.h	1488	rgsaddle_connect_config_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	1489	rgsaddle_connect_config_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	1490	rgsaddle_connect_config_t	force_tol	double		
+rgsaddle	include/rgsaddle.h	1491	rgsaddle_connect_config_t	max_calls	int64_t		
+rgsaddle	include/rgsaddle.h	1492	rgsaddle_connect_config_t	quench_nodes	int32_t		
+rgsaddle	include/rgsaddle.h	1497	rgsaddle_connect_report_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	1498	rgsaddle_connect_report_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	1499	rgsaddle_connect_report_t	energy	double		
+rgsaddle	include/rgsaddle.h	1500	rgsaddle_connect_report_t	force_norm	double		
+rgsaddle	include/rgsaddle.h	1501	rgsaddle_connect_report_t	kind	int32_t		
+rgsaddle	include/rgsaddle.h	1502	rgsaddle_connect_report_t	hessian_index	int32_t		
+rgsaddle	include/rgsaddle.h	1503	rgsaddle_connect_report_t	evaluations	int32_t		
+rgsaddle	include/rgsaddle.h	1522	rgsaddle_indexk_config_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	1523	rgsaddle_indexk_config_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	1524	rgsaddle_indexk_config_t	index	int32_t		
+rgsaddle	include/rgsaddle.h	1525	rgsaddle_indexk_config_t	method	int32_t		
+rgsaddle	include/rgsaddle.h	1526	rgsaddle_indexk_config_t	dr	double		
+rgsaddle	include/rgsaddle.h	1527	rgsaddle_indexk_config_t	rotation_tol	double		
+rgsaddle	include/rgsaddle.h	1528	rgsaddle_indexk_config_t	max_rotations	int64_t		
+rgsaddle	include/rgsaddle.h	1529	rgsaddle_indexk_config_t	force_tol	double		
+rgsaddle	include/rgsaddle.h	1530	rgsaddle_indexk_config_t	max_move	double		
+rgsaddle	include/rgsaddle.h	1531	rgsaddle_indexk_config_t	residual_tol	double		
+rgsaddle	include/rgsaddle.h	1532	rgsaddle_indexk_config_t	max_block_iterations	int32_t		
+rgsaddle	include/rgsaddle.h	1616	rgsaddle_saddle_check_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	1617	rgsaddle_saddle_check_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	1618	rgsaddle_saddle_check_t	block	int32_t		
+rgsaddle	include/rgsaddle.h	1619	rgsaddle_saddle_check_t	lowest	int32_t		
+rgsaddle	include/rgsaddle.h	1620	rgsaddle_saddle_check_t	max_actions	int32_t		
+rgsaddle	include/rgsaddle.h	1621	rgsaddle_saddle_check_t	difference	int32_t		
+rgsaddle	include/rgsaddle.h	1622	rgsaddle_saddle_check_t	dr	double		
+rgsaddle	include/rgsaddle.h	1623	rgsaddle_saddle_check_t	residual_tol	double		
+rgsaddle	include/rgsaddle.h	1624	rgsaddle_saddle_check_t	negative_tol	double		
+rgsaddle	include/rgsaddle.h	1625	rgsaddle_saddle_check_t	seed	uint64_t		
+rgsaddle	include/rgsaddle.h	1626	rgsaddle_saddle_check_t	escape_attempts	int32_t		
+rgsaddle	include/rgsaddle.h	1627	rgsaddle_saddle_check_t	reserved	int32_t		
+rgsaddle	include/rgsaddle.h	1628	rgsaddle_saddle_check_t	escape_push	double		
+rgsaddle	include/rgsaddle.h	1633	rgsaddle_saddle_index_t	version	rgsaddle_version_t		
+rgsaddle	include/rgsaddle.h	1634	rgsaddle_saddle_index_t	flags	uint64_t		
+rgsaddle	include/rgsaddle.h	1637	rgsaddle_saddle_index_t	certified	int32_t		
+rgsaddle	include/rgsaddle.h	1639	rgsaddle_saddle_index_t	index	int32_t		
+rgsaddle	include/rgsaddle.h	1642	rgsaddle_saddle_index_t	converged	int32_t		
+rgsaddle	include/rgsaddle.h	1645	rgsaddle_saddle_index_t	n_curvatures	int32_t		
+rgsaddle	include/rgsaddle.h	1647	rgsaddle_saddle_index_t	evaluations	int64_t		
+rgsaddle	include/rgsaddle.h	1650	rgsaddle_saddle_index_t	total_evaluations	int64_t		
+rgsaddle	include/rgsaddle.h	1652	rgsaddle_saddle_index_t	escapes	int64_t		
+rgpot	CppCore/rgpot/LennardJones/LJPot.hpp	37	LJConfig	u0	double	1.0	
+rgpot	CppCore/rgpot/LennardJones/LJPot.hpp	38	LJConfig	cutoff	double	15.0	
+rgpot	CppCore/rgpot/LennardJones/LJPot.hpp	39	LJConfig	psi	double	1.0	
 rgpot	CppCore/rgpot/LennardJones/LJPot.hpp	43	LJConfig	switch_width	double	0.0	
 rgpot	CppCore/rgpot/MetatomicPot/MetatomicConfig.hpp	13	MetatomicConfig	model_path	std::string		
 rgpot	CppCore/rgpot/MetatomicPot/MetatomicConfig.hpp	14	MetatomicConfig	device	std::string		

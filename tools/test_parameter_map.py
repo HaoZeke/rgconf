@@ -9,14 +9,22 @@ SOURCES = Path("/tmp/sources")
 REPOS = {"eon": "eOn", "rgmin": "rgmin", "rgsaddle": "rgsaddle", "rgpot": "rgpot", "cpmdc": "cpmdc"}
 
 EXPECTED = [
-    ("eon", "include/eon/ParametersOptions.h", "343", "optimizer_options_t", "converged_force", "0.01"),
-    ("eon", "include/eon/ParametersOptions.h", "342", "optimizer_options_t", "max_move", "0.2"),
-    ("eon", "include/eon/ParametersOptions.h", "350", "refine_t", "threshold", "0.5"),
-    ("rgmin", "include/rgmin.h", "204", "rgmin_control_t", "maxiter", "100"),
-    ("rgmin", "include/rgmin.h", "205", "rgmin_control_t", "maxmove", "0"),
-    ("rgmin", "include/rgmin.h", "206", "rgmin_control_t", "noise_c", "3"),
+    ("eon", "include/eon/ParametersOptions.h", "25", "constants_t", "kB", "8.6173324e-5"),
+    ("eon", "include/eon/ParametersOptions.h", "26", "constants_t", "timeUnit", "10.1805055"),
+    ("eon", "include/eon/ParametersOptions.h", "31", "main_options_t", "job", "JobType::Process_Search"),
+    ("rgmin", "include/rgmin.h", "185", "rgmin_control_t", "maxiter", "100"),
+    ("rgmin", "include/rgmin.h", "185", "rgmin_control_t", "gtol", "1e-5"),
+    ("rgmin", "include/rgmin.h", "186", "rgmin_control_t", "maxmove", "0"),
+    ("rgsaddle", "include/rgsaddle.h", "306", "rgsaddle_surface_request_t", "version", ""),
+    ("rgsaddle", "include/rgsaddle.h", "307", "rgsaddle_surface_request_t", "flags", ""),
+    ("rgsaddle", "include/rgsaddle.h", "308", "rgsaddle_surface_request_t", "n_images", ""),
+    ("cpmdc", "schema/Potentials.capnp", "22", "ForceInput", "lengthUnit", '"angstrom"'),
+    ("cpmdc", "schema/Potentials.capnp", "23", "ForceInput", "energyUnit", '"eV"'),
+    ("cpmdc", "schema/Potentials.capnp", "25", "ForceInput", "charge", "0"),
+    ("rgpot", "CppCore/rgpot/LennardJones/LJPot.hpp", "37", "LJConfig", "u0", "1.0"),
+    ("rgpot", "CppCore/rgpot/LennardJones/LJPot.hpp", "38", "LJConfig", "cutoff", "15.0"),
+    ("rgpot", "CppCore/rgpot/LennardJones/LJPot.hpp", "39", "LJConfig", "psi", "1.0"),
     ("rgpot", "CppCore/rgpot/LennardJones/LJPot.hpp", "43", "LJConfig", "switch_width", "0.0"),
-    ("rgpot", "CppCore/rgpot/MetatomicPot/MetatomicConfig.hpp", "18", "MetatomicConfig", "uncertainty_threshold", "-1.0"),
 ]
 
 
@@ -37,4 +45,5 @@ def test_rows_quote_the_source_line():
     for repo, rel, line, _struct, field, default in EXPECTED:
         text = (SOURCES / REPOS[repo] / rel).read_text().splitlines()[int(line) - 1]
         assert field in text or "Control::default" in text or "maxmove" in text
-        assert default in text
+        if default:
+            assert default in text
