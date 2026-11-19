@@ -1,0 +1,1 @@
+Nested struct and enum declarations are included in the parameter catalog, so each leaf parameter has a spec. A type name shared by a struct and an enum resolves to the declaration named by the reference scope or path.
