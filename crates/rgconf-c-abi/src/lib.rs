@@ -46,15 +46,6 @@ fn export_text(text: String) -> *mut c_char {
     }
 }
 
-fn render(resolution: &rgconf::Resolution) -> String {
-    let mut lines = Vec::new();
-    lines.push(format!("profile {}", resolution.profile.name()));
-    for (key, field) in &resolution.fields {
-        lines.push(format!("{key}={} {}", field.value, field.status.name()));
-    }
-    lines.join("\n")
-}
-
 fn pack_abi(major: u32, minor: u32, patch: u32) -> u32 {
     (major << 16) | (minor << 8) | patch
 }
@@ -105,7 +96,7 @@ pub extern "C" fn rgconf_resolve_ini(
                 .map_err(|err| err.to_string())?;
         }
         let resolution = resolver.resolve().map_err(|err| err.to_string())?;
-        Ok(render(&resolution))
+        Ok(resolution.to_string())
     }));
     match result {
         Ok(Ok(body)) => {

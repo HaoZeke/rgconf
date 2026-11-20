@@ -102,6 +102,16 @@ pub struct Resolution {
     pub edits: Vec<ParamEdit>,
 }
 
+impl std::fmt::Display for Resolution {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "profile {}", self.profile.name())?;
+        for (key, field) in &self.fields {
+            write!(f, "\n{key}={} {}", field.value, field.status.name())?;
+        }
+        Ok(())
+    }
+}
+
 impl Resolution {
     pub fn get(&self, key: &str) -> Option<&ResolvedField> {
         self.fields.get(key)
