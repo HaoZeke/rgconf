@@ -6,6 +6,7 @@ use rgconf::provenance::{BlobAppend, CanonicalLeaf, MissingCapnpCanonicalization
 use rgconf::redact::redact_env;
 use rgconf::sbom::parse_cyclonedx;
 use rgconf::units::{gpridge_paper_force_ev_per_angstrom, Dimension, UNIT_ROUNDTRIP_ABS_TOLERANCE};
+use rgconf::value::ScalarKind;
 use rgconf::{
     apply_edit, convert, convert_stress, ConfigLayer, EditOrigin, Error, ParamValue, Profile,
     ProvenanceLog, Resolver, RgConf, StressSign, Unit, ValueStatus, UPSTREAM_PATCHES,
@@ -41,6 +42,42 @@ fn catalog_contains_the_real_authority_keys() {
     ] {
         assert!(cat.get(key).is_some(), "catalog missing {key}");
     }
+}
+
+#[test]
+fn nested_declarations_resolve_to_leaf_specs() {
+    let cat = catalog().expect("catalog");
+    let kind = cat
+        .get("potential.common.smearing.kind")
+        .expect("potential.common.smearing.kind");
+    assert_eq!(
+        kind.kind,
+        ScalarKind::Enum(vec![
+            "none".into(),
+            "fermi".into(),
+            "gaussian".into(),
+            "methfesselPaxton".into()
+        ])
+    );
+    assert_eq!(kind.default_value, ParamValue::Text("none".into()));
+    let width = cat
+        .get("potential.common.smearing.widthEv")
+        .expect("potential.common.smearing.widthEv");
+    assert_eq!(width.kind, ScalarKind::Float);
+    assert_eq!(width.default_value, ParamValue::Float(0.0));
+    let torch = cat
+        .get("potential.metatomic.torchDeterminism")
+        .expect("potential.metatomic.torchDeterminism");
+    assert_eq!(
+        torch.kind,
+        ScalarKind::Enum(vec!["fast".into(), "deterministic".into()])
+    );
+    assert_eq!(torch.default_value, ParamValue::Text("fast".into()));
+    let oracle = cat
+        .get("potential.gpr.oracle.metatomic.torchDeterminism")
+        .expect("potential.gpr.oracle.metatomic.torchDeterminism");
+    assert_eq!(oracle.kind, torch.kind);
+    assert_eq!(oracle.default_value, torch.default_value);
 }
 
 #[test]

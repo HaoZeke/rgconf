@@ -394,28 +394,24 @@ fn walk(
             push_spec(out, key, ScalarKind::Text, Some(default.to_string()), field);
             continue;
         }
-        if let Some(names) = model.enums.get(local) {
-            push_spec(
-                out,
-                key,
-                ScalarKind::Enum(names.clone()),
-                field
-                    .default_text
-                    .clone()
-                    .or_else(|| names.first().cloned()),
-                field,
-            );
-            continue;
+        if let Some(hit) = resolve_type(model, struct_name, type_name) {
+            match hit {
+                TypeHit::Enum(names) => {
+                    let default = field
+                        .default_text
+                        .clone()
+                        .or_else(|| names.first().cloned());
+                    push_spec(out, key, ScalarKind::Enum(names), default, field);
+                    continue;
+                }
+                TypeHit::Struct(qualified) => {
+                    walk(model, &qualified, &key, out, stack)?;
+                    continue;
+                }
+            }
         }
         if let Some(kind) = scalar_kind(local) {
             push_spec(out, key, kind, field.default_text.clone(), field);
-            continue;
-        }
-        if model.structs.contains_key(local) {
-            if field.union_arm && local == "Void" {
-                continue;
-            }
-            walk(model, local, &key, out, stack)?;
             continue;
         }
         if local.starts_with("List(") || local == "Data" || local == "Void" {
@@ -620,6 +616,80 @@ fn unwrap_optional(type_name: &str) -> &str {
     }
 }
 
+enum TypeHit {
+    Enum(Vec<String>),
+    Struct(String),
+}
+
+enum Lookup {
+    Miss,
+    Hit(TypeHit),
+    Both,
+}
+
+/// Resolve `type_name` from the struct currently being walked.
+///
+/// Nested declarations live under their enclosing path, so a local name
+/// that a struct and an enum share is the one in the nearest scope. A
+/// dotted reference selects that path. A leading import alias is only
+/// dropped after the complete path misses in every enclosing scope.
+/// When one path names both a struct and an enum, the reference stays
+/// unresolved.
+fn resolve_type(model: &SchemaModel, scope: &str, type_name: &str) -> Option<TypeHit> {
+    for base in scope_chain(scope) {
+        match lookup_exact(model, &join_scope(base, type_name)) {
+            Lookup::Hit(hit) => return Some(hit),
+            Lookup::Both => return None,
+            Lookup::Miss => {}
+        }
+    }
+    let (_, tail) = type_name.split_once('.')?;
+    match lookup_exact(model, tail) {
+        Lookup::Hit(hit) => Some(hit),
+        Lookup::Both | Lookup::Miss => None,
+    }
+}
+
+fn scope_chain(scope: &str) -> Vec<&str> {
+    let mut chain = Vec::new();
+    let mut rest = scope;
+    loop {
+        chain.push(rest);
+        if rest.is_empty() {
+            break;
+        }
+        rest = match rest.rsplit_once('.') {
+            Some((parent, _)) => parent,
+            None => "",
+        };
+    }
+    chain
+}
+
+fn join_scope(base: &str, tail: &str) -> String {
+    if base.is_empty() {
+        tail.to_string()
+    } else if tail.is_empty() {
+        base.to_string()
+    } else {
+        format!("{base}.{tail}")
+    }
+}
+
+fn qualify(scope: &str, name: &str) -> String {
+    join_scope(scope, name)
+}
+
+fn lookup_exact(model: &SchemaModel, qualified: &str) -> Lookup {
+    let as_struct = model.structs.contains_key(qualified);
+    match (as_struct, model.enums.get(qualified)) {
+        (true, Some(_)) => Lookup::Both,
+        (true, None) => Lookup::Hit(TypeHit::Struct(qualified.to_string())),
+        (false, Some(names)) => Lookup::Hit(TypeHit::Enum(names.clone())),
+        (false, None) => Lookup::Miss,
+    }
+}
+
 fn scalar_kind(local: &str) -> Option<ScalarKind> {
     Some(match local {
         "Bool" => ScalarKind::Bool,
@@ -655,34 +725,10 @@ fn parse_file(text: &str, model: &mut SchemaModel) -> Result<(), Error> {
             scan.bump();
             continue;
         };
-        match word.as_str() {
-            "struct" => {
-                let Some(name) = scan.ident() else {
-                    continue;
-                };
-                if !scan.eat(b'{') {
-                    continue;
-                }
-                let fields = scan.parse_struct_fields();
-                model.structs.insert(name, StructDef { fields });
-            }
-            "enum" => {
-                let Some(name) = scan.ident() else {
-                    continue;
-                };
-                if !scan.eat(b'{') {
-                    continue;
-                }
-                let names = scan.parse_enum_names();
-                model.enums.insert(name, names);
-            }
-            "interface" => {
-                let _ = scan.ident();
-                if scan.eat(b'{') {
-                    scan.skip_balanced_body();
-                }
-            }
-            _ => scan.skip_statement(),
+        if matches!(word.as_str(), "struct" | "enum" | "interface") {
+            scan.take_nested_decl(model, "", &word);
+        } else {
+            scan.skip_statement();
         }
     }
     Ok(())
@@ -860,7 +906,30 @@ impl Scan<'_> {
         names
     }
 
-    fn parse_struct_fields(&mut self) -> Vec<RawField> {
+    fn take_nested_decl(&mut self, model: &mut SchemaModel, scope: &str, keyword: &str) {
+        let Some(name) = self.ident() else {
+            return;
+        };
+        if !self.eat(b'{') {
+            return;
+        }
+        let qualified = qualify(scope, &name);
+        match keyword {
+            "struct" => {
+                let fields = self.parse_struct_fields(model, &qualified);
+                model.structs.insert(qualified, StructDef { fields });
+            }
+            "enum" => {
+                let names = self.parse_enum_names();
+                model.enums.insert(qualified, names);
+            }
+            "interface" => self.skip_balanced_body(),
+            _ => {}
+        }
+        self.pending_doc.clear();
+    }
+
+    fn parse_struct_fields(&mut self, model: &mut SchemaModel, scope: &str) -> Vec<RawField> {
         let mut fields = Vec::new();
         loop {
             self.skip();
@@ -875,30 +944,24 @@ impl Scan<'_> {
                 self.bump();
                 continue;
             };
-            match word.as_str() {
-                "struct" | "enum" | "interface" => {
-                    let _ = self.ident();
-                    if self.eat(b'{') {
-                        self.skip_balanced_body();
-                    }
-                    self.pending_doc.clear();
+            if matches!(word.as_str(), "struct" | "enum" | "interface") && !self.next_is(b'@') {
+                self.take_nested_decl(model, scope, &word);
+                continue;
+            }
+            if word == "union" {
+                if self.eat(b'{') {
+                    fields.extend(self.parse_union_fields(model, scope));
                 }
-                "union" => {
-                    if self.eat(b'{') {
-                        fields.extend(self.parse_union_fields());
-                    }
-                }
-                _ => {
-                    if let Some(field) = self.parse_field(word, false) {
-                        fields.push(field);
-                    }
-                }
+                continue;
+            }
+            if let Some(field) = self.parse_field(word, false) {
+                fields.push(field);
             }
         }
         fields
     }
 
-    fn parse_union_fields(&mut self) -> Vec<RawField> {
+    fn parse_union_fields(&mut self, model: &mut SchemaModel, scope: &str) -> Vec<RawField> {
         let mut fields = Vec::new();
         loop {
             self.skip();
@@ -910,11 +973,8 @@ impl Scan<'_> {
                 self.bump();
                 continue;
             };
-            if matches!(name.as_str(), "struct" | "enum" | "interface") {
-                let _ = self.ident();
-                if self.eat(b'{') {
-                    self.skip_balanced_body();
-                }
+            if matches!(name.as_str(), "struct" | "enum" | "interface") && !self.next_is(b'@') {
+                self.take_nested_decl(model, scope, &name);
                 continue;
             }
             if let Some(field) = self.parse_field(name, true) {
@@ -952,6 +1012,11 @@ impl Scan<'_> {
             union_arm,
             source_line: self.line,
         })
+    }
+
+    fn next_is(&mut self, expected: u8) -> bool {
+        self.skip();
+        self.i < self.s.len() && self.s[self.i] == expected
     }
 
     fn parse_type(&mut self) -> Option<String> {
@@ -1236,4 +1301,231 @@ fn split_top(text: &str, separator: u8) -> Vec<String> {
         parts.push(text[start..].to_string());
     }
     parts
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{parse_file, walk, SchemaModel};
+    use crate::value::{ParamValue, ScalarKind};
+    use std::collections::HashMap;
+
+    fn specs(schema: &str, root: &str) -> Vec<super::ParamSpec> {
+        let mut model = SchemaModel {
+            structs: HashMap::new(),
+            enums: HashMap::new(),
+        };
+        parse_file(schema, &mut model).expect("schema parses");
+        let mut out = Vec::new();
+        let mut stack = Vec::new();
+        walk(&model, root, "", &mut out, &mut stack).expect("walk");
+        out
+    }
+
+    fn spec<'a>(rows: &'a [super::ParamSpec], key: &str) -> &'a super::ParamSpec {
+        rows.iter()
+            .find(|row| row.key == key)
+            .unwrap_or_else(|| panic!("missing {key}"))
+    }
+
+    #[test]
+    fn shared_struct_and_enum_names_follow_scope_and_path() {
+        let rows = specs(
+            r#"
+            struct Tone {
+              hz @0 :Float64 = 440.0;
+            }
+            enum Mode {
+              fast @0;
+              safe @1;
+            }
+            struct Holder {
+              own @0 :Mode;
+              struct Mode {
+                enabled @0 :Bool = true;
+              }
+            }
+            struct Mixer {
+              tone @0 :Tone;
+              enum Tone {
+                low @0;
+                high @1;
+              }
+            }
+            struct Root {
+              holder @0 :Holder;
+              mixer @1 :Mixer;
+              picked @2 :Mode;
+              plain @3 :Tone;
+              viaPath @4 :Holder.Mode;
+            }
+            "#,
+            "Root",
+        );
+        let own = spec(&rows, "holder.own.enabled");
+        assert_eq!(own.kind, ScalarKind::Bool);
+        assert_eq!(own.default_value, ParamValue::Bool(true));
+        assert!(rows.iter().all(|row| row.key != "holder.own"));
+
+        let tone = spec(&rows, "mixer.tone");
+        assert_eq!(
+            tone.kind,
+            ScalarKind::Enum(vec!["low".into(), "high".into()])
+        );
+        assert_eq!(tone.default_value, ParamValue::Text("low".into()));
+        assert!(rows.iter().all(|row| row.key != "mixer.tone.hz"));
+
+        let picked = spec(&rows, "picked");
+        assert_eq!(
+            picked.kind,
+            ScalarKind::Enum(vec!["fast".into(), "safe".into()])
+        );
+        assert_eq!(picked.default_value, ParamValue::Text("fast".into()));
+
+        let plain = spec(&rows, "plain.hz");
+        assert_eq!(plain.kind, ScalarKind::Float);
+        assert_eq!(plain.default_value, ParamValue::Float(440.0));
+
+        let via_path = spec(&rows, "viaPath.enabled");
+        assert_eq!(via_path.kind, ScalarKind::Bool);
+        assert_eq!(via_path.default_value, ParamValue::Bool(true));
+    }
+
+    #[test]
+    fn dotted_references_resolve_before_local_tail_names() {
+        let rows = specs(
+            r#"
+            enum Mode {
+              imported @0;
+              fallback @1;
+            }
+            struct Outer {
+              struct Inner {
+                struct Leaf {
+                  selected @0 :Bool = true;
+                }
+              }
+              struct Holder {
+                struct Leaf {
+                  wrong @0 :Text;
+                }
+                enum Mode {
+                  local @0;
+                }
+                sibling @0 :Inner.Leaf;
+                imported @1 :Common.Mode;
+              }
+              holder @0 :Holder;
+            }
+            "#,
+            "Outer",
+        );
+
+        let sibling = spec(&rows, "holder.sibling.selected");
+        assert_eq!(sibling.kind, ScalarKind::Bool);
+        assert_eq!(sibling.default_value, ParamValue::Bool(true));
+        assert!(rows.iter().all(|row| row.key != "holder.sibling.wrong"));
+
+        let imported = spec(&rows, "holder.imported");
+        assert_eq!(
+            imported.kind,
+            ScalarKind::Enum(vec!["imported".into(), "fallback".into()])
+        );
+        assert_eq!(imported.default_value, ParamValue::Text("imported".into()));
+    }
+
+    #[test]
+    fn keyword_named_fields_are_parsed_by_context() {
+        let rows = specs(
+            r#"
+            struct Root {
+              struct @0 :Bool = true;
+              enum @1 :Int32 = 7;
+              interface @2 :Text = "field";
+            }
+            "#,
+            "Root",
+        );
+
+        assert_eq!(spec(&rows, "struct").default_value, ParamValue::Bool(true));
+        assert_eq!(spec(&rows, "enum").default_value, ParamValue::Int(7));
+        assert_eq!(
+            spec(&rows, "interface").default_value,
+            ParamValue::Text("field".into())
+        );
+
+        let cpmd = specs(
+            include_str!("../../../schema/potential.capnp"),
+            "CPMDCpmdSection",
+        );
+        assert_eq!(
+            spec(&cpmd, "interface").default_value,
+            ParamValue::Bool(false)
+        );
+    }
+
+    #[test]
+    fn recursive_struct_cycles_are_bounded() {
+        let rows = specs(
+            r#"
+            struct A {
+              value @0 :Bool = true;
+              next @1 :B;
+            }
+            struct B {
+              count @0 :Int32 = 2;
+              next @1 :A;
+            }
+            struct Root {
+              cycle @0 :A;
+            }
+            "#,
+            "Root",
+        );
+
+        assert_eq!(
+            spec(&rows, "cycle.value").default_value,
+            ParamValue::Bool(true)
+        );
+        assert_eq!(
+            spec(&rows, "cycle.next.count").default_value,
+            ParamValue::Int(2)
+        );
+        assert_eq!(rows.len(), 2);
+    }
+
+    #[test]
+    fn nested_schema_leaves_have_specs() {
+        let cat = super::catalog().expect("catalog");
+        let kind = cat
+            .get("potential.common.smearing.kind")
+            .expect("smearing.kind");
+        assert_eq!(
+            kind.kind,
+            ScalarKind::Enum(vec![
+                "none".into(),
+                "fermi".into(),
+                "gaussian".into(),
+                "methfesselPaxton".into()
+            ])
+        );
+        assert_eq!(kind.default_value, ParamValue::Text("none".into()));
+        let width = cat
+            .get("potential.common.smearing.widthEv")
+            .expect("smearing.widthEv");
+        assert_eq!(width.kind, ScalarKind::Float);
+        assert_eq!(width.default_value, ParamValue::Float(0.0));
+        let torch = cat
+            .get("potential.metatomic.torchDeterminism")
+            .expect("torchDeterminism");
+        assert_eq!(
+            torch.kind,
+            ScalarKind::Enum(vec!["fast".into(), "deterministic".into()])
+        );
+        assert_eq!(torch.default_value, ParamValue::Text("fast".into()));
+        let oracle = cat
+            .get("potential.gpr.oracle.metatomic.torchDeterminism")
+            .expect("oracle torchDeterminism");
+        assert_eq!(oracle.kind, torch.kind);
+        assert_eq!(oracle.default_value, torch.default_value);
+    }
 }

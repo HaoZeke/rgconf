@@ -1,6 +1,6 @@
 repo	struct	field	rgconf	eon	note
 rgmin	rgmin_rlbfgs_t	memory	optimizer.LbfgsConfig.memory	lbfgs_t.memory	History length in both. The rgmin record defaults to 4 pairs where rgconf defaults to 20.
-rgmin	rgmin_rlbfgs_t	cautious_slope	optimizer.LbfgsConfig.cautiousEpsilon	lbfgs_t.cautious_eps	Factor on the gradient norm in the cautious curvature test. The rgmin test fixes the exponent at one, while rgconf also exposes it as cautiousAlpha.
+rgmin	rgmin_rlbfgs_t	cautious_slope	optimizer.LbfgsConfig.cautiousEpsilon	lbfgs_t.cautious_eps	Factor on the gradient norm in the cautious curvature test. The defaults differ: rgmin uses 1e-4 while the schema and eOn use 1e-6. The rgmin test fixes the exponent at one, while rgconf also exposes it as cautiousAlpha.
 rgmin	rgmin_rlbfgs_t	armijo	unmapped	none	Sufficient-decrease constant of the Riemannian line search. rgconf has no line search constant for this method.
 rgmin	rgmin_rlbfgs_t	backtrack	unmapped	none	Factor applied to a rejected trial length. rgconf has no matching field.
 rgmin	rgmin_rlbfgs_t	linesearch_max	unmapped	none	Rejected trials allowed per iteration. The rgconf maxIterLineSearch field applies to the cg method only.
