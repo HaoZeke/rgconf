@@ -26,6 +26,17 @@ Derived values
 ``band.zoom.triggerForceEvPerAngstrom`` is the band force tolerance times ``triggerForceMultiplier`` (10 unless set). ``band.spring.ewKMinEvPerAngstrom2`` is one tenth of ``constantEvPerAngstrom2``. The schema file still carries the literals 0.5 and 0.972. The resolver uses the formulas when the user left the field unset. Those literals are not the runtime default.
 
 
+Fixed-energy LI-NEB
+===================
+
+
+``job = lineb`` selects ``JobKind.lineb``. ``lineb.*`` mirrors eOn ``[Lineb]`` /
+``lineb_options_t`` (energy and force tolerances presence-aware; unset
+``opt_tol`` / ``perp_tol`` resolve to eOn ``1e-3`` √eV; ``hbar`` / ``boltzmann``
+use eOn tunneling constants). See the fixed-energy LI-NEB tutorial and
+``examples/lineb.ini``.
+
+
 Public Rust types
 =================
 

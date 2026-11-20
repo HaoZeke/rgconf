@@ -575,6 +575,263 @@ fn unit_round_trip_and_stress_sign() {
     );
 }
 
+#[test]
+fn lineb_eon_defaults_and_units_resolve() {
+    let cat = catalog().expect("catalog");
+    let energy = cat.get("lineb.energyEv").expect("energyEv");
+    assert_eq!(energy.unit, "ev");
+    assert_eq!(energy.type_name, "Common.OptFloat64");
+    let opt = cat.get("lineb.optTolSqrtEv").expect("optTolSqrtEv");
+    assert_eq!(opt.unit, "sqrtEv");
+    assert_eq!(opt.dimension, "massWeightedForce");
+    assert_eq!(opt.type_name, "Common.OptFloat64");
+    let perp = cat.get("lineb.perpTolSqrtEv").expect("perpTolSqrtEv");
+    assert_eq!(perp.unit, "sqrtEv");
+
+    let resolution = resolved(Profile::EonLegacyIni);
+    assert_eq!(
+        field(&resolution, "lineb.optTolSqrtEv").value,
+        ParamValue::Float(1e-3)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.optTolSqrtEv").status,
+        ValueStatus::DerivedFromUnset
+    );
+    assert_eq!(
+        field(&resolution, "lineb.perpTolSqrtEv").value,
+        ParamValue::Float(1e-3)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.spring").value,
+        ParamValue::Float(0.1)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.endpointScale").value,
+        ParamValue::Float(0.2)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.timeStep").value,
+        ParamValue::Float(0.1)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.maxMove").value,
+        ParamValue::Float(0.2)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.turningWidth").value,
+        ParamValue::Float(1e-3)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.hbar").value,
+        ParamValue::Float(0.06465415129579072)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.boltzmann").value,
+        ParamValue::Float(8.617333262145177e-5)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.quadraturePairs").value,
+        ParamValue::Uint(4)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.maxSteps").value,
+        ParamValue::Uint(1000)
+    );
+    assert_eq!(field(&resolution, "lineb.beads").value, ParamValue::Uint(0));
+    assert_eq!(
+        field(&resolution, "lineb.molecular").value,
+        ParamValue::Bool(false)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.initialPath").value,
+        ParamValue::Text(String::new())
+    );
+    // energyEv stays OptFloat64; unset resolves to eOn's wire 0.0 (not a
+    // invented barrier height). Presence is the Cap'n Proto union + type_name.
+    assert_eq!(
+        field(&resolution, "lineb.energyEv").value,
+        ParamValue::Float(0.0)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.energyEv").status,
+        ValueStatus::DefaultValue
+    );
+    assert_eq!(Unit::parse("sqrtEv"), Some(Unit::SqrtEv));
+}
+
+#[test]
+fn lineb_working_ini_matches_eon_keys() {
+    // INI shape accepted by eOn ParametersINI.cpp [Lineb] (904ad4f27).
+    let ini = "\
+[Main]\n\
+job = lineb\n\
+\n\
+[Lineb]\n\
+initial_path = neb.con\n\
+energy = 0.25\n\
+opt_tol = 0.01\n\
+perp_tol = 0.02\n\
+beads = 0\n\
+molecular = false\n\
+spring = 0.1\n\
+endpoint_scale = 0.2\n\
+time_step = 0.1\n\
+max_move = 0.2\n\
+turning_width = 0.001\n\
+max_steps = 400\n\
+";
+    let mut resolver = Resolver::new(Profile::EonLegacyIni);
+    resolver
+        .merge_ini(ConfigLayer::JobConfigFile, ini, "lineb.ini")
+        .unwrap();
+    let resolution = resolver.resolve().unwrap();
+    assert_eq!(field(&resolution, "runtime.job").value.to_string(), "lineb");
+    assert_eq!(
+        field(&resolution, "lineb.initialPath").value,
+        ParamValue::Text("neb.con".into())
+    );
+    assert_eq!(
+        field(&resolution, "lineb.energyEv").value,
+        ParamValue::Float(0.25)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.optTolSqrtEv").value,
+        ParamValue::Float(0.01)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.perpTolSqrtEv").value,
+        ParamValue::Float(0.02)
+    );
+    assert_eq!(field(&resolution, "lineb.beads").value, ParamValue::Uint(0));
+    assert_eq!(
+        field(&resolution, "lineb.molecular").value,
+        ParamValue::Bool(false)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.maxSteps").value,
+        ParamValue::Uint(400)
+    );
+}
+
+#[test]
+fn lineb_example_ini_file_resolves() {
+    let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../examples/lineb.ini");
+    let text = std::fs::read_to_string(&path).unwrap_or_else(|err| {
+        panic!("read {}: {err}", path.display());
+    });
+    let mut resolver = Resolver::new(Profile::EonLegacyIni);
+    resolver
+        .merge_ini(ConfigLayer::JobConfigFile, &text, path.to_str().unwrap())
+        .unwrap();
+    let resolution = resolver.resolve().unwrap();
+    assert_eq!(field(&resolution, "runtime.job").value.to_string(), "lineb");
+    assert_eq!(
+        field(&resolution, "lineb.initialPath").value,
+        ParamValue::Text("neb.con".into())
+    );
+    assert_eq!(
+        field(&resolution, "lineb.energyEv").value,
+        ParamValue::Float(0.25)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.optTolSqrtEv").value,
+        ParamValue::Float(0.01)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.perpTolSqrtEv").value,
+        ParamValue::Float(0.01)
+    );
+    assert_eq!(field(&resolution, "lineb.beads").value, ParamValue::Uint(0));
+    assert_eq!(
+        field(&resolution, "lineb.molecular").value,
+        ParamValue::Bool(false)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.hbar").value,
+        ParamValue::Float(0.06465415129579072)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.boltzmann").value,
+        ParamValue::Float(8.617333262145177e-5)
+    );
+}
+
+#[test]
+fn lineb_overlay_overrides_energy_and_tolerances() {
+    let base = "\
+[Main]\n\
+job = lineb\n\
+[Lineb]\n\
+energy = 0.5\n\
+opt_tol = 1e-3\n\
+perp_tol = 1e-3\n\
+initial_path = seed.con\n\
+";
+    let overlay = "\
+[Lineb]\n\
+energy = 1.25\n\
+opt_tol = 5e-4\n\
+beads = 32\n\
+molecular = true\n\
+";
+    let mut resolver = Resolver::new(Profile::EonLegacyIni);
+    resolver
+        .merge_ini(ConfigLayer::ProjectToml, base, "base.ini")
+        .unwrap();
+    resolver
+        .merge_ini(ConfigLayer::JobConfigFile, overlay, "overlay.ini")
+        .unwrap();
+    let resolution = resolver.resolve().unwrap();
+    assert_eq!(
+        field(&resolution, "lineb.energyEv").value,
+        ParamValue::Float(1.25)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.energyEv").status,
+        ValueStatus::LayeredOverride
+    );
+    assert_eq!(
+        field(&resolution, "lineb.optTolSqrtEv").value,
+        ParamValue::Float(5e-4)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.beads").value,
+        ParamValue::Uint(32)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.molecular").value,
+        ParamValue::Bool(true)
+    );
+    assert_eq!(
+        field(&resolution, "lineb.initialPath").value,
+        ParamValue::Text("seed.con".into())
+    );
+}
+
+#[test]
+fn lineb_rejects_invalid_turning_width() {
+    let ini = "[Lineb]\nturning_width = 1.5\n";
+    let mut resolver = Resolver::new(Profile::RgconfCanonical);
+    resolver
+        .merge_ini(ConfigLayer::JobConfigFile, ini, "bad-lineb.ini")
+        .unwrap();
+    let err = resolver.resolve().unwrap_err();
+    let text = err.to_string();
+    assert!(text.contains("lineb.turningWidth"), "{text}");
+}
+
+#[test]
+fn lineb_rejects_nonpositive_spring() {
+    let ini = "[Lineb]\nspring = 0\n";
+    let mut resolver = Resolver::new(Profile::RgconfCanonical);
+    resolver
+        .merge_ini(ConfigLayer::JobConfigFile, ini, "bad-spring.ini")
+        .unwrap();
+    let err = resolver.resolve().unwrap_err();
+    let text = err.to_string();
+    assert!(text.contains("lineb.spring"), "{text}");
+}
+
 proptest::proptest! {
     #[test]
     fn precedence_highest_layer_wins(file in 3u64..30, env in 3u64..30, cli in 3u64..30) {

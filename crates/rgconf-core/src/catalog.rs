@@ -314,6 +314,7 @@ fn section_owner(section: &str) -> Option<&'static str> {
         "Hessian" => "hessian",
         "Prefactor" => "prefactor",
         "Instanton" => "instanton",
+        "Lineb" | "lineb" => "lineb",
         "Debug" | "debug" => "debug",
         "Serve" => "serve",
         "run" => "run",

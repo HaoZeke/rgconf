@@ -1,0 +1,29 @@
+Fixed-energy LI-NEB (``job = lineb``)
+=====================================
+
+Resolve the same ``[Lineb]`` client file that eOn accepts. Canonical keys live
+on ``lineb.*`` (RgConf ``@40``); ``JobKind.lineb`` is ``@23``.
+
+eOn parity
+----------
+
+HaoZeke/eOn ``feat/fixed-energy-lineb`` at ``904ad4f27`` reads:
+
+* ``[Main] job = lineb`` → ``runtime.job``
+* ``[Lineb] initial_path`` → ``lineb.initialPath``
+* ``energy`` → ``lineb.energyEv`` (presence-aware, eV)
+* ``opt_tol`` / ``perp_tol`` → ``lineb.optTolSqrtEv`` / ``perpTolSqrtEv``
+  (√eV, presence-aware; unset resolves to eOn ``1e-3``)
+* ``beads`` → ``lineb.beads`` (``0`` = path only)
+* ``molecular`` → ``lineb.molecular``
+* optional numerical keys use eOn physical defaults (``hbar`` / ``boltzmann``
+  in eOn tunneling units)
+
+Example
+-------
+
+See ``examples/lineb.ini``.
+
+.. code-block:: bash
+
+   rgconf resolve --profile eonLegacyIni --ini examples/lineb.ini

@@ -42,6 +42,8 @@ enum DimensionKind {
   entropyHeatCapacity @16;
   frictionRate @17;
   memorySize @18;
+  # Norm of a force in mass-weighted coordinates (LI-NEB opt/perp tolerances).
+  massWeightedForce @19;
 }
 
 enum CanonicalUnit {
@@ -83,6 +85,8 @@ enum CanonicalUnit {
   invSecond @35;
   megabyte @36;
   gigabyte @37;
+  # Mass-weighted force: √eV when lengths are absorbed into q = √m x (LI-NEB).
+  sqrtEv @38;
 }
 
 enum StressSignConvention {
