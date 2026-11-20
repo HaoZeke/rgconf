@@ -30,11 +30,7 @@ Fixed-energy LI-NEB
 ===================
 
 
-``job = lineb`` selects ``JobKind.lineb``. ``lineb.*`` mirrors eOn ``[Lineb]`` /
-``lineb_options_t`` (energy and force tolerances presence-aware; unset
-``opt_tol`` / ``perp_tol`` resolve to eOn ``1e-3`` √eV; ``hbar`` / ``boltzmann``
-use eOn tunneling constants). See the fixed-energy LI-NEB tutorial and
-``examples/lineb.ini``.
+The ``lineb`` job uses the ``lineb.*`` parameters in the eOn ``[Lineb]`` section. Energy is in eV and force tolerances are in √eV. Unset tolerances resolve to 0.001.
 
 
 Public Rust types

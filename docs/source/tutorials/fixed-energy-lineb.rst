@@ -1,29 +1,24 @@
-Fixed-energy LI-NEB (``job = lineb``)
+Resolve a fixed-energy tunneling path
 =====================================
 
-Resolve the same ``[Lineb]`` client file that eOn accepts. Canonical keys live
-on ``lineb.*`` (RgConf ``@40``); ``JobKind.lineb`` is ``@23``.
 
-eOn parity
-----------
+The eOn client selects this calculation with the ``lineb`` job in the
+``[Main]`` section. The ``[Lineb]`` section holds the seed path and the controls.
 
-HaoZeke/eOn ``feat/fixed-energy-lineb`` at ``904ad4f27`` reads:
+* ``initial_path`` names the multi-frame seed band.
+* ``energy`` sets the turning energy in eV. The resolver retains whether the caller supplied it.
+* ``opt_tol`` and ``perp_tol`` are mass-weighted force tolerances in √eV. Each defaults to 0.001.
+* ``beads`` selects the number of harmonic quantum TST replicas. Use zero for the path alone, or at least two for the rate.
+* ``molecular`` enables rigid alignment of a free molecule.
 
-* ``[Main] job = lineb`` → ``runtime.job``
-* ``[Lineb] initial_path`` → ``lineb.initialPath``
-* ``energy`` → ``lineb.energyEv`` (presence-aware, eV)
-* ``opt_tol`` / ``perp_tol`` → ``lineb.optTolSqrtEv`` / ``perpTolSqrtEv``
-  (√eV, presence-aware; unset resolves to eOn ``1e-3``)
-* ``beads`` → ``lineb.beads`` (``0`` = path only)
-* ``molecular`` → ``lineb.molecular``
-* optional numerical keys use eOn physical defaults (``hbar`` / ``boltzmann``
-  in eOn tunneling units)
+The resolver reports the canonical fields and the origin of each value. Run
+the example from the repository root.
 
-Example
--------
-
-See ``examples/lineb.ini``.
 
 .. code-block:: bash
 
    rgconf resolve --profile eonLegacyIni --ini examples/lineb.ini
+
+
+The output includes ``lineb.energyEv`` with value 0.25 and ``lineb.beads``
+with value zero. Both come from the example file.
