@@ -809,6 +809,30 @@ molecular = true\n\
 }
 
 #[test]
+fn lineb_job_distinguishes_missing_energy_from_explicit_zero() {
+    let mut resolver = Resolver::new(Profile::EonLegacyIni);
+    resolver
+        .merge_ini(ConfigLayer::JobConfigFile, "[Main]\njob = lineb", "job.ini")
+        .unwrap();
+    assert!(resolver
+        .resolve()
+        .unwrap_err()
+        .to_string()
+        .contains("requires an explicit [Lineb] energy"));
+    resolver
+        .merge_ini(
+            ConfigLayer::JobConfigFile,
+            "[Lineb]\nenergy = 0",
+            "energy.ini",
+        )
+        .unwrap();
+    assert_eq!(
+        field(&resolver.resolve().unwrap(), "lineb.energyEv").value,
+        ParamValue::Float(0.0)
+    );
+}
+
+#[test]
 fn a_single_bead_cannot_form_a_periodic_orbit() {
     let mut resolver = Resolver::new(Profile::EonLegacyIni);
     resolver

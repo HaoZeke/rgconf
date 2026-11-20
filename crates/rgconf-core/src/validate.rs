@@ -2,7 +2,7 @@
 
 use crate::catalog::{catalog, Bounds, ParamSpec};
 use crate::error::Error;
-use crate::resolve::ResolvedField;
+use crate::resolve::{ResolvedField, ValueStatus};
 use crate::value::{ParamValue, ScalarKind};
 use std::collections::BTreeMap;
 
@@ -21,6 +21,21 @@ pub fn validate(fields: &BTreeMap<String, ResolvedField>) -> Result<(), Error> {
 
 /// Numerical constraints shared by the eOn job and the LI-NEB solver.
 fn check_lineb(fields: &BTreeMap<String, ResolvedField>) -> Result<(), Error> {
+    if let Some(job) = fields.get("runtime.job") {
+        if job.value.to_string() == "lineb"
+            && fields.get("lineb.energyEv").is_none_or(|energy| {
+                matches!(
+                    energy.status,
+                    ValueStatus::DefaultValue | ValueStatus::DerivedFromUnset
+                )
+            })
+        {
+            return Err(located(
+                job,
+                "job = lineb requires an explicit [Lineb] energy in eV",
+            ));
+        }
+    }
     if !fields.keys().any(|key| key.starts_with("lineb.")) {
         return Ok(());
     }
