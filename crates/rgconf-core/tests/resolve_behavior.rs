@@ -809,6 +809,20 @@ molecular = true\n\
 }
 
 #[test]
+fn a_single_bead_cannot_form_a_periodic_orbit() {
+    let mut resolver = Resolver::new(Profile::EonLegacyIni);
+    resolver
+        .merge_ini(
+            ConfigLayer::JobConfigFile,
+            "[Lineb]\nbeads = 1",
+            "one-bead.ini",
+        )
+        .unwrap();
+    let message = resolver.resolve().unwrap_err().to_string();
+    assert!(message.contains("lineb.beads"), "{message}");
+}
+
+#[test]
 fn lineb_rejects_invalid_turning_width() {
     let ini = "[Lineb]\nturning_width = 1.5\n";
     let mut resolver = Resolver::new(Profile::RgconfCanonical);

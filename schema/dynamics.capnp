@@ -166,17 +166,13 @@ struct InstantonPatch {
   optimizer @3 :Opt.OptimizerPatch;
 }
 
-# Fixed-energy line-integral NEB (eOn [Lineb] / lineb_options_t at
-# HaoZeke/eOn feat/fixed-energy-lineb 904ad4f27). Keys and physical defaults
-# match ParametersINI.cpp and LinebConfig. energy, optTol, and perpTol are
-# presence-aware (required for a real solve; no invented scientific substitute
-# beyond eOn's wire defaults when the union is left unset in Cap'n Proto).
-# hbar and boltzmann are eOn's eV / amu / Angstrom / K tunneling constants.
+# Fixed-energy line-integral NEB. Energy and both tolerances retain presence
+# across configuration overlays. The physical constants use eV, amu, Å and K.
 struct LinebConfig {
   initialPath @0 :Text = "" $Common.mutability(restartOnly) $Common.meta(
     aliases = [(format = "ini", section = "Lineb", key = "initial_path")],
     cliFlags = ["--lineb-initial-path"],
-    doc = "Multi-frame seed band (neb.con). Every image must start above energy."
+    doc = "Multi-frame seed band (neb.con). Interior images must start at or above energy plus the turning width."
   );
   energyEv @1 :Common.OptFloat64 $Common.mutability(betweenStepsWithHook) $Common.meta(
     dimension = energy,
@@ -276,7 +272,7 @@ struct LinebConfig {
     unit = none,
     aliases = [(format = "ini", section = "Lineb", key = "beads")],
     cliFlags = ["--lineb-beads"],
-    doc = "Harmonic quantum TST replicas. 0 writes the path only."
+    doc = "Use 0 for the path only or at least 2 replicas for harmonic quantum TST."
   );
   molecular @14 :Bool = false $Common.mutability(restartOnly) $Common.meta(
     aliases = [(format = "ini", section = "Lineb", key = "molecular")],

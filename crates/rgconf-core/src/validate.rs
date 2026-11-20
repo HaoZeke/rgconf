@@ -19,7 +19,7 @@ pub fn validate(fields: &BTreeMap<String, ResolvedField>) -> Result<(), Error> {
     Ok(())
 }
 
-/// Checks matching eOn ParametersINI.cpp `[Lineb]` (904ad4f27).
+/// Numerical constraints shared by the eOn job and the LI-NEB solver.
 fn check_lineb(fields: &BTreeMap<String, ResolvedField>) -> Result<(), Error> {
     if !fields.keys().any(|key| key.starts_with("lineb.")) {
         return Ok(());
@@ -82,6 +82,14 @@ fn check_lineb(fields: &BTreeMap<String, ResolvedField>) -> Result<(), Error> {
             return Err(located(
                 field,
                 "[Lineb] hbar and boltzmann must be finite and positive",
+            ));
+        }
+    }
+    if let Some(beads) = fields.get("lineb.beads") {
+        if beads.value == ParamValue::Uint(1) {
+            return Err(located(
+                beads,
+                "[Lineb] use 0 beads for a path or at least 2 for a rate",
             ));
         }
     }
