@@ -1,1 +1,1 @@
-Add top-level Lineb (job = lineb / [Lineb]) matching eOn feat/fixed-energy-lineb: presence-aware energy and √eV tolerances, physical defaults, and validation.
+The eOn `lineb` job accepts a fixed tunneling energy and mass-weighted force tolerances in the `[Lineb]` section. Optional controls select a straight initial path, a constant endpoint restraint, separate endpoint and interior convergence tests, and projected velocity Verlet.
