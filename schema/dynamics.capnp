@@ -297,6 +297,11 @@ struct LinebConfig {
     cliFlags = ["--lineb-endpoint-convergence"],
     doc = "Apply the nudged-force tolerance to endpoints and the perpendicular tolerance to interior images."
   );
+  projectedVerlet @18 :Bool = false $Common.mutability(restartOnly) $Common.meta(
+    aliases = [(format = "ini", section = "Lineb", key = "projected_verlet")],
+    cliFlags = ["--lineb-projected-verlet"],
+    doc = "Optimize the band with velocity-projected velocity Verlet."
+  );
 }
 
 struct LinebPatch {
@@ -318,6 +323,7 @@ struct LinebPatch {
   endpointKappa @15 :Common.OptFloat64;
   linearSeed @16 :Common.OptBool;
   endpointConvergence @17 :Common.OptBool;
+  projectedVerlet @18 :Common.OptBool;
 }
 
 struct OhTstConfig {
