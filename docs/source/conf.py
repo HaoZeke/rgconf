@@ -7,3 +7,6 @@ extensions = []
 templates_path = []
 exclude_patterns = []
 html_theme = "alabaster"
+html_title = "rgconf 0.1.0"
+html_baseurl = "https://omnipotentrpc.github.io/rgconf/"
+html_extra_path = [".nojekyll"]
