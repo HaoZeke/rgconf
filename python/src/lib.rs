@@ -4,6 +4,11 @@ use pyo3::prelude::*;
 use rgconf::{ConfigLayer, Profile, Resolver};
 
 #[pyfunction]
+fn abi_version() -> u32 {
+    0x000100
+}
+
+#[pyfunction]
 fn resolve_ini(profile: &str, text: &str, path: &str) -> PyResult<String> {
     let profile = Profile::parse(profile)
         .map_err(|err| pyo3::exceptions::PyValueError::new_err(err.to_string()))?;
@@ -31,6 +36,7 @@ fn resolve_ini(profile: &str, text: &str, path: &str) -> PyResult<String> {
 
 #[pymodule]
 fn _core(module: &Bound<'_, PyModule>) -> PyResult<()> {
+    module.add_function(wrap_pyfunction!(abi_version, module)?)?;
     module.add_function(wrap_pyfunction!(resolve_ini, module)?)?;
     Ok(())
 }
