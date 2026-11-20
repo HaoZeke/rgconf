@@ -7,7 +7,12 @@ license.workspace = true
 rust-version.workspace = true
 authors.workspace = true
 description = "Command line resolver for rgconf."
-publish = false
+repository.workspace = true
+homepage.workspace = true
+documentation = "https://docs.rs/rgconf-cli"
+readme.workspace = true
+keywords = ["configuration", "capnproto", "provenance", "cli"]
+categories = ["command-line-utilities", "config"]
 
 [[bin]]
 name = "rgconf"
@@ -15,4 +20,4 @@ path = "src/main.rs"
 doc = false
 
 [dependencies]
-rgconf = { path = "../rgconf-core" }
+rgconf = { path = "../rgconf-core", version = "0.1.0" }
