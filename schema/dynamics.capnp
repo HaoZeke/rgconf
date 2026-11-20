@@ -287,6 +287,16 @@ struct LinebConfig {
     cliFlags = ["--lineb-endpoint-kappa"],
     doc = "Fixed endpoint force per eV of energy error. Zero selects the gradient-normalized endpoint scale."
   );
+  linearSeed @16 :Bool = false $Common.mutability(restartOnly) $Common.meta(
+    aliases = [(format = "ini", section = "Lineb", key = "linear_seed")],
+    cliFlags = ["--lineb-linear-seed"],
+    doc = "Interpolate along a straight line between the initial MEP energy crossings."
+  );
+  endpointConvergence @17 :Bool = false $Common.mutability(mutableLive) $Common.meta(
+    aliases = [(format = "ini", section = "Lineb", key = "endpoint_convergence")],
+    cliFlags = ["--lineb-endpoint-convergence"],
+    doc = "Apply the nudged-force tolerance to endpoints and the perpendicular tolerance to interior images."
+  );
 }
 
 struct LinebPatch {
@@ -306,6 +316,8 @@ struct LinebPatch {
   beads @13 :Common.OptUInt32;
   molecular @14 :Common.OptBool;
   endpointKappa @15 :Common.OptFloat64;
+  linearSeed @16 :Common.OptBool;
+  endpointConvergence @17 :Common.OptBool;
 }
 
 struct OhTstConfig {
