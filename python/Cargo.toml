@@ -17,5 +17,5 @@ crate-type = ["cdylib"]
 extension-module = ["pyo3/extension-module"]
 
 [dependencies]
-pyo3 = "0.24"
+pyo3 = "0.27.2"
 rgconf = { path = "../crates/rgconf-core" }
