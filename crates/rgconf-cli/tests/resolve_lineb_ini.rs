@@ -86,6 +86,7 @@ job = lineb
 [Lineb]
 initial_path = neb.con
 energy = 0.5
+result_cache = my-results.db
 beads = 0
 molecular = false
 ",
@@ -102,6 +103,7 @@ molecular = false
         .output()
         .expect("spawn rgconf");
     let stdout = String::from_utf8_lossy(&output.stdout);
+    assert!(stdout.contains("lineb.resultCache=my-results.db"), "{stdout}");
     let stderr = String::from_utf8_lossy(&output.stderr);
     assert!(
         output.status.success(),

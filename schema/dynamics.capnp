@@ -302,6 +302,11 @@ struct LinebConfig {
     cliFlags = ["--lineb-projected-verlet"],
     doc = "Optimize the band with velocity-projected velocity Verlet."
   );
+  resultCache @19 :Text = "" $Common.mutability(restartOnly) $Common.meta(
+    aliases = [(format = "ini", section = "Lineb", key = "result_cache")],
+    cliFlags = ["--lineb-result-cache"],
+    doc = "Path to the rgpot geometry result cache. An empty path disables persistent result caching."
+  );
 }
 
 struct LinebPatch {
@@ -324,6 +329,7 @@ struct LinebPatch {
   linearSeed @16 :Common.OptBool;
   endpointConvergence @17 :Common.OptBool;
   projectedVerlet @18 :Common.OptBool;
+  resultCache @19 :Common.OptText;
 }
 
 struct OhTstConfig {

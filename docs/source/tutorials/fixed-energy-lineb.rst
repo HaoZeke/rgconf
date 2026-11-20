@@ -26,3 +26,6 @@ the example from the repository root.
 
 The output includes ``lineb.energyEv`` with value 0.25 and ``lineb.beads``
 with value zero. Both come from the example file.
+
+Set ``result_cache`` to a RocksDB directory to record computed and cache-served
+evaluations separately in eOn. Reusing the same directory permits a warm run.
