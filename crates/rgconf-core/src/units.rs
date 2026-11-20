@@ -46,6 +46,9 @@ pub enum Dimension {
     Frequency,
     Dipole,
     Memory,
+    /// Norm of a force in mass-weighted coordinates (√eV).
+    MassWeightedForce,
+    InverseRootEnergy,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -87,6 +90,9 @@ pub enum Unit {
     Debye,
     Megabyte,
     Gigabyte,
+    /// Mass-weighted force unit √eV (LI-NEB opt/perp tolerances).
+    SqrtEv,
+    InvSqrtEv,
 }
 
 impl Unit {
@@ -123,6 +129,8 @@ impl Unit {
             "debye" => Self::Debye,
             "megabyte" => Self::Megabyte,
             "gigabyte" => Self::Gigabyte,
+            "sqrtEv" => Self::SqrtEv,
+            "invSqrtEv" => Self::InvSqrtEv,
             _ => return None,
         })
     }
@@ -149,6 +157,8 @@ impl Unit {
             Self::InvCm => Dimension::Frequency,
             Self::Debye => Dimension::Dipole,
             Self::Megabyte | Self::Gigabyte => Dimension::Memory,
+            Self::SqrtEv => Dimension::MassWeightedForce,
+            Self::InvSqrtEv => Dimension::InverseRootEnergy,
         }
     }
 
@@ -185,6 +195,8 @@ impl Unit {
             Self::Debye => "debye",
             Self::Megabyte => "megabyte",
             Self::Gigabyte => "gigabyte",
+            Self::SqrtEv => "sqrtEv",
+            Self::InvSqrtEv => "invSqrtEv",
         }
     }
 }
@@ -245,7 +257,9 @@ fn to_canonical(value: f64, unit: Unit) -> Result<f64, Error> {
         | Unit::Amu
         | Unit::Kelvin
         | Unit::ElementaryCharge
-        | Unit::Megabyte => value,
+        | Unit::Megabyte
+        | Unit::SqrtEv
+        | Unit::InvSqrtEv => value,
         Unit::Bohr => value * BOHR_IN_ANGSTROM,
         Unit::Nanometer => value * ANGSTROM_PER_NANOMETER,
         Unit::Hartree => value * HARTREE_IN_EV,
@@ -269,7 +283,7 @@ fn to_canonical(value: f64, unit: Unit) -> Result<f64, Error> {
             return Err(Error::message(format!(
                 "unit {} has no canonical conversion",
                 other.name()
-            )))
+            )));
         }
     })
 }
@@ -286,7 +300,9 @@ fn from_canonical(value: f64, unit: Unit) -> Result<f64, Error> {
         | Unit::Amu
         | Unit::Kelvin
         | Unit::ElementaryCharge
-        | Unit::Megabyte => value,
+        | Unit::Megabyte
+        | Unit::SqrtEv
+        | Unit::InvSqrtEv => value,
         Unit::Bohr => value / BOHR_IN_ANGSTROM,
         Unit::Nanometer => value / ANGSTROM_PER_NANOMETER,
         Unit::Hartree => value / HARTREE_IN_EV,
@@ -310,7 +326,7 @@ fn from_canonical(value: f64, unit: Unit) -> Result<f64, Error> {
             return Err(Error::message(format!(
                 "unit {} has no canonical conversion",
                 other.name()
-            )))
+            )));
         }
     })
 }

@@ -24,7 +24,7 @@ jobs:
           echo "VIRTUAL_ENV=$RUNNER_TEMP/venv" >> "$GITHUB_ENV"
           "$RUNNER_TEMP/venv/bin/python" -m pip install "maturin>=1.7,<2" pytest "sphinx>=8.0,<9"
       - name: schema
-        run: capnp compile -o- -Ischema schema/*.capnp >/dev/null
+        run: capnp compile -o- -Icrates/rgconf-core/schema crates/rgconf-core/schema/*.capnp >/dev/null
       - name: test
         run: cargo test --workspace
       - name: clippy

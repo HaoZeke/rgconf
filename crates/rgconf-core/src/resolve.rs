@@ -14,6 +14,8 @@ const GPRIDGE_LEGACY_FORCE_EV_PER_ANGSTROM: f64 = 0.05;
 const ASE_DROPIN_FORCE_EV_PER_ANGSTROM: f64 = 0.05;
 const EW_K_MIN_FRACTION_OF_SPRING: f64 = 0.1;
 const ZOOM_FORMULA_PASSES: usize = 8;
+/// eOn `lineb_options_t.opt_tol` / `perp_tol` (feat/fixed-energy-lineb 904ad4f27).
+const LINEB_EON_FORCE_TOL_SQRT_EV: f64 = 1e-3;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Profile {
@@ -100,6 +102,16 @@ pub struct Resolution {
     pub profile: Profile,
     pub fields: BTreeMap<String, ResolvedField>,
     pub edits: Vec<ParamEdit>,
+}
+
+impl std::fmt::Display for Resolution {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "profile {}", self.profile.name())?;
+        for (key, field) in &self.fields {
+            write!(f, "\n{key}={} {}", field.value, field.status.name())?;
+        }
+        Ok(())
+    }
 }
 
 impl Resolution {
@@ -466,6 +478,17 @@ fn formula(
                 "derived:resolve_ew_k_min_or_tenth_ceiling".to_string(),
             ))
         }
+        // eOn lineb_options_t opt_tol / perp_tol defaults (ParametersOptions.h).
+        "resolve_lineb_opt_tol_eon_default" => Some((
+            ParamValue::Float(LINEB_EON_FORCE_TOL_SQRT_EV),
+            ValueStatus::DerivedFromUnset,
+            "derived:eon.lineb_options_t.opt_tol".to_string(),
+        )),
+        "resolve_lineb_perp_tol_eon_default" => Some((
+            ParamValue::Float(LINEB_EON_FORCE_TOL_SQRT_EV),
+            ValueStatus::DerivedFromUnset,
+            "derived:eon.lineb_options_t.perp_tol".to_string(),
+        )),
         _ if key == "potential.arm" => {
             let arm = if profile == Profile::EonServerYaml {
                 "external"

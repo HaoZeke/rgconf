@@ -48,6 +48,8 @@ enum JobKind {
   bennettChandler @20;
   intrinsicReactionCoordinate @21;
   rpcPotentialServer @22;
+  # Fixed-energy line-integral NEB (eOn job = lineb / [Lineb]).
+  lineb @23;
 }
 
 struct OptJobKind {
@@ -242,6 +244,8 @@ struct RgConf {
   # gpridge.capnp) is the typed form. This list carries namespaced keys
   # `ext.<namespace>.<name>` that no companion schema declared.
   extensions @39 :List(ThirdPartyExtension);
+  # Fixed-energy LI-NEB (eOn [Lineb] / lineb_options_t). Appended; prior ordinals stay put.
+  lineb @40 :Dyn.LinebConfig;
 }
 
 # Namespaced parameter a third party adds without forking RgConf ordinals.
@@ -281,4 +285,5 @@ struct RgConfPatch {
   debug @22 :DebugPatch;
   conIo @23 :ConIoPatch;
   extensions @24 :List(ThirdPartyExtension);
+  lineb @25 :Dyn.LinebPatch;
 }

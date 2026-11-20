@@ -4,6 +4,11 @@ use pyo3::prelude::*;
 use rgconf::{ConfigLayer, Profile, Resolver};
 
 #[pyfunction]
+fn abi_version() -> u32 {
+    rgconf::ABI_VERSION
+}
+
+#[pyfunction]
 fn resolve_ini(profile: &str, text: &str, path: &str) -> PyResult<String> {
     let profile = Profile::parse(profile)
         .map_err(|err| pyo3::exceptions::PyValueError::new_err(err.to_string()))?;
@@ -16,21 +21,12 @@ fn resolve_ini(profile: &str, text: &str, path: &str) -> PyResult<String> {
     let resolution = resolver
         .resolve()
         .map_err(|err| pyo3::exceptions::PyValueError::new_err(err.to_string()))?;
-    let mut lines = vec![format!("profile {}", resolution.profile.name())];
-    if let Some(field) = resolution.get("band.imageCount") {
-        lines.push(format!("band.imageCount={}", field.value));
-    }
-    if let Some(field) = resolution.get("optimizer.convergence.forceToleranceEvPerAngstrom") {
-        lines.push(format!(
-            "optimizer.convergence.forceToleranceEvPerAngstrom={}",
-            field.value
-        ));
-    }
-    Ok(lines.join("\n"))
+    Ok(resolution.to_string())
 }
 
 #[pymodule]
 fn _core(module: &Bound<'_, PyModule>) -> PyResult<()> {
+    module.add_function(wrap_pyfunction!(abi_version, module)?)?;
     module.add_function(wrap_pyfunction!(resolve_ini, module)?)?;
     Ok(())
 }

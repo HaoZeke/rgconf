@@ -26,6 +26,15 @@ Derived values
 ``band.zoom.triggerForceEvPerAngstrom`` is the band force tolerance times ``triggerForceMultiplier`` (10 unless set). ``band.spring.ewKMinEvPerAngstrom2`` is one tenth of ``constantEvPerAngstrom2``. The schema file still carries the literals 0.5 and 0.972. The resolver uses the formulas when the user left the field unset. Those literals are not the runtime default.
 
 
+Fixed-energy LI-NEB
+===================
+
+
+The ``lineb`` job uses the ``lineb.*`` parameters in the eOn ``[Lineb]`` section. Energy is in eV and force tolerances are in √eV. Unset tolerances resolve to 0.001.
+
+For a fixed endpoint restraint, set ``endpoint_kappa`` to the coefficient in inverse square-root eV. Zero selects the gradient-normalized ``endpoint_scale``. Set ``endpoint_convergence`` to test ``opt_tol`` on the two endpoints and ``perp_tol`` on the interior images. Set ``linear_seed`` to join the two MEP energy crossings with a straight line. The Cu(110) example uses this straight seed, while the ammonia borane example follows the MEP. Set ``projected_verlet`` to use velocity projection with velocity Verlet. Each Boolean defaults to false.
+
+
 Public Rust types
 =================
 

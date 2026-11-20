@@ -166,6 +166,172 @@ struct InstantonPatch {
   optimizer @3 :Opt.OptimizerPatch;
 }
 
+# Fixed-energy line-integral NEB. Energy and both tolerances retain presence
+# across configuration overlays. The physical constants use eV, amu, Å and K.
+struct LinebConfig {
+  initialPath @0 :Text = "" $Common.mutability(restartOnly) $Common.meta(
+    aliases = [(format = "ini", section = "Lineb", key = "initial_path")],
+    cliFlags = ["--lineb-initial-path"],
+    doc = "Multi-frame seed band (neb.con). Interior images must start at or above energy plus the turning width."
+  );
+  energyEv @1 :Common.OptFloat64 $Common.mutability(betweenStepsWithHook) $Common.meta(
+    dimension = energy,
+    unit = ev,
+    aliases = [(format = "ini", section = "Lineb", key = "energy")],
+    cliFlags = ["--lineb-energy"],
+    doc = "Presence-aware tunneling energy E in eV (eOn default 0.0 when unset)."
+  );
+  optTolSqrtEv @2 :Common.OptFloat64 $Common.mutability(mutableLive) $Common.meta(
+    dimension = massWeightedForce,
+    unit = sqrtEv,
+    bounds = (hasMinInclusive = true, minInclusive = 0.0),
+    aliases = [(format = "ini", section = "Lineb", key = "opt_tol")],
+    cliFlags = ["--lineb-opt-tol"],
+    defaultKind = resolverDerived,
+    resolverFunction = "resolve_lineb_opt_tol_eon_default",
+    doc = "Presence-aware mass-weighted nudged-force stop in √eV. Unset resolves to eOn 1e-3."
+  );
+  perpTolSqrtEv @3 :Common.OptFloat64 $Common.mutability(mutableLive) $Common.meta(
+    dimension = massWeightedForce,
+    unit = sqrtEv,
+    bounds = (hasMinInclusive = true, minInclusive = 0.0),
+    aliases = [(format = "ini", section = "Lineb", key = "perp_tol")],
+    cliFlags = ["--lineb-perp-tol"],
+    defaultKind = resolverDerived,
+    resolverFunction = "resolve_lineb_perp_tol_eon_default",
+    doc = "Presence-aware mass-weighted perpendicular action-gradient stop in √eV. Unset resolves to eOn 1e-3."
+  );
+  spring @4 :Float64 = 0.1 $Common.mutability(betweenStepsWithHook) $Common.meta(
+    dimension = dimensionless,
+    unit = none,
+    bounds = (hasMinExclusive = true, minExclusive = 0.0),
+    aliases = [(format = "ini", section = "Lineb", key = "spring")],
+    cliFlags = ["--lineb-spring"]
+  );
+  endpointScale @5 :Float64 = 0.2 $Common.mutability(betweenStepsWithHook) $Common.meta(
+    dimension = dimensionless,
+    unit = none,
+    bounds = (hasMinExclusive = true, minExclusive = 0.0),
+    aliases = [(format = "ini", section = "Lineb", key = "endpoint_scale")],
+    cliFlags = ["--lineb-endpoint-scale"]
+  );
+  timeStep @6 :Float64 = 0.1 $Common.mutability(mutableLive) $Common.meta(
+    dimension = dimensionless,
+    unit = none,
+    bounds = (hasMinExclusive = true, minExclusive = 0.0),
+    aliases = [(format = "ini", section = "Lineb", key = "time_step")],
+    cliFlags = ["--lineb-time-step"]
+  );
+  maxMove @7 :Float64 = 0.2 $Common.mutability(mutableLive) $Common.meta(
+    dimension = dimensionless,
+    unit = none,
+    bounds = (hasMinInclusive = true, minInclusive = 0.0),
+    aliases = [(format = "ini", section = "Lineb", key = "max_move")],
+    cliFlags = ["--lineb-max-move"],
+    doc = "Step cap; per atom when molecular, else whole-band Euclidean length. 0 uncapped."
+  );
+  turningWidth @8 :Float64 = 1e-3 $Common.mutability(mutableLive) $Common.meta(
+    dimension = dimensionless,
+    unit = none,
+    bounds = (hasMinExclusive = true, minExclusive = 0.0, hasMaxExclusive = true, maxExclusive = 1.0),
+    aliases = [(format = "ini", section = "Lineb", key = "turning_width")],
+    cliFlags = ["--lineb-turning-width"]
+  );
+  hbar @9 :Float64 = 0.06465415129579072 $Common.mutability(restartOnly) $Common.meta(
+    dimension = dimensionless,
+    unit = none,
+    bounds = (hasMinExclusive = true, minExclusive = 0.0),
+    aliases = [(format = "ini", section = "Lineb", key = "hbar")],
+    cliFlags = ["--lineb-hbar"],
+    doc = "ℏ in eV^0.5 amu^0.5 Angstrom (eOn tunneling::kHbar). Temperature is ℏ/(k_B τ)."
+  );
+  boltzmann @10 :Float64 = 8.617333262145177e-5 $Common.mutability(restartOnly) $Common.meta(
+    dimension = dimensionless,
+    unit = none,
+    bounds = (hasMinExclusive = true, minExclusive = 0.0),
+    aliases = [(format = "ini", section = "Lineb", key = "boltzmann")],
+    cliFlags = ["--lineb-boltzmann"],
+    doc = "Boltzmann constant in eV/K (eOn tunneling::kBoltzmann)."
+  );
+  quadraturePairs @11 :UInt32 = 4 $Common.mutability(restartOnly) $Common.meta(
+    dimension = dimensionless,
+    unit = none,
+    bounds = (hasMinInclusive = true, minInclusive = 1),
+    aliases = [(format = "ini", section = "Lineb", key = "quadrature_pairs")],
+    cliFlags = ["--lineb-quadrature-pairs"]
+  );
+  maxSteps @12 :UInt32 = 1000 $Common.mutability(mutableLive) $Common.meta(
+    dimension = dimensionless,
+    unit = none,
+    bounds = (hasMinInclusive = true, minInclusive = 1),
+    aliases = [(format = "ini", section = "Lineb", key = "max_steps")],
+    cliFlags = ["--lineb-max-steps"]
+  );
+  beads @13 :UInt32 = 0 $Common.mutability(restartOnly) $Common.meta(
+    dimension = dimensionless,
+    unit = none,
+    aliases = [(format = "ini", section = "Lineb", key = "beads")],
+    cliFlags = ["--lineb-beads"],
+    doc = "Use 0 for the path only or at least 2 replicas for harmonic quantum TST."
+  );
+  molecular @14 :Bool = false $Common.mutability(restartOnly) $Common.meta(
+    aliases = [(format = "ini", section = "Lineb", key = "molecular")],
+    cliFlags = ["--lineb-molecular"],
+    doc = "false expands atom masses to coordinates; true uses molecule alignment (all atoms free)."
+  );
+  endpointKappa @15 :Float64 = 0.0 $Common.mutability(betweenStepsWithHook) $Common.meta(
+    dimension = inverseRootEnergy,
+    unit = invSqrtEv,
+    bounds = (hasMinInclusive = true, minInclusive = 0.0),
+    aliases = [(format = "ini", section = "Lineb", key = "endpoint_kappa")],
+    cliFlags = ["--lineb-endpoint-kappa"],
+    doc = "Fixed endpoint force per eV of energy error. Zero selects the gradient-normalized endpoint scale."
+  );
+  linearSeed @16 :Bool = false $Common.mutability(restartOnly) $Common.meta(
+    aliases = [(format = "ini", section = "Lineb", key = "linear_seed")],
+    cliFlags = ["--lineb-linear-seed"],
+    doc = "Interpolate along a straight line between the initial MEP energy crossings."
+  );
+  endpointConvergence @17 :Bool = false $Common.mutability(mutableLive) $Common.meta(
+    aliases = [(format = "ini", section = "Lineb", key = "endpoint_convergence")],
+    cliFlags = ["--lineb-endpoint-convergence"],
+    doc = "Apply the nudged-force tolerance to endpoints and the perpendicular tolerance to interior images."
+  );
+  projectedVerlet @18 :Bool = false $Common.mutability(restartOnly) $Common.meta(
+    aliases = [(format = "ini", section = "Lineb", key = "projected_verlet")],
+    cliFlags = ["--lineb-projected-verlet"],
+    doc = "Optimize the band with velocity-projected velocity Verlet."
+  );
+  resultCache @19 :Text = "" $Common.mutability(restartOnly) $Common.meta(
+    aliases = [(format = "ini", section = "Lineb", key = "result_cache")],
+    cliFlags = ["--lineb-result-cache"],
+    doc = "Path to the rgpot geometry result cache. An empty path disables persistent result caching."
+  );
+}
+
+struct LinebPatch {
+  initialPath @0 :Common.OptText;
+  energyEv @1 :Common.OptFloat64;
+  optTolSqrtEv @2 :Common.OptFloat64;
+  perpTolSqrtEv @3 :Common.OptFloat64;
+  spring @4 :Common.OptFloat64;
+  endpointScale @5 :Common.OptFloat64;
+  timeStep @6 :Common.OptFloat64;
+  maxMove @7 :Common.OptFloat64;
+  turningWidth @8 :Common.OptFloat64;
+  hbar @9 :Common.OptFloat64;
+  boltzmann @10 :Common.OptFloat64;
+  quadraturePairs @11 :Common.OptUInt32;
+  maxSteps @12 :Common.OptUInt32;
+  beads @13 :Common.OptUInt32;
+  molecular @14 :Common.OptBool;
+  endpointKappa @15 :Common.OptFloat64;
+  linearSeed @16 :Common.OptBool;
+  endpointConvergence @17 :Common.OptBool;
+  projectedVerlet @18 :Common.OptBool;
+  resultCache @19 :Common.OptText;
+}
+
 struct OhTstConfig {
   temperatureK @0 :Float64 = 300.0 $Common.mutability(betweenStepsWithHook) $Common.meta(dimension = temperature, unit = kelvin);
   numQuadratureNodes @1 :UInt16 = 8 $Common.mutability(restartOnly);

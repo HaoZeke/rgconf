@@ -8,6 +8,7 @@ Generated pages live beside this index. ``docs/export.el`` rewrites them from ``
 
    home
    tutorials/resolve
+   tutorials/fixed-energy-lineb
    howto/extend-schema
    howto/deprecation
    reference/parameters

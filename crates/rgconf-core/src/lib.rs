@@ -3,6 +3,9 @@
 #![forbid(unsafe_code)]
 #![allow(clippy::manual_unwrap_or, clippy::manual_unwrap_or_default)]
 
+/// Packed C ABI version, with the major, minor, and patch bytes in descending order.
+pub const ABI_VERSION: u32 = 0x00_01_00;
+
 pub mod catalog;
 pub mod config;
 pub mod edit;
