@@ -405,9 +405,6 @@ fn walk(
                     continue;
                 }
                 TypeHit::Struct(qualified) => {
-                    if field.union_arm && local == "Void" {
-                        continue;
-                    }
                     walk(model, &qualified, &key, out, stack)?;
                     continue;
                 }
@@ -634,36 +631,23 @@ enum Lookup {
 ///
 /// Nested declarations live under their enclosing path, so a local name
 /// that a struct and an enum share is the one in the nearest scope. A
-/// dotted reference selects that path. A leading import alias that is
-/// not itself a declaration is dropped. When one path names both a
-/// struct and an enum, the reference stays unresolved.
+/// dotted reference selects that path. A leading import alias is only
+/// dropped after the complete path misses in every enclosing scope.
+/// When one path names both a struct and an enum, the reference stays
+/// unresolved.
 fn resolve_type(model: &SchemaModel, scope: &str, type_name: &str) -> Option<TypeHit> {
-    let tails = reference_tails(model, type_name);
     for base in scope_chain(scope) {
-        for tail in &tails {
-            match lookup_exact(model, &join_scope(base, tail)) {
-                Lookup::Hit(hit) => return Some(hit),
-                Lookup::Both => return None,
-                Lookup::Miss => {}
-            }
+        match lookup_exact(model, &join_scope(base, type_name)) {
+            Lookup::Hit(hit) => return Some(hit),
+            Lookup::Both => return None,
+            Lookup::Miss => {}
         }
     }
-    None
-}
-
-fn reference_tails(model: &SchemaModel, type_name: &str) -> Vec<String> {
-    let parts: Vec<&str> = type_name
-        .split('.')
-        .filter(|part| !part.is_empty())
-        .collect();
-    if parts.is_empty() {
-        return Vec::new();
+    let (_, tail) = type_name.split_once('.')?;
+    match lookup_exact(model, tail) {
+        Lookup::Hit(hit) => Some(hit),
+        Lookup::Both | Lookup::Miss => None,
     }
-    let mut tails = vec![parts.join(".")];
-    if parts.len() > 1 && !declared(model, parts[0]) {
-        tails.push(parts[1..].join("."));
-    }
-    tails
 }
 
 fn scope_chain(scope: &str) -> Vec<&str> {
@@ -694,10 +678,6 @@ fn join_scope(base: &str, tail: &str) -> String {
 
 fn qualify(scope: &str, name: &str) -> String {
     join_scope(scope, name)
-}
-
-fn declared(model: &SchemaModel, name: &str) -> bool {
-    model.structs.contains_key(name) || model.enums.contains_key(name)
 }
 
 fn lookup_exact(model: &SchemaModel, qualified: &str) -> Lookup {
@@ -964,7 +944,7 @@ impl Scan<'_> {
                 self.bump();
                 continue;
             };
-            if matches!(word.as_str(), "struct" | "enum" | "interface") {
+            if matches!(word.as_str(), "struct" | "enum" | "interface") && !self.next_is(b'@') {
                 self.take_nested_decl(model, scope, &word);
                 continue;
             }
@@ -993,7 +973,7 @@ impl Scan<'_> {
                 self.bump();
                 continue;
             };
-            if matches!(name.as_str(), "struct" | "enum" | "interface") {
+            if matches!(name.as_str(), "struct" | "enum" | "interface") && !self.next_is(b'@') {
                 self.take_nested_decl(model, scope, &name);
                 continue;
             }
@@ -1032,6 +1012,11 @@ impl Scan<'_> {
             union_arm,
             source_line: self.line,
         })
+    }
+
+    fn next_is(&mut self, expected: u8) -> bool {
+        self.skip();
+        self.i < self.s.len() && self.s[self.i] == expected
     }
 
     fn parse_type(&mut self) -> Option<String> {
@@ -1403,6 +1388,109 @@ mod tests {
         let via_path = spec(&rows, "viaPath.enabled");
         assert_eq!(via_path.kind, ScalarKind::Bool);
         assert_eq!(via_path.default_value, ParamValue::Bool(true));
+    }
+
+    #[test]
+    fn dotted_references_resolve_before_local_tail_names() {
+        let rows = specs(
+            r#"
+            enum Mode {
+              imported @0;
+              fallback @1;
+            }
+            struct Outer {
+              struct Inner {
+                struct Leaf {
+                  selected @0 :Bool = true;
+                }
+              }
+              struct Holder {
+                struct Leaf {
+                  wrong @0 :Text;
+                }
+                enum Mode {
+                  local @0;
+                }
+                sibling @0 :Inner.Leaf;
+                imported @1 :Common.Mode;
+              }
+              holder @0 :Holder;
+            }
+            "#,
+            "Outer",
+        );
+
+        let sibling = spec(&rows, "holder.sibling.selected");
+        assert_eq!(sibling.kind, ScalarKind::Bool);
+        assert_eq!(sibling.default_value, ParamValue::Bool(true));
+        assert!(rows.iter().all(|row| row.key != "holder.sibling.wrong"));
+
+        let imported = spec(&rows, "holder.imported");
+        assert_eq!(
+            imported.kind,
+            ScalarKind::Enum(vec!["imported".into(), "fallback".into()])
+        );
+        assert_eq!(imported.default_value, ParamValue::Text("imported".into()));
+    }
+
+    #[test]
+    fn keyword_named_fields_are_parsed_by_context() {
+        let rows = specs(
+            r#"
+            struct Root {
+              struct @0 :Bool = true;
+              enum @1 :Int32 = 7;
+              interface @2 :Text = "field";
+            }
+            "#,
+            "Root",
+        );
+
+        assert_eq!(spec(&rows, "struct").default_value, ParamValue::Bool(true));
+        assert_eq!(spec(&rows, "enum").default_value, ParamValue::Int(7));
+        assert_eq!(
+            spec(&rows, "interface").default_value,
+            ParamValue::Text("field".into())
+        );
+
+        let cpmd = specs(
+            include_str!("../../../schema/potential.capnp"),
+            "CPMDCpmdSection",
+        );
+        assert_eq!(
+            spec(&cpmd, "interface").default_value,
+            ParamValue::Bool(false)
+        );
+    }
+
+    #[test]
+    fn recursive_struct_cycles_are_bounded() {
+        let rows = specs(
+            r#"
+            struct A {
+              value @0 :Bool = true;
+              next @1 :B;
+            }
+            struct B {
+              count @0 :Int32 = 2;
+              next @1 :A;
+            }
+            struct Root {
+              cycle @0 :A;
+            }
+            "#,
+            "Root",
+        );
+
+        assert_eq!(
+            spec(&rows, "cycle.value").default_value,
+            ParamValue::Bool(true)
+        );
+        assert_eq!(
+            spec(&rows, "cycle.next.count").default_value,
+            ParamValue::Int(2)
+        );
+        assert_eq!(rows.len(), 2);
     }
 
     #[test]
