@@ -1,6 +1,6 @@
 // Copyright 2023--present rgconf developers
 
-use crate::catalog::{catalog, Bounds, ParamSpec};
+use crate::catalog::{Bounds, ParamSpec, catalog};
 use crate::error::Error;
 use crate::resolve::{ResolvedField, ValueStatus};
 use crate::value::{ParamValue, ScalarKind};
@@ -64,6 +64,14 @@ fn check_lineb(fields: &BTreeMap<String, ResolvedField>) -> Result<(), Error> {
             return Err(located(
                 field,
                 "[Lineb] spring and endpoint_scale must be finite and positive",
+            ));
+        }
+    }
+    if let Some(field) = fields.get("lineb.endpointKappa") {
+        if !as_number(&field.value).is_some_and(|n| n.is_finite() && n >= 0.0) {
+            return Err(located(
+                field,
+                "[Lineb] endpoint_kappa must be finite and non-negative",
             ));
         }
     }

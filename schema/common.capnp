@@ -44,6 +44,7 @@ enum DimensionKind {
   memorySize @18;
   # Norm of a force in mass-weighted coordinates (LI-NEB opt/perp tolerances).
   massWeightedForce @19;
+  inverseRootEnergy @20;
 }
 
 enum CanonicalUnit {
@@ -87,6 +88,7 @@ enum CanonicalUnit {
   gigabyte @37;
   # Mass-weighted force: √eV when lengths are absorbed into q = √m x (LI-NEB).
   sqrtEv @38;
+  invSqrtEv @39;
 }
 
 enum StressSignConvention {

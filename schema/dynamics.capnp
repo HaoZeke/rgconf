@@ -279,6 +279,14 @@ struct LinebConfig {
     cliFlags = ["--lineb-molecular"],
     doc = "false expands atom masses to coordinates; true uses molecule alignment (all atoms free)."
   );
+  endpointKappa @15 :Float64 = 0.0 $Common.mutability(betweenStepsWithHook) $Common.meta(
+    dimension = inverseRootEnergy,
+    unit = invSqrtEv,
+    bounds = (hasMinInclusive = true, minInclusive = 0.0),
+    aliases = [(format = "ini", section = "Lineb", key = "endpoint_kappa")],
+    cliFlags = ["--lineb-endpoint-kappa"],
+    doc = "Fixed endpoint force per eV of energy error. Zero selects the gradient-normalized endpoint scale."
+  );
 }
 
 struct LinebPatch {
@@ -297,6 +305,7 @@ struct LinebPatch {
   maxSteps @12 :Common.OptUInt32;
   beads @13 :Common.OptUInt32;
   molecular @14 :Common.OptBool;
+  endpointKappa @15 :Common.OptFloat64;
 }
 
 struct OhTstConfig {

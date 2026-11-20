@@ -48,6 +48,7 @@ pub enum Dimension {
     Memory,
     /// Norm of a force in mass-weighted coordinates (√eV).
     MassWeightedForce,
+    InverseRootEnergy,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -91,6 +92,7 @@ pub enum Unit {
     Gigabyte,
     /// Mass-weighted force unit √eV (LI-NEB opt/perp tolerances).
     SqrtEv,
+    InvSqrtEv,
 }
 
 impl Unit {
@@ -128,6 +130,7 @@ impl Unit {
             "megabyte" => Self::Megabyte,
             "gigabyte" => Self::Gigabyte,
             "sqrtEv" => Self::SqrtEv,
+            "invSqrtEv" => Self::InvSqrtEv,
             _ => return None,
         })
     }
@@ -155,6 +158,7 @@ impl Unit {
             Self::Debye => Dimension::Dipole,
             Self::Megabyte | Self::Gigabyte => Dimension::Memory,
             Self::SqrtEv => Dimension::MassWeightedForce,
+            Self::InvSqrtEv => Dimension::InverseRootEnergy,
         }
     }
 
@@ -192,6 +196,7 @@ impl Unit {
             Self::Megabyte => "megabyte",
             Self::Gigabyte => "gigabyte",
             Self::SqrtEv => "sqrtEv",
+            Self::InvSqrtEv => "invSqrtEv",
         }
     }
 }
@@ -253,7 +258,8 @@ fn to_canonical(value: f64, unit: Unit) -> Result<f64, Error> {
         | Unit::Kelvin
         | Unit::ElementaryCharge
         | Unit::Megabyte
-        | Unit::SqrtEv => value,
+        | Unit::SqrtEv
+        | Unit::InvSqrtEv => value,
         Unit::Bohr => value * BOHR_IN_ANGSTROM,
         Unit::Nanometer => value * ANGSTROM_PER_NANOMETER,
         Unit::Hartree => value * HARTREE_IN_EV,
@@ -277,7 +283,7 @@ fn to_canonical(value: f64, unit: Unit) -> Result<f64, Error> {
             return Err(Error::message(format!(
                 "unit {} has no canonical conversion",
                 other.name()
-            )))
+            )));
         }
     })
 }
@@ -295,7 +301,8 @@ fn from_canonical(value: f64, unit: Unit) -> Result<f64, Error> {
         | Unit::Kelvin
         | Unit::ElementaryCharge
         | Unit::Megabyte
-        | Unit::SqrtEv => value,
+        | Unit::SqrtEv
+        | Unit::InvSqrtEv => value,
         Unit::Bohr => value / BOHR_IN_ANGSTROM,
         Unit::Nanometer => value / ANGSTROM_PER_NANOMETER,
         Unit::Hartree => value / HARTREE_IN_EV,
@@ -319,7 +326,7 @@ fn from_canonical(value: f64, unit: Unit) -> Result<f64, Error> {
             return Err(Error::message(format!(
                 "unit {} has no canonical conversion",
                 other.name()
-            )))
+            )));
         }
     })
 }
