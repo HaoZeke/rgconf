@@ -1,6 +1,6 @@
 // Copyright 2023--present rgconf developers
 
-use crate::catalog::{Bounds, ParamSpec, catalog};
+use crate::catalog::{catalog, Bounds, ParamSpec};
 use crate::error::Error;
 use crate::resolve::{ResolvedField, ValueStatus};
 use crate::value::{ParamValue, ScalarKind};
