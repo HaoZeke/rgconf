@@ -46,13 +46,14 @@ fn export_text(text: String) -> *mut c_char {
     }
 }
 
+#[cfg(test)]
 fn pack_abi(major: u32, minor: u32, patch: u32) -> u32 {
     (major << 16) | (minor << 8) | patch
 }
 
 #[no_mangle]
 pub extern "C" fn rgconf_abi_version() -> u32 {
-    pack_abi(0, 1, 0)
+    rgconf::ABI_VERSION
 }
 
 #[no_mangle]

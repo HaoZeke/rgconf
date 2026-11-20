@@ -30,6 +30,12 @@ def _load_c_abi():
 
 
 def abi_version() -> int:
+    try:
+        from rgconf._core import abi_version as native
+    except ImportError:
+        pass
+    else:
+        return native()
     lib = _load_c_abi()
     if lib is None:
         raise RuntimeError("librgconf_c_abi was not found")

@@ -19,6 +19,7 @@ def test_native_extension_is_loaded():
     from rgconf import _core
 
     assert _core.resolve_ini
+    assert _core.abi_version() == ABI
 
 
 def test_native_resolution_exposes_instanton_defaults():
