@@ -17,7 +17,7 @@ from fetch_sources import read_pins
 
 ROOT = Path(__file__).resolve().parents[1]
 MAP = ROOT / "generated" / "parameter_map.tsv"
-SCHEMA = ROOT / "schema"
+SCHEMA = ROOT / "crates" / "rgconf-core" / "schema"
 REPOS = {"eon": "eOn", "rgmin": "rgmin", "rgsaddle": "rgsaddle", "rgpot": "rgpot", "cpmdc": "cpmdc"}
 SOURCES_ENV = "RGCONF_SOURCES"
 COLUMNS = ["repo", "relpath", "line", "struct", "field", "type", "default", "section", "rgconf", "eon", "note"]
@@ -75,7 +75,7 @@ def test_every_upstream_is_pinned():
 
 
 def schema_has(path):
-    """True when ``file.Struct`` or ``file.Struct.field`` names a declaration in schema/."""
+    """True when a schema path names a declaration in rgconf-core."""
     parts = path.split(".")
     if len(parts) not in (2, 3):
         return False

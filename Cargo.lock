@@ -506,7 +506,8 @@ checksum = "d902046e6a28a1e4c3cab97258a0ce11e994903f01c2d97a9447a0b3df85f4f6"
 [[package]]
 name = "rfc9162"
 version = "0.11.0"
-source = "git+https://github.com/stackhands/rfc9162?tag=v0.11.0#bbd2901e6ebefa99ca759d53ef4c9fb5cc435fdb"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "84a4b78bd666ed4d04d4d74b4645c370196b4c699317e0ae446317b809cbdd02"
 dependencies = [
  "sha2",
 ]
@@ -514,7 +515,8 @@ dependencies = [
 [[package]]
 name = "rfc9162-log"
 version = "0.11.0"
-source = "git+https://github.com/stackhands/rfc9162?tag=v0.11.0#bbd2901e6ebefa99ca759d53ef4c9fb5cc435fdb"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9fa4b0b72f6f7e6c4a6feee496055ebcdc6c18cf8856cffffa590b8e4f4a6ff5"
 dependencies = [
  "ed25519-dalek",
  "rfc9162",
@@ -527,7 +529,8 @@ dependencies = [
 [[package]]
 name = "rfc9162-tiles"
 version = "0.11.0"
-source = "git+https://github.com/stackhands/rfc9162?tag=v0.11.0#bbd2901e6ebefa99ca759d53ef4c9fb5cc435fdb"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "724a67986c837ce0b60b7aeb6c75cd1458d6c5a4f344e03675869773333e134f"
 dependencies = [
  "ed25519-dalek",
  "miniz_oxide",

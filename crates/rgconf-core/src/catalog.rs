@@ -6,41 +6,41 @@ use std::collections::{BTreeMap, HashMap};
 use std::sync::OnceLock;
 
 const SCHEMA_FILES: &[(&str, &str)] = &[
-    ("common.capnp", include_str!("../../../schema/common.capnp")),
+    ("common.capnp", include_str!("../schema/common.capnp")),
     (
         "convergence.capnp",
-        include_str!("../../../schema/convergence.capnp"),
+        include_str!("../schema/convergence.capnp"),
     ),
     (
         "optimizer.capnp",
-        include_str!("../../../schema/optimizer.capnp"),
+        include_str!("../schema/optimizer.capnp"),
     ),
-    ("refine.capnp", include_str!("../../../schema/refine.capnp")),
-    ("band.capnp", include_str!("../../../schema/band.capnp")),
+    ("refine.capnp", include_str!("../schema/refine.capnp")),
+    ("band.capnp", include_str!("../schema/band.capnp")),
     (
         "minmode.capnp",
-        include_str!("../../../schema/minmode.capnp"),
+        include_str!("../schema/minmode.capnp"),
     ),
     (
         "surrogate.capnp",
-        include_str!("../../../schema/surrogate.capnp"),
+        include_str!("../schema/surrogate.capnp"),
     ),
     (
         "potential.capnp",
-        include_str!("../../../schema/potential.capnp"),
+        include_str!("../schema/potential.capnp"),
     ),
     (
         "dynamics.capnp",
-        include_str!("../../../schema/dynamics.capnp"),
+        include_str!("../schema/dynamics.capnp"),
     ),
     (
         "provenance.capnp",
-        include_str!("../../../schema/provenance.capnp"),
+        include_str!("../schema/provenance.capnp"),
     ),
-    ("rgconf.capnp", include_str!("../../../schema/rgconf.capnp")),
+    ("rgconf.capnp", include_str!("../schema/rgconf.capnp")),
     (
         "gpridge.capnp",
-        include_str!("../../../schema/gpridge.capnp"),
+        include_str!("../schema/gpridge.capnp"),
     ),
 ];
 
@@ -1455,7 +1455,7 @@ mod tests {
         );
 
         let cpmd = specs(
-            include_str!("../../../schema/potential.capnp"),
+            include_str!("../schema/potential.capnp"),
             "CPMDCpmdSection",
         );
         assert_eq!(
