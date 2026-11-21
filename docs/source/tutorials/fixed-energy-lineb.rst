@@ -12,6 +12,7 @@ The eOn client selects this calculation with the ``lineb`` job in the
 * ``molecular`` enables rigid alignment of a free molecule.
 * ``linear_seed`` joins the two turning points with a straight band. Leave it false to follow the supplied seed.
 * ``projected_verlet`` selects velocity-projected Verlet for band optimization.
+* ``interpolated_force_clock`` selects velocity Verlet on the interpolated tangential force for the imaginary-time period and bead positions. The default uses quadrature.
 * ``endpoint_convergence`` applies ``opt_tol`` to the endpoints and ``perp_tol`` to the interior.
 * ``endpoint_kappa`` fixes the endpoint force coefficient. Zero selects the coefficient based on ``endpoint_scale``.
 

@@ -307,6 +307,11 @@ struct LinebConfig {
     cliFlags = ["--lineb-result-cache"],
     doc = "Path to the rgpot geometry result cache. An empty path disables persistent result caching."
   );
+  interpolatedForceClock @20 :Bool = false $Common.mutability(restartOnly) $Common.meta(
+    aliases = [(format = "ini", section = "Lineb", key = "interpolated_force_clock")],
+    cliFlags = ["--lineb-interpolated-force-clock"],
+    doc = "Propagate imaginary time with velocity Verlet on the interpolated tangential image force."
+  );
 }
 
 struct LinebPatch {
@@ -330,6 +335,7 @@ struct LinebPatch {
   endpointConvergence @17 :Common.OptBool;
   projectedVerlet @18 :Common.OptBool;
   resultCache @19 :Common.OptText;
+  interpolatedForceClock @20 :Common.OptBool;
 }
 
 struct OhTstConfig {
