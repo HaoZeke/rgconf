@@ -27,3 +27,10 @@ def test_native_resolution_exposes_instanton_defaults():
 
     lines = _core.resolve_ini("eonLegacyIni", "", "client.ini").splitlines()
     assert "instanton.numBeads=16 defaultValue" in lines
+
+
+def test_eon_lineb_resolves_the_selected_potential():
+    ini = "[Main]\njob = lineb\n[Potential]\npotential = morse_pt\n[Lineb]\nenergy = -0.55\n"
+    resolved = resolve_ini("eonLegacyIni", ini)
+    assert "potential.arm=morse " in resolved
+    assert "lineb.energyEv=-0.55 " in resolved

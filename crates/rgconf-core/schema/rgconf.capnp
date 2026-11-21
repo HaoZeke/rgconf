@@ -206,7 +206,9 @@ struct RgConf {
   units @2 :Common.UnitSystem;
   runtime @3 :RuntimeConfig;
   structureComparison @4 :StructureComparisonConfig;
-  potential @5 :Pot.PotentialConfig;
+  potential @5 :Pot.PotentialConfig $Common.meta(
+    aliases = [(format = "ini", section = "Potential", key = "potential")]
+  );
   optimizer @6 :Opt.OptimizerConfig;
   band @7 :Band.BandConfig;
   saddleSearch @8 :MinMode.SaddleSearchConfig;

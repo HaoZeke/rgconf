@@ -252,6 +252,8 @@ fn legacy_enum(folded: &str) -> &str {
         "fire2" => "fire2",
         "lbfgs" | "cg" | "fire" | "none" => folded,
         "minimization" => "minimization",
+        "morse_pt" => "morse",
+        "ext_pot" => "external",
         "lineb" | "li_neb" | "line_integral_neb" => "lineb",
         other => other,
     }

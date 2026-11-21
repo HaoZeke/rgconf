@@ -406,7 +406,15 @@ fn walk(
                     continue;
                 }
                 TypeHit::Struct(qualified) => {
+                    let start = out.len();
                     walk(model, &qualified, &key, out, stack)?;
+                    // An alias on a union-valued field selects its discriminant.
+                    // The walk emits that parameter before the arm payloads.
+                    if let Some(arm) = out.get_mut(start) {
+                        if arm.key == join_key(&key, "arm") {
+                            arm.aliases.extend(aliases_from(&field.meta));
+                        }
+                    }
                     continue;
                 }
             }
