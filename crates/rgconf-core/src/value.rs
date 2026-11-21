@@ -254,6 +254,7 @@ fn legacy_enum(folded: &str) -> &str {
         "minimization" => "minimization",
         "morse_pt" => "morse",
         "ext_pot" => "external",
+        "rgpot" => "plugin",
         "lineb" | "li_neb" | "line_integral_neb" => "lineb",
         other => other,
     }

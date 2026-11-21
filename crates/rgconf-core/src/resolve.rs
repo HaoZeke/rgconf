@@ -489,6 +489,19 @@ fn formula(
             ValueStatus::DerivedFromUnset,
             "derived:eon.lineb_options_t.perp_tol".to_string(),
         )),
+        _ if key == "potential.plugin.pluginName" && profile == Profile::EonLegacyIni => {
+            let arm = fields.get("potential.arm")?;
+            if arm.value == ParamValue::Text("plugin".into()) && arm.via == "[Potential] potential"
+            {
+                Some((
+                    ParamValue::Text("nwchemc".into()),
+                    ValueStatus::ProfileDefault,
+                    "profile:eonLegacyIni".into(),
+                ))
+            } else {
+                None
+            }
+        }
         _ if key == "potential.arm" => {
             let arm = if profile == Profile::EonServerYaml {
                 "external"

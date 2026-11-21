@@ -2837,11 +2837,19 @@ struct ExternalPotParams {
 
 # Explicit union arm for third-party / runtime-loaded plugin potentials.
 struct PluginPotentialParams {
-  pluginName @0 :Text;
+  pluginName @0 :Text $Common.meta(
+    aliases = [(format = "ini", section = "RgpotPot", key = "backend", transform = "eon_rgpot_backend")]
+  );
   pluginVersion @1 :Text = "";
-  libraryPath @2 :Text = "";
+  libraryPath @2 :Text = "" $Common.meta(
+    aliases = [(format = "ini", section = "RgpotPot", key = "engine_path")]
+  );
   schemaId @3 :Text = "";
   opaquePayload @4 :Data;
+  # The engine reads its own serialized parameters from this path.
+  paramsPath @5 :Text = "" $Common.meta(
+    aliases = [(format = "ini", section = "RgpotPot", key = "params_path")]
+  );
 }
 
 # Presence-aware patch version of CommonMethodSpec using `unset | value` unions,

@@ -284,6 +284,7 @@ fn section_owner(section: &str) -> Option<&'static str> {
     Some(match head {
         "Main" | "main" | "runtime" => "runtime",
         "Structure Comparison" => "structureComparison",
+        "RgpotPot" => "potential.plugin",
         "Potential" | "LennardJones" | "Morse" | "ZBLPot" | "D3Pot" | "D4Pot" | "XTBPot"
         | "MOPACPot" | "Metatomic" | "cpmd" | "potential" => "potential",
         "Optimizer" | "LBFGS" | "FIRE" | "CG" | "QuickMin" | "SD" | "Xtsci" | "optimizer" => {

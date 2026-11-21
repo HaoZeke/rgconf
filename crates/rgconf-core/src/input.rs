@@ -432,6 +432,18 @@ pub fn apply_transform(name: &str, value: ParamValue) -> Result<ParamValue, Erro
     if name.is_empty() {
         return Ok(value);
     }
+    if name == "eon_rgpot_backend" {
+        let backend = value.to_string().to_ascii_lowercase();
+        let engine = match backend.as_str() {
+            "nwchem" | "nwchempot" => "nwchemc",
+            "cpmd" | "cpmdpot" => "cpmdc",
+            "mta" | "metatomicpot" => "metatomic",
+            "omol" | "umapot" => "uma",
+            "gfn" | "gfnxtb" | "xtbpot" => "xtb",
+            _ => &backend,
+        };
+        return Ok(ParamValue::Text(engine.to_string()));
+    }
     if name == "total_from_intermediate_plus_2" {
         let base = match &value {
             ParamValue::Int(number) => *number,
