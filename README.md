@@ -11,22 +11,26 @@ ABI, and Python bindings.
 
 ## Install
 
-Install the command-line program from crates.io:
+The v0.1.0 release is available as source. From a shell with Git and
+Rust, check out the release and install the command-line program.
 
 ```console
-cargo install rgconf-cli
+git clone --branch v0.1.0 https://github.com/OmniPotentRPC/rgconf.git
+cd rgconf
+cargo install --locked --path crates/rgconf-cli
 ```
 
-Add the Rust library to a project:
+To use the Rust library, run this command in the consuming Cargo project.
 
 ```console
-cargo add rgconf
+cargo add rgconf --git https://github.com/OmniPotentRPC/rgconf.git --tag v0.1.0
 ```
 
-Install the Python package from PyPI:
+For the Python bindings, activate a virtual environment and install the
+package from the release checkout.
 
 ```console
-python -m pip install rgconf
+python -m pip install ./python
 ```
 
 ## Quick start
@@ -63,8 +67,8 @@ print(resolved)
 
 The [user guide](https://omnipotentrpc.github.io/rgconf/) covers resolution,
 schema extension, deprecation, parameters, precedence, and upstream
-compatibility. Rust API documentation is available on
-[docs.rs](https://docs.rs/rgconf). See the
+compatibility. Generate the Rust API documentation from the checkout with
+`cargo doc --locked -p rgconf --open`. See the
 [changelog](https://github.com/OmniPotentRPC/rgconf/blob/main/CHANGELOG.md) for
 release notes.
 
