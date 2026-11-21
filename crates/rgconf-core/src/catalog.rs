@@ -11,37 +11,19 @@ const SCHEMA_FILES: &[(&str, &str)] = &[
         "convergence.capnp",
         include_str!("../schema/convergence.capnp"),
     ),
-    (
-        "optimizer.capnp",
-        include_str!("../schema/optimizer.capnp"),
-    ),
+    ("optimizer.capnp", include_str!("../schema/optimizer.capnp")),
     ("refine.capnp", include_str!("../schema/refine.capnp")),
     ("band.capnp", include_str!("../schema/band.capnp")),
-    (
-        "minmode.capnp",
-        include_str!("../schema/minmode.capnp"),
-    ),
-    (
-        "surrogate.capnp",
-        include_str!("../schema/surrogate.capnp"),
-    ),
-    (
-        "potential.capnp",
-        include_str!("../schema/potential.capnp"),
-    ),
-    (
-        "dynamics.capnp",
-        include_str!("../schema/dynamics.capnp"),
-    ),
+    ("minmode.capnp", include_str!("../schema/minmode.capnp")),
+    ("surrogate.capnp", include_str!("../schema/surrogate.capnp")),
+    ("potential.capnp", include_str!("../schema/potential.capnp")),
+    ("dynamics.capnp", include_str!("../schema/dynamics.capnp")),
     (
         "provenance.capnp",
         include_str!("../schema/provenance.capnp"),
     ),
     ("rgconf.capnp", include_str!("../schema/rgconf.capnp")),
-    (
-        "gpridge.capnp",
-        include_str!("../schema/gpridge.capnp"),
-    ),
+    ("gpridge.capnp", include_str!("../schema/gpridge.capnp")),
 ];
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -1462,10 +1444,7 @@ mod tests {
             ParamValue::Text("field".into())
         );
 
-        let cpmd = specs(
-            include_str!("../schema/potential.capnp"),
-            "CPMDCpmdSection",
-        );
+        let cpmd = specs(include_str!("../schema/potential.capnp"), "CPMDCpmdSection");
         assert_eq!(
             spec(&cpmd, "interface").default_value,
             ParamValue::Bool(false)

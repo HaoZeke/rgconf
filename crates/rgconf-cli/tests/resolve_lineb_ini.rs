@@ -103,7 +103,10 @@ molecular = false
         .output()
         .expect("spawn rgconf");
     let stdout = String::from_utf8_lossy(&output.stdout);
-    assert!(stdout.contains("lineb.resultCache=my-results.db"), "{stdout}");
+    assert!(
+        stdout.contains("lineb.resultCache=my-results.db"),
+        "{stdout}"
+    );
     let stderr = String::from_utf8_lossy(&output.stderr);
     assert!(
         output.status.success(),
