@@ -67,6 +67,24 @@ fn check_lineb(fields: &BTreeMap<String, ResolvedField>) -> Result<(), Error> {
             ));
         }
     }
+    if let (Some(step), Some(mode)) = (
+        fields.get("lineb.imageHessianStep"),
+        fields.get("lineb.interpolatedHessian"),
+    ) {
+        let value = as_number(&step.value).unwrap_or(f64::NAN);
+        if !value.is_finite() || value < 0.0 {
+            return Err(located(
+                step,
+                "[Lineb] image_hessian_step must be finite and non-negative",
+            ));
+        }
+        if value > 0.0 && mode.value != ParamValue::Bool(true) {
+            return Err(located(
+                step,
+                "[Lineb] image_hessian_step requires interpolated_hessian",
+            ));
+        }
+    }
     if let Some(field) = fields.get("lineb.endpointKappa") {
         if !as_number(&field.value).is_some_and(|n| n.is_finite() && n >= 0.0) {
             return Err(located(

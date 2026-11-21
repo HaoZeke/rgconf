@@ -312,6 +312,18 @@ struct LinebConfig {
     cliFlags = ["--lineb-interpolated-force-clock"],
     doc = "Propagate imaginary time with velocity Verlet on the interpolated tangential image force."
   );
+  interpolatedHessian @21 :Bool = false $Common.mutability(restartOnly) $Common.meta(
+    aliases = [(format = "ini", section = "Lineb", key = "interpolated_hessian")],
+    cliFlags = ["--lineb-interpolated-hessian"],
+    doc = "Interpolate path-image Hessians to the rate beads."
+  );
+  imageHessianStep @22 :Float64 = 0.0 $Common.mutability(restartOnly) $Common.meta(
+    dimension = length, unit = angstrom,
+    bounds = (hasMinInclusive = true, minInclusive = 0.0),
+    aliases = [(format = "ini", section = "Lineb", key = "image_hessian_step")],
+    cliFlags = ["--lineb-image-hessian-step"],
+    doc = "Cartesian finite-difference displacement for image Hessians. Zero selects the solver default."
+  );
 }
 
 struct LinebPatch {
@@ -336,6 +348,8 @@ struct LinebPatch {
   projectedVerlet @18 :Common.OptBool;
   resultCache @19 :Common.OptText;
   interpolatedForceClock @20 :Common.OptBool;
+  interpolatedHessian @21 :Common.OptBool;
+  imageHessianStep @22 :Common.OptFloat64;
 }
 
 struct OhTstConfig {
