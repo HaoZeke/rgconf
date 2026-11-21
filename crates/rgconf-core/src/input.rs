@@ -2,7 +2,7 @@
 
 use crate::catalog::{catalog, Alias, Catalog};
 use crate::error::Error;
-use crate::value::{parse_loose_number, ParamValue};
+use crate::value::{parse_loose_number, ParamValue, ScalarKind};
 use serde_json::Value as Json;
 use std::collections::BTreeMap;
 use toml::Value as Toml;
@@ -71,7 +71,18 @@ pub fn parse_ini(text: &str, path: &str) -> Result<Vec<Assignment>, Error> {
             ));
         };
         let key = raw_key.trim();
-        let value = parse_scalar(raw_value.trim());
+        let alias = ("ini".to_string(), section.clone(), key.to_string());
+        let spec = cat
+            .alias_index
+            .get(&alias)
+            .and_then(|targets| targets.first())
+            .and_then(|target| cat.get(target))
+            .or_else(|| cat.get(&format!("{section}.{key}")));
+        let value = if spec.is_some_and(|s| s.kind == ScalarKind::Text) {
+            ParamValue::Text(scalar_text(raw_value).to_string())
+        } else {
+            parse_scalar(raw_value)
+        };
         push_named(cat, "ini", &section, key, value, path, line_no, &mut out)?;
     }
     Ok(out)
@@ -506,8 +517,12 @@ fn origin_path(origin: &str) -> &str {
     }
 }
 
+fn scalar_text(raw: &str) -> &str {
+    raw.trim().trim_matches('"').trim_matches('\'')
+}
+
 fn parse_scalar(raw: &str) -> ParamValue {
-    let trimmed = raw.trim().trim_matches('"').trim_matches('\'');
+    let trimmed = scalar_text(raw);
     match trimmed.to_ascii_lowercase().as_str() {
         "true" | "yes" | "on" => return ParamValue::Bool(true),
         "false" | "no" | "off" => return ParamValue::Bool(false),

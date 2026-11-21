@@ -906,23 +906,23 @@ proptest::proptest! {
 fn eon_rgpot_preserves_the_engine_and_external_parameter_file() {
     let mut resolver = Resolver::new(Profile::EonLegacyIni);
     resolver.merge_ini(ConfigLayer::JobConfigFile,
-        "[RgpotPot]\nbackend = ORCA\nengine_path = liborca_engine.so\nparams_path = method.params\n[Potential]\npotential = rgpot\n", "config.ini").expect("rgpot plugin configuration");
+        "[RgpotPot]\nbackend = ORCA\nengine_path = liborca_engine.so\nparams_path = 0005\n[Potential]\npotential = rgpot\n", "config.ini").expect("rgpot plugin configuration");
     let values = resolver.resolve().expect("resolved engine");
     for (name, expected) in [
         ("potential.arm", "plugin"),
         ("potential.plugin.pluginName", "orca"),
         ("potential.plugin.libraryPath", "liborca_engine.so"),
-        ("potential.plugin.paramsPath", "method.params"),
+        ("potential.plugin.paramsPath", "0005"),
     ] {
         assert_eq!(field(&values, name).value.to_string(), expected);
         assert_eq!(field(&values, name).status, ValueStatus::ExplicitlySet);
     }
-    assert_ne!(
-        field(&values, "potential.gpr.oracle.plugin.pluginName")
-            .value
-            .to_string(),
-        "orca"
-    );
+    let explicit = values
+        .fields
+        .values()
+        .filter(|f| f.status == ValueStatus::ExplicitlySet)
+        .count();
+    assert_eq!(explicit, 4, "the INI assigns only the outer engine");
     let mut default_engine = Resolver::new(Profile::EonLegacyIni);
     default_engine
         .merge_ini(
